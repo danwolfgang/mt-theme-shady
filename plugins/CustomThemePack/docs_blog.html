@@ -1,0 +1,88 @@
+<h2>Theme Options</h2>
+
+<p>In the main blog, visit Design > Theme Options. Fill in this info as necessary:</p>
+
+<ul>
+    <li>Header Image URL is required.</li>
+    <li>Enter the height of the image used for the header in the field Header Image Height.
+    <li>Primary Author Username is required.<br />
+<em>This name must match one of the users already setup on the system.</em></li>
+    <li>Home Page Name will display in the site navigation as &#8220;What's New&quot; by default.</li>
+    <li>Home Page Center Column Name will display &#8220;Play by Play&quot; by default, and is displayed <em>only</em> on the home page.</li>
+    <li>When enabled, the &#8220;Display Header Images&quot; checkbox will pull the four most-recent additions to the Gallery blog. This should be disabled if you don't want these images to appear in the header, or if the Gallery blog does not exist. If this option is enabled, the Header Image Height should be at least 110.</li>
+    <li>Supply an image to be tiled (horizontally only) across the background of the site in the Background Image URL field.</li>
+    <li>The Background Color field should match the bottom of the background image to display on longer pages.</li>
+</ul>
+
+<p>All other fields are intelligently applied/ignored.</p>
+
+<p>Some Theme Options can also be set in the Photo Gallery blog.</p>
+
+<ul>
+    <li>The Header Image URL can be set in the Photo Gallery blog. Note that the specified URL will be used for <strong>all</strong> pages of the Photo Gallery.</li>
+    <li>The Home Page Display Type can be set to Gallery or Daily. Daily displays a single image, the width of the home page. Gallery displays 3-wide as a summarization of the gallery; note that photos must be uploaded in gallery-specific batches for the Gallery display to work correctly.</li>
+</ul>
+
+<h3>Image Carousel</h3>
+
+<p>Creates an image carousel (dissolving slide show) on the home page of the main blog, between the navigation bar and the body content of the page. Image for the carousel should all be scaled to the same height and correct width. Upload the images via FTP into a folder on the website. (The carousel images do not need to be imported as Assets through the MT interface.) You may use from TWO to SIX images.</p>
+
+<ul>
+    <li>Check the box to enable the carousel and select the width of the carousel from the drop down.</li>
+    <li>Enter the height of the carousel images.</li>
+    <li>Enter the number of times to loop the carousel</li>
+    <li>For each image, enter it's URL into the space provided. This should be the full URL path to a publicly accessible location.</li>
+    <li>Text and Link URL are optional. The Text field will appear as a caption superimposed on the carousel as each image appears. The Link URL will make the image into a clickable link.</li>
+</ul>
+
+
+<h2>Entries</h2>
+
+<ul>
+    <li>Make an entry appear in the Featured Articles widget by including the <code>@featuredarticle</code> tag. The five most-recent entries with the <code>@featuredarticle</code> tag will be displayed in this widget.</li>
+    <li>Make an entry appear in the Featured Video widget by including the <code>@featuredvideo</code> tag. Only the most recent entry tagged <code>@featuredvideo</code> will be displayed here. The widget displays the contents of the Entry Excerpt field, so you will want to enter the HTML to a reduced-size video here, to fit the sidebar width. The sidebar width is 202 pixels.</li>
+    <li>A Keep This Off Home Page checkbox is on the Edit Entry screen; choose Display Options to show this field.</ul>
+</ul>
+
+
+<h2>Pages</h2>
+
+<ul>
+    <li>Add a Contact page: go to Create > Page and add a page as desired. Give it the <code>@contact</code> tag. This tag is responsible for adding a link in the navigation header and footer links in the site. Be sure to enable commenting on this page, which creates the contact form for visitors to use.</li>
+    <li>Add an About page. Give it the <code>@about</code> tag; which adds it to the navigation header and footer links. Use H2 HTML tags to delineate sections, which will then appear in the Highlights sidebar widget.</li>
+    <li>Add any other pages. By default, they are not linked anywhere or to anything. Manually link to them from other pages, or add them to the footer (with the <code>@footernav</code> tag) or the header (<code>@topnav</code>). (You don't need to use <code>@contact</code> and <code>@about</code> to place those Pages, <code>@topnav</code> and <code>@footernav</code> work fine, too.)</li>
+</ul>
+
+<p>After adding any pages with <code>@about</code>, <code>@contact</code>, <code>@footernav</code>, or <code>@topnav</code>, the site must be republished to update all pages.</p>
+
+<p>Choose Display > Options on the Create/Edit Page screen to enable these custom fields:</p>
+
+<ul>
+    <li>The Lead Image asset custom field will let you place an image directly beneath the navigation menu, but above the title. Note that the ImageCarouselHeight (set in Design > Theme Options > Image Carousel) must be set, regardless of whether the carousel/slideshow is used. Of course, this also means that the Lead Image field image height must match that number, too.</li>
+    <li>The Beta Column widget field will let you specify a different Widget Set for the current page. By default, the &#8220;Beta Column (Default)&quot; Widget Set is used. On the About page you could specify the &#8220;Beta Column (About)&quot; Widget Set to be used, so that the beta column (left, in the 3-col design) could display entirely different contents. Of course, you can also create new Widget Sets for any purpose, and they will appear here as well.</li>
+    <li>Any content entered in the Extended field will display floated right of the body text, in a 200px-wide box. Useful for dropping an accent image in, such as a headshot for a Bio or About page.</li>
+    <li>Link Pages to another Page with the Selected Pages custom field. The link will be built with the selected page's title, excerpt, and lead image. (Note that if the Excerpt is left blank, text will be auto-generated from the body field.)</li>
+    <li>By default, the Page title will be used for the menu navigation. However, this can be overridden with the Navigation Name custom field.</li>
+</ul>
+
+
+<h2>Drop-down Navigation Menu</h2>
+
+<p>By default, the navigation menu is built with pages tagged <code>@topnav</code>, <code>@about</code>, and/or <code>@contact</code>. This is a solid and simple way to build menus.</p>
+
+<p>But, if a drop-down menu is needed, the CTP has provisions for it, although it is considerably more complex. To enable drop-down support visit Design > Theme Options > Design Options.</p>
+
+<p>Once enabled, menus must be built. Similar to the simple navigation, links to the Main and Gallery blogs are first created; also, <code>@about</code> and <code>@contact</code> will add those pages just as with the simple navigation.</p>
+
+<p>Folders are the backbone of the drop-down navigation. Create a folder structure (Manage > Folders) where each item to appear in the menu must be a folder. The parent/child folder relationship will be directly translated to the menu/submenu relationship published to the site. Any number of submenus and sub-submenus can be created simply by nesting Folders. Order the menu and submenu items (that is, order the Folders within the navigation menu) with HTML comments. Precede the Folder Label with &quot;@<!-- 1 -->@&quot; for the first menu item, and &quot;@<!-- 2 -->@&quot; for the second menu item. This comment ordering applies to both top-level menu items (relative to the other top-level items) and sub-menu items (relative to the other items in the same parent folder).</p>
+
+<p>If there is any possibility of having more than 9 items in a given menu, use two-digits for ALL their folder label comments: &quot;@<!-- 01 -->@&quot;, and &quot;@<!-- 02 -->@&quot; and so on, otherwise they will not sort properly.</p>
+
+<p>At this point, you've created a menu structure that works, however it doesn't link anywhere. Add pages as destinations of each folder: select Create > Page and select the Folder you want this page to be attached to. Update the basename of this page to &quot;@index@&quot; and save. Selecting the Folder will place the file in the correct destination, and giving the page a basename of &quot;@index@&quot; will make it the default page. Many pages can exist in a Folder, but only the one with the basename &quot;@index@&quot; will be linked from the menu. Note that the &quot;@@topnav@&quot; tag is not necessary with the drop-down style menu.</p>
+
+
+<h2>Categories and Folders</h2>
+
+<p>The header image is specified at the site level through Theme Options. A category-specific or folder-specific header image can be displayed in its place, however.</p>
+
+<p>Visit Manage > Categories and click a category name to edit it. There, use the Category Header Image field to add a header image specific to this category. Entries and category archives will both make use of this custom header. The Folder custom header override works the same way.</p>
