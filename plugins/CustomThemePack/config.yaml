@@ -2,8 +2,8 @@ name:        'Custom Theme Pack'
 id:          customthemepack
 key:         customthemepack
 description: 'Includes template sets for a blog and galleries.'
-author:      'Dan Wolfgang, uiNNOVATIONS, developed for The Roster'
-version: 1.3.3
+author_name: 'Dan Wolfgang, uiNNOVATIONS, developed for The Roster'
+version: 1.3.4
 schema_version: 5
 
 object_types:
@@ -481,6 +481,11 @@ template_sets:
                     label: 'Registration Confirmation'
                 register_form:
                     label: 'Registration Form'
+                password_reset:
+                    label: 'New Password Reset Form'
+                new_password:
+                    label: 'New Password Form'
+                
     photo_gallery:
         options:
             fieldsets:

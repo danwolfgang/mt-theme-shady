@@ -77,7 +77,7 @@
 
         <ul>
         <mt:If name="enabled_MovableType">
-        <li id="signin_option_mt"<mt:If name="enabled_MovableType"> class="choice_on"</mt:If>><div class="signin_logo"><a href="javascript:void(0)" onclick="signinToggle('mt');"><img src="<mt:Var name="static_uri">images/comment/signin_mt.png" width="36" height="26" border="0" alt="" /></a></div><div class="auth_name"><a href="javascript:void(0)" onclick="signinToggle('mt');">Austin Hendrick Times</a></div></li>
+        <li id="signin_option_mt"<mt:If name="enabled_MovableType"> class="choice_on"</mt:If>><div class="signin_logo"><a href="javascript:void(0)" onclick="signinToggle('mt');"><img src="<mt:Var name="static_uri">images/comment/signin_mt.png" width="36" height="26" border="0" alt="" /></a></div><div class="auth_name"><a href="javascript:void(0)" onclick="signinToggle('mt');"><mt:BlogName></a></div></li>
         </mt:If>
 
         <mt:Loop name="auth_loop">
@@ -137,7 +137,7 @@
         </div>
     </div>
     <mt:If name="registration_allowed">
-    <div class="right">Not a member?&nbsp;&nbsp;<a href="<mt:Var name="script_url">?__mode=register&blog_id=<mt:Var name="blog_id">&return_to=<mt:Var name="return_to" escape="url">">Sign Up</a>!</div>
+    <div class="right">Not a member?&nbsp;&nbsp;<a href="<mt:Var name="script_url">?__mode=register&amp;blog_id=<mt:Var name="blog_id">&amp;return_to=<mt:Var name="return_to" escape="url">">Sign Up</a>!</div>
     </mt:If>
 </form>
 
