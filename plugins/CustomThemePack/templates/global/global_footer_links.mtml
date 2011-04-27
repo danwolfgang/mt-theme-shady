@@ -11,6 +11,11 @@
         </mt:Blogs>
     </mt:if>
 
+    <mt:Pages blog_ids="$main_blog_id" tag="@footernav">
+        <span class="divider">|</span>
+        <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">"><mt:PageTitle></a>
+    </mt:Pages>
+
     <mt:Pages blog_ids="$main_blog_id" tags="@about" limit="1">
         <span class="divider">|</span>
         <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">">About</a>
@@ -21,10 +26,6 @@
         <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">">Contact</a>
     </mt:Pages>
 
-    <mt:Pages blog_ids="$main_blog_id" tag="@footernav">
-        <span class="divider">|</span>
-        <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">"><mt:PageTitle></a>
-    </mt:Pages>
 </p>
 <p>
     <mt:Blogs blog_ids="$main_blog_id"><mt:If tag="CopyrightName">&copy; <mt:CopyrightName></mt:If></mt:Blogs>

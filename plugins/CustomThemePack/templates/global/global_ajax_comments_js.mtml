@@ -46,6 +46,8 @@ jQuery(document).ready(function() {
                 jQuery('#comment-submit').removeAttr("disabled");
                 jQuery('#comment-preview').removeAttr("disabled");
                 jQuery('#comment-text').removeAttr("disabled");
+                // Remove any existing values
+                jQuery('#comment-text').val();
                 mtEntryOnUnload();
             }
         });

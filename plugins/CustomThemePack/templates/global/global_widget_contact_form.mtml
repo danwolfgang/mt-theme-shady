@@ -1,0 +1,23 @@
+<mt:SetVarBlock name="cf_widget">
+<mt:Pages blog_ids="$main_blog_id" tag="@contact" lastn="1">
+<div class="widget-contact-form widget">
+    <h3 class="widget-header"><mt:Blogs blog_ids="$main_blog_id"><mt:WidgetContactFormName></mt:Blogs></h3>
+    <div class="widget-content">
+            <mt:EntryBody>
+            <mt:Include module="Contact Form">
+    </div>
+</div>
+</mt:Pages>
+</mt:SetVarBlock>
+
+<mt:Unless name="system_template">
+    <mt:If tag="EntryClass" eq="page">
+        <mt:PageIfTagged name="@contact">
+            <mt:Ignore> Don't publish if we're on the contact page. </mt:Ignore>
+        <mt:Else>
+            <mt:Var name="cf_widget">
+        </mt:PageIfTagged>
+    <mt:Else>
+        <mt:Var name="cf_widget">
+    </mt:If>
+</mt:Unless>

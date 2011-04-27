@@ -12,30 +12,17 @@
                 <mt:EntryTitle>
             </mt:If>
         </h1>
-        <$mt:Include module="Entry Metadata"$>
+        <mt:Include module="Entry Metadata">
     </div>
     <div class="asset-content entry-content">
-<mt:Ignore>
-<MTIfNonEmpty tag="EntryBody">
         <div class="asset-body">
-            <mt:IfNonEmpty tag="EntryURL">
-                <p>URL: <a href="<mt:EntryURL>"><mt:EntryURL></a></p>
-            </mt:IfNonEmpty>
-<mt:IfCategory name="Current Quote">
-<mt:Else>
-            <MTEntryBody>
-</mt:IfCategory>
+        <mt:Ignore> Display only the Extended field if it's used. Otherwise just display the body. </mt:Ignore>
+        <mt:If tag="EntryMore">
+            <mt:EntryMore>
+        <mt:Else>
+            <mt:EntryBody>
+        </mt:If>
         </div>
-</MTIfNonEmpty>
-</mt:Ignore>
-    <mt:If tag="EntryCategory" eq="Follow Austin">
-        <div class="asset-body">
-            <MTEntryTitle>
-        </div>
-    </mt:If>
-    <div class="asset-body">
-        <mt:EntryBody>
-        <MTEntryMore>
     </div>
     <div class="asset-footer">
         <MTInclude module="Tags">

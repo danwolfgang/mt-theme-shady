@@ -1,7 +1,4 @@
-<mt:SetVarBlock name="main_blog_id"><mt:Var name="config.MainBlogID"></mt:SetVarBlock>
-<mt:SetVarBlock name="in_action_blog_id"><mt:Var name="config.InActionBlogID"></mt:SetVarBlock>
-<mt:SetVarBlock name="author_name"><mt:Var name="config.PrimaryAuthorName"></mt:SetVarBlock>
-<mt:SetVarBlock name="author_first_name"><mt:Blogs blog_ids="$main_blog_id"><mt:ShortAuthorName></mt:Blogs></mt:SetVarBlock>
+<mt:Include module="Global: Variables">
 <mt:SetVarBlock name="html_head" prepend="1">
     <MTIf name="main_template">
 <link rel="alternate" type="application/atom+xml" title="Atom" href="<mt:Blogs blog_ids="$main_blog_id"><mt:Link identifier="atom"></mt:Blogs>" />
@@ -46,6 +43,13 @@
                         <div id="header-name"><a href="<mt:BlogURL>" accesskey="1"><mt:BlogName encode_html="1"></a></div>
     </mt:Blogs>
 </mt:If>
+<mt:Blogs blog_ids="$main_blog_id">
+    <mt:If tag="DisplayHeaderImages">
+                        <div id="header-images">
+                            <mt:Include module="Global: Header Images">
+                        </div>
+    </mt:if>
+</mt:Blogs>
                     </div>
                 </div>
             </div>

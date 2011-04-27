@@ -1,11 +1,22 @@
-name:        'The Roster Blog Theme'
-id:          therosterblogtheme
-key:         therosterblogtheme
+name:        'Custom Theme Pack'
+id:          customthemepack
+key:         customthemepack
 description: 'Includes template sets for a "Times" and "In Action" blog.'
-author:      'Dan Wolfgang, uiNNOVATIONS'
-author_link: 'http://uinnovations.com'
-version: 1.1
-schema_version: 1
+author:      'Dan Wolfgang, uiNNOVATIONS, developed for The Roster'
+version: 1.2.1
+schema_version: 3
+
+object_types:
+    comment:
+        phone:       string(255)
+
+callbacks:
+    MT::Comment::pre_save: $CustomThemePack::CustomThemePack::ContactForm::pre_save
+    MT::App::CMS::template_param.edit_comment: $CustomThemePack::CustomThemePack::ContactForm::add_fields
+
+tags:
+    function:
+        CommentPhone:      $CustomThemePack::CustomThemePack::ContactForm::comment_phone
 
 default_templates:
     base_path: 'templates/global'
@@ -24,6 +35,8 @@ default_templates:
             label: 'Global: Footer Links'
         global_header:
             label: 'Global: Header'
+        global_header_images:
+            label: 'Global: Header Images'
         global_include_add_this:
             label: 'Global: Include: Add This'
         global_navigation:
@@ -34,6 +47,8 @@ default_templates:
             label: 'Global: Sidebar'
         global_site_javascript:
             label: 'Global: Site Javascript'
+        global_variables:
+            label: 'Global: Variables'
     global:widget:
         global_widget_ad:
             label: 'Ad'
@@ -41,8 +56,10 @@ default_templates:
             label: 'Built By The Roster'
         global_widget_category_archives:
             label: 'Category Archives'
-        global_widget_contact:
-            label: 'Contact Address & Phone'
+        #global_widget_contact:
+        #    label: 'Contact Address & Phone'
+        global_widget_contact_form:
+            label: 'Contact Form'
         global_widget_featured_articles:
             label: 'Featured Articles'
         global_widget_featured_video:
@@ -101,11 +118,20 @@ default_templates:
 template_sets:
     blog:
         base_path: 'templates/blog'
-        label: 'The Roster Blog Theme (Blog)'
+        label: 'Custom Theme Pack (Blog)'
         options:
             fieldsets:
                 home:
                     label: 'Home Page Options'
+                widget_names:
+                    label: 'Widget Names'
+                contact_form_options:
+                    label: 'Contact Form Options'
+                design:
+                    label: 'Design Options'
+                css:
+                    label: 'Custom CSS'
+            # Home page options
             home_page_name:
                 type: text
                 label: 'Home Page Name'
@@ -120,6 +146,83 @@ template_sets:
                 default: 'Play by Play'
                 tag: HomePageCenterColumnName
                 fieldset: home
+            # Widget names
+            widget_contact_form:
+                type: text
+                label: 'Contact Form'
+                default: 'Contact Form'
+                tag: WidgetContactFormName
+                fieldset: widget_names
+            # Contact Form options
+            contact_enable_phone:
+                type: checkbox
+                label: 'Enable Phone Field'
+                hint: 'Display a field for a visitor to enter their phone number in the contact form.'
+                tag: ContactEnablePhone
+                fieldset: contact_form_options
+            # Design Options
+            header_image:
+                type: text
+                label: 'Header Image URL'
+                hint: 'Enter the URL to an image to display in the header. The image should measure 970 pixels wide; the height is variable, but must be entered in the Header Image Height field.'
+                tag: HeaderImageURL
+                fieldset: design
+            header_image_height:
+                type: text
+                label: 'Header Image Height'
+                hint: 'Enter the height (in pixels) of the header image. Enter a number only.'
+                tag: HeaderImageHeight
+                default: '140'
+                fieldset: design
+            header_background_color:
+                type: text
+                label: 'Header Background Color'
+                hint: 'Enter a web-valid named color or hex value (with "#") to be used for the header background. This should match the the color of the Header Image. If blank, the background image/color will show through.'
+                tag: HeaderBackgroundColor
+                default: '#000'
+                fieldset: design
+            display_header_recent_images:
+                type: checkbox
+                label: 'Display Recent Images in Header'
+                hint: 'The four most recent photos from the In Action section can be displayed in the site header. When using this option, the Header Image Height should be set to <em>at least</em> <code>110</code> pixels tall to accommodate the space requirement.'
+                tag: DisplayHeaderImages
+                fieldset: design
+            display_entry_meta:
+                type: checkbox
+                label: 'Display Entry Meta'
+                hint: "By default, the Entry's date will be published. Uncheck to hide the date. This setting does not effect the In Action section."
+                default: 1
+                tag: DisplayEntryMeta
+                fieldset: design
+            background_color:
+                type: text
+                label: 'Background Color'
+                hint: 'Enter a web-valid named color or hex value (with "#") to be used for the site background. This should approximately match the the color of the Background Image, if used.'
+                default: '#fff'
+                tag: BackgroundColor
+                fieldset: design
+            background_image_url:
+                type: text
+                label: 'Background Image URL'
+                hint: 'Enter the URL to an image to be used as the site background. This image is tiled left-to-right only, not top-to-bottom.'
+                tag: BackgroundImageURL
+                fieldset: design
+            align_navigation:
+                type: select
+                values: 'Left,Center,Right'
+                default: 'Left'
+                label: 'Top Navigation Menu Alignment'
+                tag: AlignNavigation
+                fieldset: design
+            # Custom CSS
+            custom_css:
+                type: textarea
+                label: 'Custom CSS'
+                hint: 'Enter any additional CSS rules here, overriding the defaults.'
+                tag: CustomCSS
+                rows: 20
+                fieldset: css
+            # Global options
             tracking_code:
                 type: textarea
                 label: 'Tracking Code'
@@ -135,11 +238,6 @@ template_sets:
                 label: 'Sidebar Ad HTML'
                 hint: 'Enter HTML to include an ad in the sidebar, up to 204 pixels wide.'
                 tag: SidebarAdHTML
-            header_image:
-                type: text
-                label: 'Header Image URL'
-                hint: 'Enter the URL to an image to display in the header. The image should measure 970 x 144 pixels.'
-                tag: HeaderImageURL
             add_this:
                 type: textarea
                 label: '&ldquo;Add This&rdquo; Code'
@@ -150,19 +248,7 @@ template_sets:
                 label: 'Short Author Name'
                 hint: "Enter a short name for the author, to be displayed with the In Action recent thumbnails widget. Typically, this will be the author's first name."
                 tag: ShortAuthorName
-            display_entry_meta:
-                type: checkbox
-                label: 'Display Entry Meta'
-                hint: "By default, the Entry's date will be published. Uncheck to hide the date. This setting does not effect the In Action section."
-                default: 1
-                tag: DisplayEntryMeta
         fields:
-#            entry_url:
-#                label: 'URL'
-#                description: 'URL to a Daily Link item'
-#                type: url
-#                obj_type: entry
-#                tag: entryurl
             page_left_column:
                 label: 'Left Column'
                 description: 'Select the widget set to display in the left-hand column of this page.'
@@ -222,6 +308,18 @@ template_sets:
                 options: 'Arial,Arial-Black,Courier,Georgia,Times,Verdana'
                 obj_type: page
                 tag: page_headline_style_font
+            category_header_image:
+                type: asset.image
+                label: 'Category Header Image'
+                description: 'Enter the URL to an image to display in the header for items in this category only. The image should measure 970 pixels wide; the height is variable, but must be entered in the Header Image Height field.'
+                obj_type: category
+                tag: CategoryHeaderImageURL
+            folder_header_image:
+                type: asset.image
+                label: 'Folder Header Image'
+                description: 'Enter the URL to an image to display in the header for items in this folder only. The image should measure 970 pixels wide; the height is variable, but must be entered in the Header Image Height field.'
+                obj_type: folder
+                tag: FolderHeaderImageURL
         templates:
             archive:
                 entry_listing:
@@ -252,6 +350,10 @@ template_sets:
                     label: 'Featured Video'
                     outfile: include/featured_video.inc
                     rebuild_me: 1
+                twitter_feed:
+                    label: 'Twitter Feed'
+                    outfile: include/twitter_feed.inc
+                    rebuild_me: 1
                 google_sitemap:
                     label: 'Google Sitemap'
                     outfile: sitemap.xml
@@ -276,6 +378,23 @@ template_sets:
                     label: 'Stylesheet: Headlines'
                     outfile: styles-headlines.css
                     rebuild_me: 1
+                sidebar_left_default:
+                    label: 'Sidebar Left: Default Widgetset'
+                    outfile: include/sidebar_left_default.inc
+                    rebuild_me: 1
+                sidebar_left_contact:
+                    label: 'Sidebar Left: Contact Widgetset'
+                    outfile: include/sidebar_left_contact.inc
+                    rebuild_me: 1
+                sidebar_left_about:
+                    label: 'Sidebar Left: About Widgetset'
+                    outfile: include/sidebar_left_about.inc
+                    rebuild_me: 1
+                sidebar_right_default:
+                    label: 'Sidebar Right: Default Widgetset'
+                    outfile: include/sidebar_right_default.inc
+                    rebuild_me: 1
+                
             individual:
                 entry:
                     label: Entry
@@ -339,7 +458,7 @@ template_sets:
                     label: 'Registration Form'
     in_action:
         base_path: 'templates/in_action'
-        label: 'The Roster Blog Theme (In Action)'
+        label: 'Custom Theme Pack (In Action)'
         fields:
             html_head_title:
                 label: 'HTML Head Title'
@@ -410,11 +529,15 @@ template_sets:
                     rebuild_me: 1
                 include_in_action_recent:
                     label: 'Include: In Action: Recent'
-                    outfile: recent.inc
+                    outfile: include/recent.inc
                     rebuild_me: 1
                 include_in_action_recent_thumbs:
                     label: 'Include: In Action: Recent Thumbs'
-                    outfile: recent-thumbs.inc
+                    outfile: include/recent-thumbs.inc
+                    rebuild_me: 1
+                include_header_images:
+                    label: 'Include: Header Images'
+                    outfile: include/header-images.inc
                     rebuild_me: 1
                 javascript:
                     label: JavaScript
@@ -423,6 +546,10 @@ template_sets:
                 main_index:
                     label: 'Main Index'
                     outfile: index.php
+                    rebuild_me: 1
+                sidebar_left_default:
+                    label: 'Sidebar Left: In Action Widgetset'
+                    outfile: include/sidebar_left_in_action.inc
                     rebuild_me: 1
             individual:
                 entry:

@@ -1,7 +1,12 @@
-@import url(<mt:StaticWebPath>plugins/TheRosterBlogTheme/css/base.css);
+@import url(<mt:StaticWebPath>plugins/CustomThemePack/css/base.css);
 
 body {
-    background: #fff;
+    background-color: <mt:BackgroundColor>;
+<mt:If tag="BackgroundImageURL">
+    background-image: url(<mt:BackgroundImageURL>);
+    background-position: left top;
+    background-repeat: repeat-x;
+</mt:If>
     color: #000;
     font: normal 13px/19px Arial, Helvetica, sans-serif;
 }
@@ -21,14 +26,18 @@ a:active {
 
 u {
     background: yellow;
+    text-decoration: none;
 }
 
 /* Layout */
 
+#container {
+    width: 100%
+}
+
 #container-inner {
-    width: auto;
+    width: 100%;
     min-height: 100%;
-    margin: 0 auto;
     text-align: left;
 }
 
@@ -55,10 +64,10 @@ u {
     padding-top: 10px;
 }
 #beta-inner {
-    padding-left: 0;
+    padding-right: 0;
 }
 #gamma-inner {
-    padding-right: 0;
+    padding-left: 0;
 }
 
 
@@ -66,8 +75,10 @@ u {
 /* Header */
 
 #header {
-    background: #000;
-    height: 144px;
+<mt:If tag="HeaderBackgroundColor">
+    background: <mt:HeaderBackgroundColor>;
+</mt:If>
+    height: <mt:HeaderImageHeight>px;
 }
 
 #header-inner {
@@ -83,36 +94,41 @@ u {
 
 #header-name {
     position: relative;
-    left: 30px;
+    left: 0;
     bottom: 0;
 }
 
 #header-name a {
     display: block;
-    background: url(<mt:HeaderImageURL>) left top no-repeat;
-    height: 144px;
+    background-image: url(<mt:HeaderImageURL>);
+    background-postion: top left;
+    background-repeat: no-repeat;
+    height: <mt:HeaderImageHeight>px;
     width: 970px;
     overflow: hidden;
     text-indent: -9999px;
 }
 
-#header-description {
-    position: absolute;
-    top: 95px;
-    right: 0;
-    color: #fff;
-    background: url(<mt:StaticWebPath>plugins/TheRosterBlogTheme/images/header-description.png) left top no-repeat;
-    height: 21px;
-    width: 232px;
-    overflow: hidden;
-    text-indent: -9999px;
-    margin-top: 0;
-}
+/* Add the per-category/folder header image CSS. */
+<mt:Categories>
+    <mt:If tag="CategoryHeaderImageURL">
+        body.<mt:CategoryLabel dirify="-"> #header-name a {
+            background-image: url(<mt:CategoryHeaderImageURLAsset><mt:AssetURL></mt:CategoryHeaderImageURLAsset>);
+        }
+    </mt:If>
+</mt:Categories>
+<mt:Folders>
+    <mt:If tag="FolderHeaderImageURL">
+        body.<mt:FolderLabel dirify="-"> #header-name a {
+            background-image: url(<mt:FolderHeaderImageURLAsset><mt:AssetURL></mt:FolderHeaderImageURLAsset>);
+        }
+    </mt:If>
+</mt:Folders>
 
 #header-images {
     position: absolute;
-    top: 10px;
-    right: 0;
+    top: 20px;
+    right: 20px;
     width: 320px;
 }
 
@@ -122,11 +138,16 @@ u {
 }
 
 #main-navigation {
-    text-align: center;
-    padding: 10px 0;
+    text-align: <mt:AlignNavigation dirify="-">;
+    padding: 10px 15px;
     border-bottom: 2px solid #000;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+#main-navigation-inner {
+    width: 940px;
+    margin: 0 auto;
 }
 
 #main-navigation .divider {
@@ -164,6 +185,60 @@ u {
     font-size: 10px;
     line-height: 12px;
 }
+
+/* Commenting */
+
+#comment-form-phone {
+    margin-bottom: .75em;
+}
+#comment-form-name label,
+#comment-form-email label,
+#comment-form-phone label {
+    display: block;
+    float: left;
+    width: 50px;
+}
+
+#comment-author,
+#comment-email,
+#comment-phone {
+    width: 330px;
+}
+
+#comments-open-data { margin-bottom: 10px; }
+
+.comments-header {
+    font-weight: bold;
+}
+
+.comment .userpic {
+    float: left;
+    margin: 0 10px 5px 0;
+    position: relative;
+}
+
+.comment_signin_options {
+    display: none;
+}
+
+#signin_with_mt .right {
+    float: none;
+}
+
+.auth-button {
+    float: left;
+    margin-right: 10px;
+}
+
+.comment-header img {
+    position: relative;
+    top: 3px;
+}
+
+#contact #comment-form-remember-me {
+    display: none;
+}
+
 
 
 
@@ -213,6 +288,42 @@ u {
     border: 0;
 }
 
+.widget-contact-form #comment-author,
+.widget-contact-form #comment-email,
+.widget-contact-form #comment-phone { width: 110px; }
+.widget-contact-form textarea#comment-text { width: 165px; height: 55px; }
+
+.widget-contact-form .widget-header { 
+    background: url(<mt:StaticWebPath>plugins/CustomThemePack/images/widget_contact_form_top.png) left top no-repeat;
+    padding: 18px 0 0 15px;
+    margin: 0 0 12px 0;
+    border: none;
+    color: #555;
+}
+.widget-contact-form {
+    background: url(<mt:StaticWebPath>plugins/CustomThemePack/images/widget_contact_form_middle.png) left top repeat-y;
+}
+.widget-contact-form .widget-content {
+    background: url(<mt:StaticWebPath>plugins/CustomThemePack/images/widget_contact_form_bottom.png) left bottom no-repeat;
+    min-height: 230px;
+    padding: 0 15px 1px;
+    margin: 0 0 0 0;
+}
+.widget-contact-form input#comment-submit {
+    display: block;
+    border: none;
+    background: url(<mt:StaticWebPath>plugins/CustomThemePack/images/widget_contact_form_submit-trans.png) left top no-repeat;
+    width: 73px;
+    height: 29px;
+    margin: 0;
+    padding: 29px 0 0 0;
+    overflow: hidden;
+    cursor: pointer;
+    text-indent: -2000px;
+}
+
+
+
 .service {
     text-transform: uppercase;
 }
@@ -258,54 +369,6 @@ h3 {
     font-weight: bold;
 }
 
-#comment-form-name label,
-#comment-form-email label {
-    display: block;
-    float: left;
-    width: 50px;
-}
-
-#comment-author,
-#comment-email {
-    width: 330px;
-}
-
-.comments-header {
-    font-weight: bold;
-}
-/*
-.comments-content {
-    margin-left: 30px;
-}
-*/
-.comment .userpic {
-    float: left;
-    margin: 0 10px 5px 0;
-    position: relative;
-}
-
-.comment_signin_options {
-    display: none;
-}
-
-#signin_with_mt .right {
-    float: none;
-}
-
-.auth-button {
-    float: left;
-    margin-right: 10px;
-}
-
-.comment-header img {
-    position: relative;
-    top: 3px;
-}
-
-#contact #comment-form-remember-me {
-    display: none;
-}
-
 .in-action-item {
     float: left;
     margin-right: 15px;
@@ -325,3 +388,5 @@ h3 {
 .right {
     float: right;
 }
+
+<mt:CustomCSS>

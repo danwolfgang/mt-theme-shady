@@ -6,11 +6,7 @@
 <MTSetVar name="category_archive" value="1">
 <MTSetVar name="module_about_context" value="1">
 <MTSetVarBlock name="page_title">
-    <mt:If name="parentcategorylabel" like="(Current Quote)">
-        <MTArchiveTitle>
-    <mt:Else>
-        Recently in <em><MTArchiveTitle></em>
-    </mt:If>
+    <MTArchiveTitle>
 </MTSetVarBlock>
 <MTSetVarBlock name="title"><MTGetVar name="page_title" remove_html="1"> - <MTBlogName encode_html="1"></MTSetVarBlock>
 
