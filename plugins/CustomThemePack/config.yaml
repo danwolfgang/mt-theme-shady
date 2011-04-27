@@ -3,7 +3,7 @@ id:          customthemepack
 key:         customthemepack
 description: 'Includes template sets for a blog and galleries.'
 author_name: 'Dan Wolfgang, uiNNOVATIONS, developed for The Roster'
-version: 1.4.4
+version: 1.4.5
 schema_version: 7
 
 object_types:
