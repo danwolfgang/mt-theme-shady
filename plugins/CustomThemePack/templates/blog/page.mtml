@@ -1,14 +1,14 @@
-<MTSetVarBlock name="body_class">mt-archive-listing mt-page-archive <mt:PageFolder><mt:FolderLabel dirify="-"></mt:PageFolder></mt:SetVarBlock>
-<MTSetVar name="sidebar" value="1">
-<MTSetVarBlock name="nav_on"><$MTPageID$></MTSetVarBlock>
-<MTSetVarBlock name="page_title"><$MTPageTitle$></MTSetVarBlock>
-<MTSetVarBlock name="title"><$MTGetVar name="page_title"$> - <$MTBlogName encode_html="1"$></MTSetVarBlock>
-<MTSetVarBlock name="html_head">
-    <MTIfPingsAccepted><$MTEntryTrackbackData$></MTIfPingsAccepted>
-    <MTIfCommentsAccepted><script type="text/javascript" src="<$MTLink template="javascript"$>"></script></MTIfCommentsAccepted>
-</MTSetVarBlock>
+<mt:SetVarBlock name="body_class">mt-archive-listing mt-page-archive <mt:PageFolder><mt:FolderLabel dirify="-"></mt:PageFolder><mt:PageLeadImageAsset> lead-image</mt:PageLeadImageAsset></mt:SetVarBlock>
+<mt:SetVar name="sidebar" value="1">
+<mt:SetVarBlock name="nav_on"><mt:PageID></mt:SetVarBlock>
+<mt:SetVarBlock name="page_title"><mt:PageTitle></mt:SetVarBlock>
+<mt:SetVarBlock name="title"><mt:GetVar name="page_title"> - <mt:BlogName encode_html="1"></mt:SetVarBlock>
+<mt:SetVarBlock name="html_head">
+    <mt:IfPingsAccepted><mt:EntryTrackbackData></mt:IfPingsAccepted>
+    <mt:IfCommentsAccepted><script type="text/javascript" src="<mt:Link template="javascript">"></script></mt:IfCommentsAccepted>
+</mt:SetVarBlock>
 
-<$MTInclude module="Global: Header"$>
-<$MTInclude module="Page Detail"$>
-<$MTInclude module="Contact Form"$>
-<$MTInclude module="Global: Footer"$>
+<mt:Include module="Global: Header">
+<mt:Include module="Page Detail">
+<mt:Include module="Contact Form">
+<mt:Include module="Global: Footer">

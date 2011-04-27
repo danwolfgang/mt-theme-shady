@@ -1,0 +1,19 @@
+<mt:CategoriesByDate category="$cur_cat">
+    <mt:CategoryLabel setvar="cur_gallery">
+    <mt:CategoryArchiveLink setvar="cur_gallery_link">
+
+    <div class="row">
+    <mt:EntriesWithSubCategories category="$cur_gallery" sort_order="ascend" limit="1">
+        <div class="in-action-item">
+        <mt:EntryAssets>
+            <mt:AssetProperty property="image_height" setvar="asset_height">
+            <mt:AssetProperty property="image_width" setvar="asset_width">
+            <mt:SetVarBlock name="mult"><mt:Var name="asset_height" op="*" value="150"></mt:SetVarBlock>
+            <mt:SetVarBlock name="thumb_height"><mt:Var name="mult" op="/" value="$asset_width"></mt:SetVarBlock>
+            <div><a href="<mt:Var name="cur_gallery_link">"><img src="<mt:AssetThumbnailURL width="150">" alt="<mt:EntryTitle>" width="150" height="<mt:Var name="thumb_height">" /></a></div>
+        </mt:EntryAssets>
+        </div>
+    </mt:EntriesWithSubCategories>
+        <h2><a href="<mt:Var name="cur_gallery_link">"><mt:CategoryLabel></a></h2>
+    </div>
+</mt:CategoriesByDate>

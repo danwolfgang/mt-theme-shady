@@ -9,10 +9,15 @@
 <mt:HomePageLimit setvar="limit">
 <mt:If tag="GalleryType" eq="Grouped Galleries">
     <mt:CategoriesByDate top="1" include_children="1" limit="$limit">
+        <mt:Ignore>
+            Save the Cat Archive Link to a variable. This will let us publish 
+            a link to the correct place, whether a tiered gallery is used or not!
+        </mt:Ignore>
+        <mt:CategoryArchiveLink setvar="preferred_link">
     <div class="row">
         <div class="gallery-title">
             <div class="right">
-                <a href="<mt:CategoryArchiveLink>">All Shots (<mt:SubCatCount>)</a>
+                <a href="<mt:Var name="preferred_link">">All Shots (<mt:SubCatCount>)</a>
             </div>
             <h2><mt:CategoryLabel></h2>
         </div>
@@ -25,7 +30,7 @@
                 <mt:AssetProperty property="image_width" setvar="asset_width">
                 <mt:SetVarBlock name="mult"><mt:Var name="asset_height" op="*" value="150"></mt:SetVarBlock>
                 <mt:SetVarBlock name="thumb_height"><mt:Var name="mult" op="/" value="$asset_width"></mt:SetVarBlock>
-                <div><a href="<mt:EntryCategories><mt:CategoryArchiveLink></mt:EntryCategories>"><img src="<mt:AssetThumbnailURL width="150">" alt="<mt:EntryTitle>" width="150" height="<mt:Var name="thumb_height">" /></a></div>
+                <div><a href="<mt:Var name="preferred_link">"><img src="<mt:AssetThumbnailURL width="150">" alt="<mt:EntryTitle>" width="150" height="<mt:Var name="thumb_height">" /></a></div>
             </mt:EntryAssets>
             </div>
         </mt:EntriesWithSubCategories>

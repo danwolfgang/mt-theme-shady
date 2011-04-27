@@ -3,7 +3,7 @@ id:          customthemepack
 key:         customthemepack
 description: 'Includes template sets for a blog and galleries.'
 author_name: 'Dan Wolfgang, uiNNOVATIONS, developed for The Roster'
-version: 1.4.2
+version: 1.4.3
 schema_version: 7
 
 object_types:
@@ -587,6 +587,12 @@ template_sets:
                 description: 'Choose Pages to associate with this page. Selected Pages will be pushlished beneath the Body field.'
                 obj_type: page
                 tag: PageDataSelectedPages
+            page_nav_name:
+                label: 'Navigation Name'
+                type: text
+                description: 'The text name that will appear in the top and footer navigation bars for this page. This allows for a name different than the page title. If no name is given, the page title will be used in the navigation menus.'
+                obj_type: page
+                tag: PageNavName
             category_header_image:
                 type: asset.image
                 label: 'Category Header Image'

@@ -1,14 +1,24 @@
 <mt:Include module="Global: Variables">
-<MTSetVarBlock name="body_class"><mt:BlogName dirify="-"> mt-archive-listing mt-<MTVar name="archive_class"> <mt:CategoryLabel dirify="-"></MTSetVarBlock>
-<MTSetVarBlock name="page_title">
-    <MTArchiveTitle>
-</MTSetVarBlock>
-<MTSetVarBlock name="title"><MTGetVar name="page_title" remove_html="1"> - <mt:Blogs blog_ids="$main_blog_id"><mt:BlogName encode_html="1"></mt:Blogs></MTSetVarBlock>
+<mt:SetVarBlock name="body_class"><mt:BlogName dirify="-"> mt-archive-listing mt-<mt:Var name="archive_class"><mt:HasSubCategories> parent</mt:HasSubCategories> <mt:CategoryLabel dirify="-"></mt:SetVarBlock>
+<mt:SetVarBlock name="page_title">
+    <mt:ArchiveTitle>
+</mt:SetVarBlock>
+<mt:SetVarBlock name="title"><mt:GetVar name="page_title" remove_html="1"> - <mt:Blogs blog_ids="$main_blog_id"><mt:BlogName encode_html="1"></mt:Blogs></mt:SetVarBlock>
 
-<MTInclude module="Global: Header">
+<mt:Include module="Global: Header">
 
 <h1><mt:Var name="page_title"></h1>
 
+<mt:Ignore>
+    Set the cur_cat variable here because it can be used by both the
+    Parent Gallery Listing and Gallery Listing template modules.
+</mt:Ignore>
+<mt:CategoryLabel setvar="cur_cat">
+
+<mt:HasSubCategories>
+    <mt:Include module="Parent Gallery Listing">
+</mt:HasSubCategories>
+
 <mt:Include module="Gallery Listing">
 
-<MTInclude module="Global: Footer">
+<mt:Include module="Global: Footer">

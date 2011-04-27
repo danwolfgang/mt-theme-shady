@@ -16,7 +16,7 @@
             <mt:AssetProperty property="image_width" setvar="asset_width">
             <mt:SetVarBlock name="mult"><mt:Var name="asset_height" op="*" value="150"></mt:SetVarBlock>
             <mt:SetVarBlock name="thumb_height"><mt:Var name="mult" op="/" value="$asset_width"></mt:SetVarBlock>
-            <div><a href="<mt:EntryCategories><mt:CategoryArchiveLink></mt:EntryCategories>"><img src="<mt:AssetThumbnailURL width="150">" alt="<mt:EntryTitle>" width="150" height="<mt:Var name="thumb_height">" /></a></div>
+            <div><a href="<mt:EntryCategories><mt:CategoryArchiveLink></mt:EntryCategories>"><img src="<mt:AssetThumbnailURL width="150">" alt="<mt:EntryTitle>" width="150" height="<mt:Var name="thumb_height" regex_replace="/(.*)\./">","$1" /></a></div>
         </mt:EntryAssets>
         </div>
 <mt:If name="counter" eq="3">

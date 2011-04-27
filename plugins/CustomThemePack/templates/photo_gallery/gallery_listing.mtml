@@ -1,6 +1,5 @@
-<mt:CategoryLabel setvar="cur_cat">
 <mt:SetVar name="counter" value="1">
-<mt:Entries category="$cur_cat" lastn="999">
+<mt:Entries category="$cur_cat" sort_by="created_on" sort_order="ascend" lastn="999">
 
     <mt:If name="counter" eq="1">
         <div class="row">
@@ -8,7 +7,15 @@
 
             <div class="in-action-item"<mt:If name="counter" eq="3"> style="margin-right: 0;"</mt:If>>
                 <div>
-                    <a title="<mt:EntryTitle>" href="<mt:EntryPermalink>"><img src="<mt:EntryAssets><mt:AssetThumbnailURL width="150"></mt:EntryAssets>" alt="<mt:EntryTitle>" /></a>
+                    <a title="<mt:EntryTitle>" href="<mt:EntryPermalink>">
+                    <mt:EntryAssets>
+                        <mt:AssetProperty property="image_height" setvar="asset_height">
+                        <mt:AssetProperty property="image_width" setvar="asset_width">
+                        <mt:SetVarBlock name="mult"><mt:Var name="asset_height" op="*" value="150"></mt:SetVarBlock>
+                        <mt:SetVarBlock name="thumb_height"><mt:Var name="mult" op="/" value="$asset_width"></mt:SetVarBlock>
+                        <img src="<mt:AssetThumbnailURL width="150">" alt="<mt:EntryTitle>" width="150" height="<mt:Var name="thumb_height">" />
+                    </mt:EntryAssets>
+                    </a>
                 </div>
                 <p><mt:EntryTitle></p>
             </div>

@@ -2,12 +2,12 @@
 <mt:If tag="PageLeadImage">
     <div class="selected-page-image">
     <mt:PageLeadImageAsset>
-        <img src="<mt:AssetThumbnailURL width="100" square="1">" width="100" height="100" alt="<mt:PageTitle>" />
+        <a href="<mt:PagePermalink>"><img src="<mt:AssetThumbnailURL width="100" square="1">" width="100" height="100" alt="<mt:PageTitle>" /></a>
     </mt:PageLeadImageAsset>
     </div>
 </mt:if>
     <div class="selected-page-text">
         <h3><a href="<mt:PagePermalink>"><mt:PageTitle></a></h3>
-        <mt:EntryBody>
-    </div>
+        <mt:EntryExcerpt>
+   </div>
 </div>

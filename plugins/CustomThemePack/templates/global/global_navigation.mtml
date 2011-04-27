@@ -17,19 +17,19 @@
     <span class="divider">|</span>
 
     <mt:SetVarBlock name="this_page_id"><mt:PageID></mt:SetVarBlock>
-    <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-"><mt:If name="nav_on" eq="$this_page_id"> on</mt:If>"><mt:PageTitle></a>
+    <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-"><mt:If name="nav_on" eq="$this_page_id"> on</mt:If>"><mt:If tag="PageNavName"><mt:PageNavName><mt:Else><mt:PageTitle></mt:If></a>
 </mt:Pages>
 
 <mt:Pages blog_ids="$main_blog_id" tags="@about" limit="1">
     <span class="divider">|</span>
 
     <mt:SetVarBlock name="this_page_id"><mt:PageID></mt:SetVarBlock>
-    <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-"><mt:If name="nav_on" eq="$this_page_id"> on</mt:If>">About</a>
+    <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-"><mt:If name="nav_on" eq="$this_page_id"> on</mt:If>"><mt:If tag="PageNavName"><mt:PageNavName><mt:Else>About</mt:If></a>
 </mt:Pages>
 
 <mt:Pages blog_ids="$main_blog_id" tags="@contact" limit="1">
     <span class="divider">|</span>
 
     <mt:SetVarBlock name="this_page_id"><mt:PageID></mt:SetVarBlock>
-    <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-"><mt:If name="nav_on" eq="$this_page_id"> on</mt:If>">Contact</a>
+    <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-"><mt:If name="nav_on" eq="$this_page_id"> on</mt:If>"><mt:If tag="PageNavName"><mt:PageNavName><mt:Else>Contact</mt:If></a>
 </mt:Pages>

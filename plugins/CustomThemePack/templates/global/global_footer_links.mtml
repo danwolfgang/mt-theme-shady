@@ -6,24 +6,26 @@
     <mt:SetVarBlock name="curblog"><mt:BlogName></mt:SetVarBlock>
     <mt:If name="photo_gallery_blog_id">
         <mt:Blogs blog_ids="$photo_gallery_blog_id">
-            <span class="divider">|</span>
-            <a href="<mt:BlogURL>" class="in-action"><mt:BlogName></a>
+            <mt:If tag="ShowInNav">
+                <span class="divider">|</span>
+                <a href="<mt:BlogURL>" class="in-action<mt:If tag="BlogName" eq="$curblog"> on</mt:If>"><mt:BlogName></a>
+            </mt:If>
         </mt:Blogs>
     </mt:if>
 
     <mt:Pages blog_ids="$main_blog_id" tag="@footernav">
         <span class="divider">|</span>
-        <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">"><mt:PageTitle></a>
+        <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">"><mt:If tag="PageNavName"><mt:PageNavName><mt:Else><mt:PageTitle></mt:If></a>
     </mt:Pages>
 
     <mt:Pages blog_ids="$main_blog_id" tags="@about" limit="1">
         <span class="divider">|</span>
-        <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">">About</a>
+        <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">"><mt:If tag="PageNavName"><mt:PageNavName><mt:Else>About</mt:If></a>
     </mt:Pages>
 
     <mt:Pages blog_ids="$main_blog_id" tags="@contact" limit="1">
         <span class="divider">|</span>
-        <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">">Contact</a>
+        <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">"><mt:If tag="PageNavName"><mt:PageNavName><mt:Else>Contact</mt:If></a>
     </mt:Pages>
 
 </p>
