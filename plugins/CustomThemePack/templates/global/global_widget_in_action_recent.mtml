@@ -1,5 +1,5 @@
 <mt:If name="system_template">
-    <mt:Include blog_id="$in_action_blog_id" file="recent.inc">
+    <mt:Include blog_id="$photo_gallery_blog_id" file="recent.inc">
 <mt:Else>
-    <?php @include('<mt:Blogs blog_ids="$in_action_blog_id"><mt:BlogSitePath></mt:Blogs>recent.inc'); ?>
+    <?php @include('<mt:Blogs blog_ids="$photo_gallery_blog_id"><mt:BlogSitePath></mt:Blogs>recent.inc'); ?>
 </mt:If>

@@ -2,8 +2,8 @@
     <div id="beta-inner">
         <mt:If name="system_template">
             <mt:Include blog_id="$main_blog_id" file="include/sidebar_left_default.inc">
-        <mt:Else tag="BlogName" eq="In Action">
-            <mt:WidgetSet name="Left Column (In Action)">
+        <mt:Else tag="BlogID" eq="$photo_gallery_blog_id">
+            <mt:WidgetSet name="Left Column (Photo Gallery)">
         <mt:Else>
             <mt:If name="main_index">
                 <mt:WidgetSet blog_id="$main_blog_id" name="Left Column (Default)">

@@ -1,0 +1,25 @@
+<mt:If name="counter" eq="1">
+    <div class="row">
+        <div class="gallery-title">
+            <div class="right">
+                <mt:EntryCategories>
+                <a href="<mt:CategoryArchiveLink>">All Shots (<mt:CategoryCount>)</a>
+                </mt:EntryCategories>
+            </div>
+            <h2><mt:EntryCategory></h2>
+        </div>
+</mt:If>
+
+        <div class="in-action-item"<mt:If name="counter" eq="3"> style="margin-right: 0;"</mt:If>>
+        <mt:EntryAssets>
+            <div><a href="<mt:EntryCategories><mt:CategoryArchiveLink></mt:EntryCategories>"><img src="<mt:AssetThumbnailURL width="150">" alt="<mt:EntryTitle>" /></a></div>
+        </mt:EntryAssets>
+        </div>
+<mt:If name="counter" eq="3">
+    </div>
+</mt:If>
+<mt:If name="__last__"> <mt:Ignore> Just in case the last row isn't closed </mt:Ignore>
+    <mt:If name="counter" ne="3">
+        </div>
+    </mt:If>
+</mt:If>

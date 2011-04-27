@@ -1,0 +1,21 @@
+<mt:If tag="BlogEntryCount">
+<div class="widget-gallery-archive widget">
+    <h3 class="widget-header">Recent Galleries</h3>
+    <div class="widget-content">
+        <ul>
+<mt:SetVar name="counter" value="1">
+<mt:EntriesWithSubCategories lastn="50">
+    <mt:If tag="EntryCategory" ne="$prevcat">
+        <mt:If name="counter" le="5">
+            <mt:EntryCategories>
+                <li><a href="<mt:CategoryArchiveLink>"><mt:CategoryLabel></a></li>
+            </mt:EntryCategories>
+        </mt:If>
+        <mt:SetVar name="counter" value="1" op="+">
+    </mt:If>
+    <mt:EntryCategory setvar="prevcat">
+</mt:EntriesWithSubCategories>
+        </ul>
+    </div>
+</div>
+</mt:If>

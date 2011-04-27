@@ -1,4 +1,6 @@
 <mt:SetVarBlock name="main_blog_id"><mt:Var name="config.MainBlogID"></mt:SetVarBlock>
-<mt:SetVarBlock name="in_action_blog_id"><mt:Var name="config.InActionBlogID"></mt:SetVarBlock>
-<mt:SetVarBlock name="author_name"><mt:Var name="config.PrimaryAuthorName"></mt:SetVarBlock>
-<mt:SetVarBlock name="author_first_name"><mt:Blogs blog_ids="$main_blog_id"><mt:ShortAuthorName></mt:Blogs></mt:SetVarBlock>
+<mt:SetVarBlock name="photo_gallery_blog_id"><mt:If name="config.PhotoGalleryBlogID"><mt:Var name="config.PhotoGalleryBlogID"><mt:Else><mt:If name="config.InActionBlogID"><mt:Var name="config.InActionBlogID"></mt:If></mt:If></mt:SetVarBlock>
+
+<mt:Blogs blog_ids="$main_blog_id">
+<mt:SetVarBlock name="author_name"><mt:If tag="PrimaryAuthorName"><mt:PrimaryAuthorName><mt:Else><mt:Var name="config.PrimaryAuthorName"></mt:If></mt:SetVarBlock>
+</mt:Blogs>

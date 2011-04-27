@@ -1,17 +1,12 @@
+<mt:Include module="Global: Variables">
 <mt:SetVar name="ind_entry" value="1">
-<mt:SetVarBlock name="body_class">mt-archive-listing mt-entry-archive <mt:TopLevelParent><mt:CategoryLabel dirify="-"></mt:TopLevelParent></mt:SetVarBlock>
+<mt:SetVarBlock name="body_class"><mt:BlogName dirify="-"> mt-archive-listing mt-entry-archive <mt:TopLevelParent><mt:CategoryLabel dirify="-"></mt:TopLevelParent></mt:SetVarBlock>
 <MTSetVarBlock name="nav_on"><mt:EntryCategories><mt:CategoryID></mt:EntryCategories></MTSetVarBlock>
 <MTSetVar name="page_layout" value="layout-twt">
 <MTSetVar name="sidebar" value="1">
 <MTIfCommentsAccepted><MTSetVar name="body_onload" value="individualArchivesOnLoad(commenter_name)"></MTIfCommentsAccepted>
 <MTSetVarBlock name="page_title"><MTEntryTitle></MTSetVarBlock>
-<MTSetVarBlock name="title">
-    <mt:IfNonEmpty tag="entrydatahtml_head_title">
-        <mt:EntryDataHTML_head_title>
-    <mt:Else>
-        <MTGetVar name="page_title"> - <mt:BlogName encode_html="1">
-    </mt:IfNonEmpty>
-</MTSetVarBlock>
+<MTSetVarBlock name="title"><MTGetVar name="page_title"> - <mt:Blogs blog_ids="$main_blog_id"><mt:BlogName encode_html="1"></mt:Blogs></MTSetVarBlock>
 <MTSetVarBlock name="html_head">
     <MTEntryPrevious><link rel="prev" href="<MTEntryPermalink>" title="<MTEntryTitle encode_html="1">" /></MTEntryPrevious>
     <MTEntryNext><link rel="next" href="<MTEntryPermalink>" title="<MTEntryTitle encode_html="1">" /></MTEntryNext>

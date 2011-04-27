@@ -1,3 +1,4 @@
+<mt:Include module="Global: Variables">
 @import url(<mt:StaticWebPath>plugins/CustomThemePack/css/base.css);
 
 body {
@@ -32,7 +33,16 @@ u {
 /* Layout */
 
 #container {
-    width: 100%
+<mt:Ignore>
+    Only apply the width if the Background Image is specified. Otherwise, 
+    expand to fill the screen so the header and menu bar line extend to 
+    fill the screen.
+</mt:Ignore>
+<mt:Unless tag="BackgroundImageURL">
+    width: 970px;
+</mt:Unless>
+    margin: 0 auto;
+    background: #fff;
 }
 
 #container-inner {
@@ -109,16 +119,26 @@ u {
     text-indent: -9999px;
 }
 
+<mt:Blogs blog_ids="$photo_gallery_blog_id">
+    <mt:If tag="HeaderImageURL">
+    body.<mt:BlogName dirify="-"> #header-name a {
+        background-image: url(<mt:HeaderImageURL>);
+    }
+    </mt:If>
+</mt:Blogs>
+
 /* Add the per-category/folder header image CSS. */
 <mt:Categories>
-    <mt:If tag="CategoryHeaderImageURL">
+    <mt:SetVarBlock name="url"><mt:CategoryHeaderImageURLAsset><mt:AssetURL></mt:CategoryHeaderImageURLAsset></mt:SetVarBlock>
+    <mt:If name="url">
         body.<mt:CategoryLabel dirify="-"> #header-name a {
             background-image: url(<mt:CategoryHeaderImageURLAsset><mt:AssetURL></mt:CategoryHeaderImageURLAsset>);
         }
     </mt:If>
 </mt:Categories>
 <mt:Folders>
-    <mt:If tag="FolderHeaderImageURL">
+    <mt:SetVarBlock name="url"><mt:FolderHeaderImageURLAsset><mt:AssetURL></mt:FolderHeaderImageURLAsset></mt:SetVarBlock>
+    <mt:If name="url">
         body.<mt:FolderLabel dirify="-"> #header-name a {
             background-image: url(<mt:FolderHeaderImageURLAsset><mt:AssetURL></mt:FolderHeaderImageURLAsset>);
         }
@@ -332,8 +352,8 @@ u {
 /* Assorted styling */
 
 .gallery-title h2,
-.in-action .gallery-title h2,
 h1.entry-title,
+#content h1,
 #page-title,
 #play-by-play {
     border-bottom: 2px solid #f97976;
@@ -346,7 +366,7 @@ h1.entry-title,
     font-family: "Helvetica Neue Condensed Bold","Arial Narrow", sans-serif;
 }
 
-.in-action .gallery-title h2 { border-bottom: 0; }
+.gallery-title h2 { border-bottom: 0; }
 .mt-entry-archive .gallery-title h2 { border-bottom: 2px solid #f97976; }
 
 h2 {
@@ -378,11 +398,9 @@ h3 {
 .row {
     clear: both;
     float: left;
-    width: 500px;
+    width: 482px;
     margin-bottom: 20px;
 }
-
-.in-action .row { width: 480px; }
 
 .aia-nav,
 .right {

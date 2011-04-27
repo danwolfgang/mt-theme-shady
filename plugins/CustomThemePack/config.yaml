@@ -1,14 +1,14 @@
 name:        'Custom Theme Pack'
 id:          customthemepack
 key:         customthemepack
-description: 'Includes template sets for a "Times" and "In Action" blog.'
+description: 'Includes template sets for a blog and galleries.'
 author:      'Dan Wolfgang, uiNNOVATIONS, developed for The Roster'
-version: 1.2.1
-schema_version: 3
+version: 1.3.1
+schema_version: 5
 
 object_types:
     comment:
-        phone:       string(255)
+        phone: string(255)
 
 callbacks:
     MT::Comment::pre_save: $CustomThemePack::CustomThemePack::ContactForm::pre_save
@@ -16,7 +16,7 @@ callbacks:
 
 tags:
     function:
-        CommentPhone:      $CustomThemePack::CustomThemePack::ContactForm::comment_phone
+        CommentPhone: $CustomThemePack::CustomThemePack::ContactForm::comment_phone
 
 default_templates:
     base_path: 'templates/global'
@@ -43,6 +43,8 @@ default_templates:
             label: 'Global: Navigation'
         global_php:
             label: 'Global: PHP'
+        global_photo_detail:
+            label: 'Global: Photo Detail'
         global_sidebar:
             label: 'Global: Sidebar'
         global_site_javascript:
@@ -68,12 +70,12 @@ default_templates:
             label: 'Game On! (Contact)'
         global_widget_highlights:
             label: 'Highlights'
-        global_widget_in_action_archives:
-            label: 'In Action: Archives'
-        global_widget_in_action_recent:
-            label: 'In Action: Recent'
-        global_widget_in_action_recent_thumbs:
-            label: 'In Action: Recent Thumbs'
+        global_widget_photo_gallery_archives:
+            label: 'Photo Gallery: Archives'
+        global_widget_photo_gallery_recent:
+            label: 'Photo Gallery: Recent Links'
+        global_widget_photo_gallery_recent_thumbs:
+            label: 'Photo Gallery: Recent Thumbnails'
         global_widget_twitter_feed:
             label: 'Twitter feed'
         global_widget_quote:
@@ -103,16 +105,16 @@ default_templates:
             widgets:
                 - "Winner's Circle"
                 - 'Game On! (Contact)'
-                - 'In Action: Recent Thumbs'
+                - 'Photo Gallery: Recent Thumbnails'
                 - 'Featured Video'
                 - 'Featured Articles'
                 - 'Category Archives'
-        left_column_in_action:
-            label: 'Left Column (In Action)'
+        left_column_photo_gallery:
+            label: 'Left Column (Photo Gallery)'
             order: 1000
             widgets:
-                - 'In Action: Recent'
-                - 'In Action: Archives'
+                - 'Photo Gallery: Recent Links'
+                - 'Photo Gallery: Archives'
                 - 'Ad'
 
 template_sets:
@@ -149,9 +151,27 @@ template_sets:
             # Widget names
             widget_contact_form:
                 type: text
-                label: 'Contact Form'
+                label: 'Contact Form Name'
                 default: 'Contact Form'
                 tag: WidgetContactFormName
+                fieldset: widget_names
+            profile_links:
+                type: text
+                label: 'Profile Links Name'
+                default: 'Game On!'
+                tag: WidgetProfileLinksName
+                fieldset: widget_names
+            category_archives:
+                type: text
+                label: 'Categories List Name'
+                default: 'Categories'
+                tag: WidgetCategoriesName
+                fieldset: widget_names
+            twitter_feed:
+                type: text
+                label: 'Twitter Feed Name'
+                default: 'Up to the Minute'
+                tag: WidgetTwitterFeedName
                 fieldset: widget_names
             # Contact Form options
             contact_enable_phone:
@@ -184,13 +204,13 @@ template_sets:
             display_header_recent_images:
                 type: checkbox
                 label: 'Display Recent Images in Header'
-                hint: 'The four most recent photos from the In Action section can be displayed in the site header. When using this option, the Header Image Height should be set to <em>at least</em> <code>110</code> pixels tall to accommodate the space requirement.'
+                hint: 'The four most recent photos from the Photo Galery section can be displayed in the site header. When using this option, the Header Image Height should be set to <em>at least</em> <code>110</code> pixels tall to accommodate the space requirement.'
                 tag: DisplayHeaderImages
                 fieldset: design
             display_entry_meta:
                 type: checkbox
                 label: 'Display Entry Meta'
-                hint: "By default, the Entry's date will be published. Uncheck to hide the date. This setting does not effect the In Action section."
+                hint: "By default, the Entry's date will be published. Uncheck to hide the date. This setting does not effect the Photo Gallery section."
                 default: 1
                 tag: DisplayEntryMeta
                 fieldset: design
@@ -243,11 +263,16 @@ template_sets:
                 label: '&ldquo;Add This&rdquo; Code'
                 hint: 'Insert your Add This code.'
                 tag: AddThis
-            short_author_name:
+            primary_author_name:
                 type: text
-                label: 'Short Author Name'
-                hint: "Enter a short name for the author, to be displayed with the In Action recent thumbnails widget. Typically, this will be the author's first name."
-                tag: ShortAuthorName
+                label: 'Primary Author Username'
+                hint: 'Enter the username of the primary author. This field is required.'
+                tag: PrimaryAuthorName
+#            short_author_name:
+#                type: text
+#                label: 'Short Author Name'
+#                hint: "Enter a short name for the author, to be displayed with the In Action recent thumbnails widget. Typically, this will be the author's first name."
+#                tag: ShortAuthorName
         fields:
             page_left_column:
                 label: 'Left Column'
@@ -456,52 +481,36 @@ template_sets:
                     label: 'Registration Confirmation'
                 register_form:
                     label: 'Registration Form'
-    in_action:
-        base_path: 'templates/in_action'
-        label: 'Custom Theme Pack (In Action)'
-        fields:
-            html_head_title:
-                label: 'HTML Head Title'
-                description: 'This is the title to be displayed in the HTML title tag. This field completely overwrites the default title.'
+    photo_gallery:
+        options:
+            fieldsets:
+                widget_names:
+                    label: 'Widget Names'
+                design:
+                    label: 'Design Options'
+            # Global Options
+            show_in_nav:
+                type: checkbox
+                label: 'Show this blog in the navigation menu'
+                hint: 'Display a link to this blog from the site&rsquo;s navigation menu.'
+                tag: ShowInNav
+                default: 1
+            # Widget Names
+            widget_photo_gallery_name:
                 type: text
-                obj_type: entry
-                tag: entrydatahtml_head_title
-            entry_headline_style_variation:
-                label: 'Headline Style Variation'
-                type: select
-                options: 'Regular,Italic,Bold,Bold Italic'
-                obj_type: entry
-                tag: entry_headline_style_variation
-            entry_headline_style_size:
-                label: 'Headline Style Size'
-                type: select
-                options: '10,12,14,17,20,24,28,32,36,40'
-                obj_type: entry
-                tag: entry_headline_style_size
-            entry_headline_style_size:
-                label: 'Headline Style Font'
-                type: select
-                options: 'Arial,Arial-Black,Courier,Georgia,Times,Verdana'
-                obj_type: entry
-                tag: entry_headline_style_font
-            page_headline_style_variation:
-                label: 'Headline Style Variation'
-                type: select
-                options: 'Regular,Italic,Bold,Bold Italic'
-                obj_type: page
-                tag: page_headline_style_variation
-            page_headline_style_size:
-                label: 'Headline Style Size'
-                type: select
-                options: '10,12,14,17,20,24,28,32,36,40'
-                obj_type: page
-                tag: page_headline_style_size
-            page_headline_style_size:
-                label: 'Headline Style Font'
-                type: select
-                options: 'Arial,Arial-Black,Courier,Georgia,Times,Verdana'
-                obj_type: page
-                tag: page_headline_style_font
+                label: 'Photo Gallery Thumbnails Widget Name'
+                tag: WidgetPhotoGalleryName
+                default: 'Recently in the Photo Gallery'
+                fieldset: widget_names
+            # Design Options
+            header_image:
+                type: text
+                label: 'Header Image URL'
+                hint: 'Enter the URL to an image to display in the header. The image should measure 970 pixels wide; the height is variable, but must be entered in the Header Image Height field. Be sure to republish the main blog stylesheet after setting/changing this field.'
+                tag: HeaderImageURL
+                fieldset: design
+        base_path: 'templates/photo_gallery'
+        label: 'Custom Theme Pack (Photo Gallery)'
         templates:
             archive:
                 entry_listing:
@@ -527,16 +536,16 @@ template_sets:
                     label: Atom
                     outfile: atom.xml
                     rebuild_me: 1
-                include_in_action_recent:
-                    label: 'Include: In Action: Recent'
+                include_photo_gallery_recent:
+                    label: 'Include: Photo Gallery: Recent Links'
                     outfile: include/recent.inc
                     rebuild_me: 1
-                include_in_action_recent_thumbs:
-                    label: 'Include: In Action: Recent Thumbs'
+                include_photo_gallery_recent_thumbs:
+                    label: 'Include: Photo Gallery: Recent Thumbs'
                     outfile: include/recent-thumbs.inc
                     rebuild_me: 1
                 include_header_images:
-                    label: 'Include: Header Images'
+                    label: 'Include: Photo Gallery Header Images'
                     outfile: include/header-images.inc
                     rebuild_me: 1
                 javascript:
@@ -548,8 +557,8 @@ template_sets:
                     outfile: index.php
                     rebuild_me: 1
                 sidebar_left_default:
-                    label: 'Sidebar Left: In Action Widgetset'
-                    outfile: include/sidebar_left_in_action.inc
+                    label: 'Sidebar Left: Photo Gallery Widgetset'
+                    outfile: include/sidebar_left_photo_gallery.inc
                     rebuild_me: 1
             individual:
                 entry:
@@ -571,8 +580,6 @@ template_sets:
                     label: 'Gallery Items'
                 gallery_listing:
                     label: 'Gallery Listing'
-                in_action_detail:
-                    label: 'In Action Detail'
             system:
                 comment_preview:
                     label: 'Comment Preview'

@@ -1,0 +1,31 @@
+<mt:SetVarBlock name="cat"><mt:CategoryLabel></mt:SetVarBlock>
+
+<mt:SetVar name="counter" value="1">
+<mt:Entries category="$cat" lastn="999">
+
+    <mt:If name="counter" eq="1">
+        <div class="row">
+    </mt:If>
+
+            <div class="in-action-item">
+                <div>
+                    <a title="<mt:EntryTitle>" href="<mt:EntryPermalink>"><img src="<mt:EntryAssets><mt:AssetThumbnailURL width="150"></mt:EntryAssets>" alt="<mt:EntryTitle>" /></a>
+                </div>
+                <p><mt:EntryTitle></p>
+            </div>
+
+    <mt:If name="counter" eq="3">
+        </div>
+        <mt:SetVar name="counter" eq="1">
+    <mt:Else>
+        <mt:Ignore>
+            The last entry may not cause the 'counter = 3' trigger above, so 
+            just getting to the last entry should do it.
+        </mt:Ignore>
+        <mt:If name="__last__">
+        </div>
+        </mt:If>
+    </mt:If>
+    <mt:SetVar name="counter" value="1" op="+">
+
+</mt:Entries>

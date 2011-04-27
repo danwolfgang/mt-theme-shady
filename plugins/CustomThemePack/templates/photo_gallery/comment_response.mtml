@@ -1,0 +1,33 @@
+<MTIf name="body_class" eq="mt-comment-confirmation">
+    <MTSetVarBlock name="message">
+        <mt:Include module="Global: Comment Detail">
+    </MTSetVarBlock>
+</MTIf>
+
+<MTIf name="body_class" eq="mt-comment-pending">
+        <MTSetVarBlock name="page_title">Comment Pending</MTSetVarBlock>
+
+        <MTSetVar name="heading" value="Thank you for commenting.">
+
+        <MTSetVarBlock name="message">
+        <p>Your comment has been received and held for approval by the blog owner.</p>
+        </MTSetVarBlock>
+</MTIf>
+
+<MTIf name="body_class" eq="mt-comment-error">
+    <MTSetVarBlock name="page_title">Comment Submission Error</MTSetVarBlock>
+
+    <MTSetVarBlock name="message">
+    <p>Your comment submission failed for the following reasons:</p>
+    <blockquote>
+        <$MTErrorMessage$>
+    </blockquote>
+    </MTSetVarBlock>
+</MTIf>
+
+<div class="<mt:Var name="body_class">">
+    <mt:If name="page_title">
+    <h3><mt:Var name="page_title"></h3>
+    </mt:If>
+    <mt:Var name="message">
+</div>

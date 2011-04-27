@@ -1,9 +1,13 @@
-<MTSetVarBlock name="body_class">mt-archive-listing mt-page-archive <mt:PageFolder><mt:FolderLabel dirify="-"></mt:PageFolder></mt:SetVarBlock>
-<MTSetVar name="page_layout" value="layout-twt">
+<MTSetVar name="body_class" value="mt-archive-listing mt-page-archive">
+<mt:If tag="PageID" eq="12">
+    <MTSetVar name="page_layout" value="layout-twt">
+<mt:Else>
+    <MTSetVar name="page_layout" value="layout-twt">
+</mt:If>
 <MTSetVar name="sidebar" value="1">
 <MTSetVarBlock name="nav_on"><$MTPageID$></MTSetVarBlock>
 <MTSetVarBlock name="page_title"><$MTPageTitle$></MTSetVarBlock>
-<MTSetVarBlock name="title"><$MTGetVar name="page_title"$> - <$MTBlogName encode_html="1"$></MTSetVarBlock>
+<MTSetVarBlock name="title"><$MTGetVar name="page_title"$> - <mt:BlogName encode_html="1"></MTSetVarBlock>
 <MTSetVarBlock name="html_head">
     <MTIfPingsAccepted><$MTEntryTrackbackData$></MTIfPingsAccepted>
     <MTIfCommentsAccepted><script type="text/javascript" src="<$MTLink template="javascript"$>"></script></MTIfCommentsAccepted>

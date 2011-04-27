@@ -1,0 +1,41 @@
+<mt:Include module="Global: Variables">
+<mt:Var name="page_layout" value="layout-twt">
+<mt:SetVarBlock name="body_class"><mt:BlogName dirify="-"></mt:SetVarBlock>
+<mt:SetVarBlock name="title"><mt:BlogName encode_html="1"> - <mt:Blogs blog_ids="$main_blog_id"><mt:BlogName encode_html="1"></mt:Blogs></mt:SetVarBlock>
+
+<mt:Include module="Global: Header">
+
+    <h1><mt:BlogName encode_html="1"></h1>
+
+    <mt:SetVar name="counter" value="test">
+    <mt:EntriesWithSubCategories lastn="999">
+        <mt:If tag="EntryCategory" eq="$prevcat">
+
+            <mt:If name="counter" le="3">
+                <mt:Ignore> All these galleries should display the first three photos only. </mt:Ignore>
+                <mt:Include module="Gallery Items">
+            </mt:If>
+
+            <mt:SetVar name="counter" value="1" op="+">
+
+        <mt:Else> <mt:Ignore> This category is different than the previous category. Start a new block. </mt:Ignore>
+
+            <mt:Ignore> Check if the counter is less than 3. If so, the previous gallery row needs to be closed. </mt:Ignore>
+            <mt:If name="counter" le="3">
+                    </div>
+            </mt:If>
+    
+            <mt:SetVar name="counter" value="1">
+    
+            <mt:If name="counter" le="3">
+                <mt:Ignore> All these galleries should display the first three photos only. </mt:Ignore>
+                <mt:Include module="Gallery Items">
+                <mt:SetVar name="counter" value="1" op="+">
+            </mt:If>
+
+        </mt:If>
+
+        <mt:EntryCategory setvar="prevcat">
+    </mt:EntriesWithSubCategories>
+
+<mt:Include module="Global: Footer">
