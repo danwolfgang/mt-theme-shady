@@ -13,36 +13,31 @@
     </mt:Blogs>
 </mt:if>
 
-<mt:Folders blog_ids="$main_blog_id">
-    <mt:Ignore>
-        First count how many pages are here. If only one, don't show a drop-down.
-    </mt:Ignore>
-    <mt:Pages blog_ids="$main_blog_id" tag="@topnav">
-        <mt:If name="__last__">
-            <mt:SetVarBlock name="page_count"><mt:Var name="__counter__"></mt:SetVarBlock>
-        </mt:If>
-    </mt:Pages>
-    <mt:Pages blog_ids="$main_blog_id" tag="@topnav">
-        <mt:PagesHeader>
-            <mt:SetVarBlock name="this_page_id"><mt:PageID></mt:SetVarBlock>
-            <li><a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-"><mt:If name="nav_on" eq="$this_page_id"> on</mt:If>"><mt:PageFolder><mt:FolderLabel></mt:PageFolder></a>
-            <mt:If name="page_count" gt="1">
-                <ul class="submenu">
-            </mt:If>
-        </mt:PagesHeader>
-            <mt:If name="page_count" gt="1">
-                <li>
-                    <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">"><mt:PageTitle></a>
-                </li>
-             </mt:If>
-        <mt:PagesFooter>
-            <mt:If name="page_count" gt="1">
-                </ul>
-            </mt:If>
-            </li>
-        </mt:PagesFooter>
-    </mt:Pages>
-</mt:Folders>
+<mt:If name="archive_class" eq="page-archive">
+    <mt:SetVarBlock name="cur_folder"><mt:PageFolder><mt:FolderLabel></mt:PageFolder></mt:SetVarBlock>
+    <mt:SetVarBlock name="top_level_parent_folder"><mt:PageFolder><mt:TopLevelFolder><mt:FolderLabel></mt:TopLevelFolder></mt:PageFolder></mt:SetVarBlock>
+</mt:If>
+<mt:Blogs blog_ids="$main_blog_id">
+    <mt:TopLevelFolders>
+    <li><a href="<mt:BlogURL><mt:FolderPath separator="-">" class="<mt:If tag="FolderLabel" eq="$cur_folder">on<mt:Else tag="FolderLabel" eq="$top_level_parent_folder">on</mt:If>"><mt:FolderLabel></a>
+        <mt:HasSubFolders>
+            <mt:FolderLabel setvar="parent_folder">
+            <mt:SubFolders folder="$parent_folder">
+                <mt:FolderHeader>
+                    <ul class="submenu">
+                </mt:FolderHeader>
+                        <li class="<mt:FolderLabel dirify="-">">
+                            <a href="<mt:BlogURL><mt:FolderPath separator="-">"<mt:If tag="FolderLabel" eq="$cur_folder"> class="on"</mt:If>><mt:FolderLabel></a>
+                            <mt:SubFolderRecurse>
+                        </li>
+                <mt:FolderFooter>
+                    </ul>
+                </mt:FolderFooter>
+            </mt:SubFolders>
+        </mtHasSubFolders>
+    </li>
+    </mt:TopLevelFolders>
+</mt:Blogs>
 
 <mt:Pages blog_ids="$main_blog_id" tags="@about" limit="1">
     <mt:SetVarBlock name="this_page_id"><mt:PageID></mt:SetVarBlock>

@@ -1,7 +1,6 @@
-<mt:SetVarBlock name="cat"><mt:CategoryLabel></mt:SetVarBlock>
-
+<mt:CategoryLabel setvar="cur_cat">
 <mt:SetVar name="counter" value="1">
-<mt:Entries category="$cat" lastn="999">
+<mt:Entries category="$cur_cat" lastn="999">
 
     <mt:If name="counter" eq="1">
         <div class="row">

@@ -69,13 +69,14 @@
             </div>
             <div id="main-navigation">
                 <div id="main-navigation-inner">
-                <mt:Blogs blog_ids="$main_blog_id">
-                    <mt:If tag="NavigationType">
+                    <mt:Blogs blog_ids="$main_blog_id">
+                        <mt:NavigationType setvar="nav_type">
+                    </mt:Blogs>
+                    <mt:If name="nav_type">
                         <mt:Include module="Global: Navigation (Drop-down)">
                     <mt:Else>
                         <mt:Include module="Global: Navigation">
                     </mt:If>
-                </mt:Blogs>
                 </div>
             </div>
             <div id="content">

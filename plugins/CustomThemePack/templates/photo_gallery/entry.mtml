@@ -1,21 +1,21 @@
 <mt:Include module="Global: Variables">
 <mt:SetVar name="ind_entry" value="1">
 <mt:SetVarBlock name="body_class"><mt:BlogName dirify="-"> mt-archive-listing mt-entry-archive <mt:TopLevelParent><mt:CategoryLabel dirify="-"></mt:TopLevelParent></mt:SetVarBlock>
-<MTSetVarBlock name="nav_on"><mt:EntryCategories><mt:CategoryID></mt:EntryCategories></MTSetVarBlock>
-<MTSetVar name="sidebar" value="1">
-<MTIfCommentsAccepted><MTSetVar name="body_onload" value="individualArchivesOnLoad(commenter_name)"></MTIfCommentsAccepted>
-<MTSetVarBlock name="page_title"><MTEntryTitle></MTSetVarBlock>
-<MTSetVarBlock name="title"><MTGetVar name="page_title"> - <mt:Blogs blog_ids="$main_blog_id"><mt:BlogName encode_html="1"></mt:Blogs></MTSetVarBlock>
-<MTSetVarBlock name="html_head">
-    <MTEntryPrevious><link rel="prev" href="<MTEntryPermalink>" title="<MTEntryTitle encode_html="1">" /></MTEntryPrevious>
-    <MTEntryNext><link rel="next" href="<MTEntryPermalink>" title="<MTEntryTitle encode_html="1">" /></MTEntryNext>
-    <MTIfPingsAccepted><MTEntryTrackbackData></MTIfPingsAccepted>
+<mt:SetVarBlock name="nav_on"><mt:EntryCategories><mt:CategoryID></mt:EntryCategories></mt:SetVarBlock>
+<mt:SetVar name="sidebar" value="1">
+<mt:IfCommentsAccepted><mt:SetVar name="body_onload" value="individualArchivesOnLoad(commenter_name)"></mt:IfCommentsAccepted>
+<mt:EntryTitle setvar="page_title">
+<mt:SetVarBlock name="title"><mt:Var name="page_title"> - <mt:Blogs blog_ids="$main_blog_id"><mt:BlogName encode_html="1"></mt:Blogs></mt:SetVarBlock>
+<mt:SetVarBlock name="html_head">
+    <mt:EntryPrevious><link rel="prev" href="<mt:EntryPermalink>" title="<mt:EntryTitle encode_html="1">" /></mt:EntryPrevious>
+    <mt:EntryNext><link rel="next" href="<mt:EntryPermalink>" title="<mt:EntryTitle encode_html="1">" /></mt:EntryNext>
+    <mt:IfPingsAccepted><mt:EntryTrackbackData></mt:IfPingsAccepted>
     <mt:GreetFacebookCommenters>
-</MTSetVarBlock>
+</mt:SetVarBlock>
 
 <mt:SetVarBlock name="parentcategorylabel"><mt:TopLevelParent><mt:CategoryLabel></mt:TopLevelParent></mt:SetVarBlock>
 
-<MTInclude module="Global: Header">
+<mt:Include module="Global: Header">
 <mt:Include module="Global: Photo Detail">
 <mt:Include module="Global: Comments">
-<MTInclude module="Global: Footer">
+<mt:Include module="Global: Footer">

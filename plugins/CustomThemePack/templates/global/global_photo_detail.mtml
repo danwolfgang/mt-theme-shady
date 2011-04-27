@@ -21,7 +21,7 @@
 </p>
 
 <h1 id="page-title" class="archive-title" style="display: none;">
-    <mt:EntryTitle> in the <mt:Categorylabel> Gallery
+    <mt:EntryTitle> in the <mt:EntryCategory> Gallery
 </h1>
 
 <mt:EntryCategories>
@@ -33,17 +33,23 @@
 <div id="entry-<$MTEntryID$>" class="entry-asset asset hentry">
     <div class="asset-content entry-content">
         <div class="asset-body">
-            <p><mt:EntryTitle> <span class="service-date"><?php 
-                echo getRelativeTime('<mt:EntryDate format="%b %e, %Y %l:%M %p">');
-                ?></span>
+            <p>
+                <mt:EntryTitle>
+                <mt:If tag="DisplayEntryMeta"> <span class="service-date"><?php 
+                    echo getRelativeTime('<mt:EntryDate format="%b %e, %Y %l:%M %p">');
+                ?></span></mt:If>
             </p>
 
 <mt:EntryAssets>
-    <MTSetVarBlock name="width" trim="1"><MTAssetProperty property="image_width"></MTSetVarBlock>
+    <mt:SetVarBlock name="width" trim="1"><mt:AssetProperty property="image_width"></mt:SetVarBlock>
     <mt:If name="width" gt="482">
-            <div><img src="<mt:AssetThumbnailURL width="482">" /></div>
+        <mt:AssetProperty property="image_height" setvar="asset_height">
+        <mt:AssetProperty property="image_width" setvar="asset_width">
+        <mt:SetVarBlock name="mult"><mt:Var name="asset_height" op="*" value="482"></mt:SetVarBlock>
+        <mt:SetVarBlock name="thumb_height"><mt:Var name="mult" op="/" value="$asset_width"></mt:SetVarBlock>
+            <div><img src="<mt:AssetThumbnailURL width="482">" width="482" height="<mt:Var name="thumb_height">" /></div>
     <mt:Else>
-            <div><img src="<mt:AssetThumbnailURL>" /></div>
+            <div><img src="<mt:AssetURL>" width="<mt:AssetProperty property="image_width">" height="<mt:AssetProperty property="image_height">" /></div>
     </mt:If>
 </mt:EntryAssets>
 

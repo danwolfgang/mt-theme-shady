@@ -1,5 +1,11 @@
+<mt:Ignore>
+    If this is a submission from the Contact page, give it some special handling. We don't want to say your "comment" has been "held for approval" ever, because that just wouldn't make sense.
+</mt:Ignore>
 <mt:CommentEntry>
     <mt:If tag="EntryClass" eq="page">
+        <mt:If tag="EntryTitle" like="[contact]">
+            <mt:SetVar name="contact" value="1">
+        </mt:If>
         <mt:PageIfTagged name="@contact">
             <mt:SetVar name="contact" value="1">
         </mt:PageIfTagged>
@@ -7,57 +13,57 @@
 </mt:CommentEntry>
 
 <mt:If name="contact">
-    <MTIf name="body_class" eq="mt-comment-confirmation">
-        <MTSetVarBlock name="page_title">Contact Form Submitted</MTSetVarBlock>
+    <mt:If name="body_class" eq="mt-comment-confirmation">
+        <mt:SetVarBlock name="page_title">Contact Form Submitted</mt:SetVarBlock>
 
-        <MTSetVarBlock name="message">
+        <mt:SetVarBlock name="message">
             <p>Your contact form submission has been received.</p>
-        </MTSetVarBlock>
-    </MTIf>
+        </mt:SetVarBlock>
+    </mt:If>
 
-    <MTIf name="body_class" eq="mt-comment-pending">
-        <MTSetVarBlock name="page_title">Contact Form Submitted</MTSetVarBlock>
+    <mt:If name="body_class" eq="mt-comment-pending">
+        <mt:SetVarBlock name="page_title">Contact Form Submitted</mt:SetVarBlock>
 
-        <MTSetVarBlock name="message">
+        <mt:SetVarBlock name="message">
             <p>Your contact form submission has been received.</p>
-        </MTSetVarBlock>
-    </MTIf>
+        </mt:SetVarBlock>
+    </mt:If>
 
-    <MTIf name="body_class" eq="mt-comment-error">
-        <MTSetVarBlock name="page_title">Contact Form Submission Error</MTSetVarBlock>
+    <mt:If name="body_class" eq="mt-comment-error">
+        <mt:SetVarBlock name="page_title">Contact Form Submission Error</mt:SetVarBlock>
 
-        <MTSetVarBlock name="message">
+        <mt:SetVarBlock name="message">
         <p>Your contact form submission failed for the following reasons:</p>
         <blockquote>
-            <$MTErrorMessage$>
+            <mt:ErrorMessage>
         </blockquote>
-        </MTSetVarBlock>
-    </MTIf>
+        </mt:SetVarBlock>
+    </mt:If>
 <mt:Else>
-    <MTIf name="body_class" eq="mt-comment-confirmation">
-        <MTSetVarBlock name="message">
+    <mt:If name="body_class" eq="mt-comment-confirmation">
+        <mt:SetVarBlock name="message">
             <mt:Include module="Global: Comment Detail">
-        </MTSetVarBlock>
-    </MTIf>
+        </mt:SetVarBlock>
+    </mt:If>
 
-    <MTIf name="body_class" eq="mt-comment-pending">
-            <MTSetVarBlock name="page_title">Comment Pending</MTSetVarBlock>
+    <mt:If name="body_class" eq="mt-comment-pending">
+            <mt:SetVarBlock name="page_title">Comment Pending</mt:SetVarBlock>
 
-            <MTSetVarBlock name="message">
+            <mt:SetVarBlock name="message">
             <p>Your comment has been received and held for approval by the blog owner.</p>
-            </MTSetVarBlock>
-    </MTIf>
+            </mt:SetVarBlock>
+    </mt:If>
 
-    <MTIf name="body_class" eq="mt-comment-error">
-        <MTSetVarBlock name="page_title">Comment Submission Error</MTSetVarBlock>
+    <mt:If name="body_class" eq="mt-comment-error">
+        <mt:SetVarBlock name="page_title">Comment Submission Error</mt:SetVarBlock>
 
-        <MTSetVarBlock name="message">
+        <mt:SetVarBlock name="message">
         <p>Your comment submission failed for the following reasons:</p>
         <blockquote>
-            <$MTErrorMessage$>
+            <mt:ErrorMessage>
         </blockquote>
-        </MTSetVarBlock>
-    </MTIf>
+        </mt:SetVarBlock>
+    </mt:If>
 </mt:If>
 
 <div class="<mt:Var name="body_class">">

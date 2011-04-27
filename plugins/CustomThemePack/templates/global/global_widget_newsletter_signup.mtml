@@ -1,0 +1,60 @@
+<div class="widget-newsletter widget">
+<mt:Blogs blog_ids="$main_blog_id">
+    <h3 class="widget-header"><mt:WidgetNewsletterSignupName></h3>
+    <div class="widget-content">
+    <mt:If tag="WidgetNewsletterSignupText">
+        <p><mt:WidgetNewsletterSignupText></p>
+    </mt:If>
+        <div id="newsletter-status"></div>
+        <form method="post" action="<mt:CGIPath>mt-add-notify.cgi" id="newsletter-form">
+            <input type="hidden" name="blog_id" value="<mt:BlogID>" />
+            <input type="hidden" name="_redirect" value="<mt:BlogURL>" />
+            <div id="newsletter-name-container">
+                <label for="newsletter-name">Name</label>
+                <input type="text" id="newsletter-name" name="name" />
+            </div>
+            <div id="newsletter-email-container">
+                <label for="newsletter-email">Email</label>
+                <input type="text" id="newsletter-email" name="email" />
+            </div>
+            <input type="submit" id="newsletter-submit" value="Submit" />
+        </form>
+    </div>
+</mt:Blogs>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() { 
+    if ($('#newsletter-form') ) {
+        $('#newsletter-form').ajaxForm({
+            beforeSubmit: function(data, obj, opt) {
+                $('#newsletter-status').css('display', 'block');
+                $('#newsletter-status').html('<div style="text-align: center; margin: 10px;"><img src="<mt:StaticWebPath>images/indicator-login.gif" width="16" height="16" /></div>');
+                // Start by disabling the post button
+                $('#newsletter-submit').attr("disabled", "disabled");
+                $('#newsletter-email').attr("disabled", "disabled");
+            },
+            success: function(responseText, statusText) {
+                $('#newsletter-status').css('display', 'block');
+                if ( responseText.match(/Please enter a valid email address./) ) {
+                    $('#newsletter-status').html('Please enter a valid email address.');
+                }
+                else if ( responseText.match(/already in the notification list/) ) {
+                    $('#newsletter-status').html('This email address is already subscribed to the notification list.');
+                }
+                else if ( responseText.match(/An email has been sent to/) ) {
+                    $('#newsletter-status').html('An email has been sent to you. To verify your address and complete your subscription, please follow the link contained in that email.');
+                }
+                else {
+                    $('#newsletter-status').html('An undefined error has occurred.: ' + responseText);
+                }
+                // Enable the button on the form again.
+                $('#newsletter-submit').removeAttr("disabled");
+                $('#newsletter-email').removeAttr("disabled");
+                // Remove any existing values
+                $('#newsletter-email').val();
+            }
+        });
+    }
+}); 
+</script>

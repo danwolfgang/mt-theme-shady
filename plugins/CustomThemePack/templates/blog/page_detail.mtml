@@ -23,6 +23,13 @@
             <mt:PageBody>
         </div>
 </MTIfNonEmpty>
+<mt:If tag="PageDataSelectedPages">
+        <div class="selected-pages">
+        <mt:SelectedPages basename="page_selected_pages">
+            <mt:Include module="Selected Pages">
+        </mt:SelectedPages>
+        </div>
+</mt:if>
     </div>
 </div>
 

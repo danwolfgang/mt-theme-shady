@@ -1,0 +1,21 @@
+<mt:Entries offset="4" lastn="10">
+    <mt:If name="__first__">
+<div class="widget-gallery-recent-thumbs widget">
+    <h3 class="widget-header"><mt:WidgetPhotoGalleryName></h3>
+    <div class="widget-content">
+        <ul>
+    </mt:If>
+            <li>
+                <a href="<mt:EntryPermalink>" title="<mt:EntryTitle>">
+        <mt:EntryAssets lastn="1">
+                    <img src="<mt:AssetThumbnailURL width="60" square="1">" width="60" height="60" alt="<mt:EntryTitle>" />
+        </mt:EntryAssets>
+                </a>
+            </li>
+    <mt:If name="__last__">
+        </ul>
+        <p><a href="<mt:BlogURL>">View all shots</a></p>
+    </div>
+</div>
+    </mt:If>
+</mt:Entries>

@@ -4,42 +4,37 @@
 
 <mt:Include module="Global: Header">
 
-    <h1><mt:BlogName encode_html="1"></h1>
+<h1><mt:BlogName encode_html="1"></h1>
 
+<mt:HomePageLimit setvar="limit">
 <mt:If tag="GalleryType" eq="Grouped Galleries">
-    <mt:SetVar name="counter" value="test">
-    <mt:EntriesWithSubCategories lastn="999">
-        <mt:If tag="EntryCategory" eq="$prevcat">
+    <mt:CategoriesByDate top="1" include_children="1" limit="$limit">
+    <div class="row">
+        <div class="gallery-title">
+            <div class="right">
+                <a href="<mt:CategoryArchiveLink>">All Shots (<mt:SubCatCount>)</a>
+            </div>
+            <h2><mt:CategoryLabel></h2>
+        </div>
 
-            <mt:If name="counter" le="3">
-                <mt:Ignore> All these galleries should display the first three photos only. </mt:Ignore>
-                <mt:Include module="Gallery Items">
-            </mt:If>
+        <mt:CategoryLabel setvar="cur_cat">
+        <mt:EntriesWithSubCategories category="$cur_cat" sort_order="ascend" limit="3">
+            <div class="in-action-item"<mt:If name="__last__"> style="margin-right: 0;"</mt:If>>
+            <mt:EntryAssets>
+                <mt:AssetProperty property="image_height" setvar="asset_height">
+                <mt:AssetProperty property="image_width" setvar="asset_width">
+                <mt:SetVarBlock name="mult"><mt:Var name="asset_height" op="*" value="150"></mt:SetVarBlock>
+                <mt:SetVarBlock name="thumb_height"><mt:Var name="mult" op="/" value="$asset_width"></mt:SetVarBlock>
+                <div><a href="<mt:EntryCategories><mt:CategoryArchiveLink></mt:EntryCategories>"><img src="<mt:AssetThumbnailURL width="150">" alt="<mt:EntryTitle>" width="150" height="<mt:Var name="thumb_height">" /></a></div>
+            </mt:EntryAssets>
+            </div>
+        </mt:EntriesWithSubCategories>
 
-            <mt:SetVar name="counter" value="1" op="+">
-
-        <mt:Else> <mt:Ignore> This category is different than the previous category. Start a new block. </mt:Ignore>
-
-            <mt:Ignore> Check if the counter is less than 3. If so, the previous gallery row needs to be closed. </mt:Ignore>
-            <mt:If name="counter" le="3">
-                    </div>
-            </mt:If>
-    
-            <mt:SetVar name="counter" value="1">
-    
-            <mt:If name="counter" le="3">
-                <mt:Ignore> All these galleries should display the first three photos only. </mt:Ignore>
-                <mt:Include module="Gallery Items">
-                <mt:SetVar name="counter" value="1" op="+">
-            </mt:If>
-
-        </mt:If>
-
-        <mt:EntryCategory setvar="prevcat">
-    </mt:EntriesWithSubCategories>
+    </div>
+    </mt:CategoriesByDate>
 <mt:Else>
     <mt:Ignore> This must be a daily type gallery </mt:Ignore>
-    <mt:Entries lastn="10">
+    <mt:Entries lastn="$limit">
         <div class="row">
             <div class="gallery-title">
                 <h2><a href="<mt:EntryPermalink>"><mt:EntryTitle></a> in the <a href="<mt:EntryCategories><mt:CategoryArchiveLink></mt:EntryCategories>"><mt:EntryCategory></a> Gallery</h2>
@@ -47,7 +42,15 @@
 
             <div class="in-action-item" style="margin-right: 0;">
             <mt:EntryAssets>
-                <div><a href="<mt:EntryCategories><mt:CategoryArchiveLink></mt:EntryCategories>"><img src="<mt:AssetThumbnailURL width="482">" alt="<mt:EntryTitle>" /></a></div>
+                <mt:If name="width" gt="482">
+                    <mt:AssetProperty property="image_height" setvar="asset_height">
+                    <mt:AssetProperty property="image_width" setvar="asset_width">
+                    <mt:SetVarBlock name="mult"><mt:Var name="asset_height" op="*" value="482"></mt:SetVarBlock>
+                    <mt:SetVarBlock name="thumb_height"><mt:Var name="mult" op="/" value="$asset_width"></mt:SetVarBlock>
+                        <div><a href="<mt:EntryCategories><mt:CategoryArchiveLink></mt:EntryCategories>"><img src="<mt:AssetThumbnailURL width="482">" width="482" height="<mt:Var name="thumb_height">" /></a></div>
+                <mt:Else>
+                        <div><a href="<mt:EntryCategories><mt:CategoryArchiveLink></mt:EntryCategories>"><img src="<mt:AssetURL>" width="<mt:AssetProperty property="image_width">" height="<mt:AssetProperty property="image_height">" /></a></div>
+                </mt:If>
             </mt:EntryAssets>
             </div>
         </div>

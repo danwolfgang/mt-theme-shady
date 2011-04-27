@@ -187,6 +187,16 @@ u {
     padding: 5px 10px;
 }
 
+/* For the sub-sub-menu. */
+#main-navigation ul.menu ul.submenu ul.submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+}
+#main-navigation ul.menu ul.submenu li:hover ul.submenu { display: block; }
+
+
 
 /* Footer */
 
@@ -496,10 +506,26 @@ ul#slideshow li {
     top: 0;
     left: 0;
 }
+.layout-wm #lead-image {
+    width: 670px;
+    overflow: hidden;
+}
 
 .mt-page-archive #lead-image + .asset-header {
     margin-top: <mt:CarouselContainerHeight>px;
 }
+
+.selected-page {
+    clear: both;
+    border-bottom: <mt:AccentRule>;
+}
+.selected-page-image {
+    float: left;
+    width: 100px;
+    margin: 0 40px 5px 0;
+}
+
+
 
 /* Custom CSS below */
 <mt:CustomCSS>
