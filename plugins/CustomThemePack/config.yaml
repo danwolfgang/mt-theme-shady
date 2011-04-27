@@ -3,7 +3,7 @@ id:          customthemepack
 key:         customthemepack
 description: 'Includes template sets for a blog and galleries.'
 author_name: 'Dan Wolfgang, uiNNOVATIONS, developed for The Roster'
-version: 1.4.3
+version: 1.4.4
 schema_version: 7
 
 object_types:
@@ -858,7 +858,7 @@ template_sets:
                     label: 'Main Index'
                     outfile: index.html
                     rebuild_me: 1
-                sidebar_left_default:
+                sidebar_beta:
                     label: 'Sidebar Beta: Photo Gallery Widgetset'
                     outfile: include/sidebar_beta_photo_gallery.inc
                     rebuild_me: 1
