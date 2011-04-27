@@ -1,0 +1,25 @@
+<mt:Var name="home" value="1">
+<mt:Var name="page_layout" value="layout-twt">
+<mt:SetVarBlock name="title"><mt:BlogName encode_html="1"></mt:SetVarBlock>
+<mt:SetVarBlock name="html_head">
+    <script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>
+    <link type="text/css" rel="stylesheet" href="http://static.ak.connect.facebook.com/css/fb_connect.css" />
+    <script type="text/javascript" src="<mt:StaticWebPath>/plugins/FacebookCommenters/signface.js"></script>
+</mt:SetVarBlock>
+
+<mt:Include module="Global: Header" body_class="mt-main-index">
+
+<div id="play-by-play">Play By Play</div>
+
+<mt:Entries include_subcategories="1" category="NOT Current Quote" tag="NOT @ignorehome" lastn="5">
+    <mt:Include module="Entry Summary">
+</mt:Entries>
+
+
+<script type="text/javascript">
+    window.api_key = '8c305f9905736d462bb3c4aa6899fee5';
+    window.xd_receiver_url = '<mt:StaticWebPath>plugins/FacebookCommenters/xd_receiver.html';
+    apply_commenter_data();
+</script>
+
+<mt:Include module="Global: Footer">

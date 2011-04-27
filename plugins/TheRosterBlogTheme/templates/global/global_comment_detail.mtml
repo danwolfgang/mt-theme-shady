@@ -1,0 +1,22 @@
+<div class="comment<mt:If name="__odd__"> odd<mt:Else> even</mt:If>"<mt:IfArchiveTypeEnabled archive_type="Individual"> id="comment-<mt:CommentID>"</mt:IfArchiveTypeEnabled>>
+    <div class="inner">
+
+    <mt:If tag="CommenterAuthType" eq="Facebook">
+        <div class="userpic">
+            <a href="http://www.facebook.com/profile.php?id=<mt:CommenterUsername>" class="auth-icon"><img src="<mt:CommenterAuthIconURL size="logo_small">" alt="<mt:CommenterAuthType>"/></a>
+            <fb:profile-pic uid="<mt:CommenterUsername>" size="square" linked="true"><img src="http://static.ak.connect.facebook.com/pics/q_default.gif" /></fb:profile-pic>
+        </div>
+    </mt:If>
+
+        <div class="comment-header">
+            <mt:CommentAuthorLink default_name="Anonymous" show_email="0"> <mt:IfNonEmpty tag="CommentAuthorIdentity"><mt:CommentAuthorIdentity></mt:IfNonEmpty> on <a href="<mt:EntryPermalink>#comment-<MTCommentID>" title="Permalink to this comment"><mt:CommentDate format="%b %e, %Y"></a>
+        </div>
+        <div class="comment-content">
+        <mt:If name="main_index">
+            <mt:CommentBody words="20">&hellip;
+        <mt:Else>
+            <mt:CommentBody>
+        </mt:If>
+        </div>
+    </div>
+</div>

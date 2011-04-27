@@ -1,0 +1,22 @@
+<mt:Var name="system_template" value="1">
+<MTSetVar name="page_layout" value="layout-twt">
+<MTSetVar name="sidebar" value="1">
+<$mt:Var name="body_class" value="mt-profile-register"$>
+<mt:If name="resend">
+    <mt:SetVarBlock name="page_title">Authentication Email Sent</mt:SetVarBlock>
+<mt:Else>
+    <mt:SetVarBlock name="page_title">Profile Created</mt:SetVarBlock>
+</mt:If>
+<mt:SetVarBlock name="title"><mt:If name="blog_id"><$mt:BlogName encode_html="1"$>: </mt:If><$mt:Var name="page_title"$></mt:SetVarBlock>
+
+<$mt:Include module="Global: Header"$>
+
+<h1 id="page-title" class="asset-name"><$mt:Var name="page_title"$></h1>
+
+<p>To complete the registration process you must first confirm your account. An email has been sent to <$mt:Var name="email" escape="html"$>.</p>
+
+<p>To confirm and activate your account please check your inbox and click on the link found in the email we just sent you.</p>
+
+<p><a href="<$mt:Var name="return_to"$>">Return to the original page.</a></p>
+
+<$mt:Include module="Global: Footer"$>

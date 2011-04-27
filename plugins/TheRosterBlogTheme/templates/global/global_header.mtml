@@ -1,0 +1,65 @@
+<mt:SetVarBlock name="main_blog_id"><mt:Var name="config.MainBlogID"></mt:SetVarBlock>
+<mt:SetVarBlock name="in_action_blog_id"><mt:Var name="config.InActionBlogID"></mt:SetVarBlock>
+<mt:SetVarBlock name="author_name"><mt:Var name="config.PrimaryAuthorName"></mt:SetVarBlock>
+<mt:SetVarBlock name="author_first_name"><mt:Blogs blog_ids="$main_blog_id"><mt:ShortAuthorName></mt:Blogs></mt:SetVarBlock>
+<mt:SetVarBlock name="html_head" prepend="1">
+    <MTIf name="main_template">
+<link rel="alternate" type="application/atom+xml" title="Atom" href="<mt:Blogs blog_ids="$main_blog_id"><mt:Link identifier="atom"></mt:Blogs>" />
+<link rel="alternate" type="application/rss+xml" title="RSS" href="<mt:Blogs blog_ids="$main_blog_id"><mt:Link identifier="atom"></mt:Blogs>" />
+<$MTCCLicenseRDF$>
+    </MTIf>
+</mt:SetVarBlock>
+<mt:Unless name="system_template">
+    <mt:Include module="Global: PHP">
+</mt:Unless>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=<$MTPublishCharset$>" />
+    <title><mt:var name="title"></title>
+    <meta name="generator" content="<$MTProductName version="1"$>" />
+    <link rel="stylesheet" href="<mt:Blogs blog_ids="$main_blog_id"><mt:BlogURL></mt:Blogs>styles.css" type="text/css" />
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script src="<mt:StaticWebPath>jquery/jquery.form.js" type="text/javascript"></script>
+    <script src="<mt:BlogURL>comment.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<mt:BlogURL>mt.js"></script>
+    
+<mt:Blogs blog_ids="$main_blog_id">
+    <link rel="alternate" type="application/atom+xml" title="Atom feed for <mt:BlogName>" href="<mt:BlogURL>atom.xml" />
+</mt:Blogs>
+    <mt:Var name="html_head">
+</head>
+<body class="<MTIf name="body_class"><$MTGetVar name="body_class"$> </MTIf><$MTGetVar name="page_layout" default="layout-wtt"$>">
+    <div id="container">
+        <div id="container-inner">
+            <div id="header">
+                <div id="header-inner">
+                    <div id="header-content">
+<mt:If name="main_index">
+    <mt:Blogs blog_ids="$main_blog_id">
+                        <h1 id="header-name"><a href="<mt:BlogURL>" accesskey="1"><mt:BlogName encode_html="1"></a></h1>
+                        <h2 id="header-description"><mt:BlogDescription></h2>
+    </mt:Blogs>
+<mt:Else>
+    <mt:Blogs blog_ids="$main_blog_id">
+                        <div id="header-name"><a href="<mt:BlogURL>" accesskey="1"><mt:BlogName encode_html="1"></a></div>
+                        <div id="header-description"><mt:BlogDescription></div>
+    </mt:Blogs>
+</mt:If>
+                        <div id="header-images">
+                            <mt:Include module="Global: Header Images">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="main-navigation">
+                <div id="main-navigation-inner">
+                    <mt:Include module="Global: Navigation">
+                </div>
+            </div>
+            <div id="content">
+                <div id="content-inner">
+                    <div id="alpha">
+                        <div id="alpha-inner">

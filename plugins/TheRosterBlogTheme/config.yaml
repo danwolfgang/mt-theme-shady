@@ -1,0 +1,450 @@
+name:        'The Roster Blog Theme'
+id:          therosterblogtheme
+key:         therosterblogtheme
+description: 'Includes template sets for a "Times" and "In Action" blog.'
+author:      'Dan Wolfgang, uiNNOVATIONS'
+author_link: 'http://uinnovations.com'
+
+default_templates:
+    base_path: 'templates/global'
+    global:module:
+        global_ajax_comments_js:
+            label: 'Global: Ajax Comments Javascript'
+        global_comment_detail:
+            label: 'Global: Comment Detail'
+        global_comment_form:
+            label: 'Global: Comment Form'
+        global_comments:
+            label: 'Global: Comments'
+        global_footer:
+            label: 'Global: Footer'
+        global_footer_links:
+            label: 'Global: Footer Links'
+        global_header:
+            label: 'Global: Header'
+        global_header_images:
+            label: 'Global: Header Images'
+        global_include_add_this:
+            label: 'Global: Include: Add This'
+        global_navigation:
+            label: 'Global: Navigation'
+        global_php:
+            label: 'Global: PHP'
+        global_sidebar:
+            label: 'Global: Sidebar'
+        global_site_javascript:
+            label: 'Global: Site Javascript'
+    global:widget:
+        global_widget_ad:
+            label: 'Ad'
+        global_widget_built_by:
+            label: 'Built By The Roster'
+        global_widget_category_archives:
+            label: 'Category Archives'
+        global_widget_contact:
+            label: 'Contact Address & Phone'
+        global_widget_featured_articles:
+            label: 'Featured Articles'
+        global_widget_featured_video:
+            label: 'Featured Video'
+        global_widget_game_on:
+            label: 'Game On! (Contact)'
+        global_widget_highlights:
+            label: 'Highlights'
+        global_widget_in_action_archives:
+            label: 'In Action: Archives'
+        global_widget_in_action_recent:
+            label: 'In Action: Recent'
+        global_widget_in_action_recent_thumbs:
+            label: 'In Action: Recent Thumbs'
+        global_widget_twitter_feed:
+            label: 'Twitter feed'
+        global_widget_quote:
+            label: "Winner's Circle"
+    global:widgetset:
+        left_column_about:
+            label: 'Left Column (About)'
+            order: 1000
+            widgets:
+                - Highlights
+                - Ad
+        left_column_contact:
+            label: 'Left Column (Contact)'
+            order: 1000
+            widgets:
+                - 'Built By The Roster'
+                - Ad
+        left_column_default:
+            label: 'Left Column (Default)'
+            order: 1000
+            widgets:
+                - 'Twitter feed'
+                - Ad
+        right_column_default:
+            label: 'Right Column (Default)'
+            order: 1000
+            widgets:
+                - "Winner's Circle"
+                - 'Game On! (Contact)'
+                - 'In Action: Recent Thumbs'
+                - 'Featured Video'
+                - 'Featured Articles'
+                - 'Category Archives'
+        left_column_in_action:
+            label: 'Left Column (In Action)'
+            order: 1000
+            widgets:
+                - 'In Action: Recent'
+                - 'In Action: Archives'
+                - 'Ad'
+
+template_sets:
+    blog:
+        base_path: 'templates/blog'
+        label: 'The Roster Blog Theme (Blog)'
+        options:
+            tracking_code:
+                type: textarea
+                label: 'Tracking Code'
+                hint: 'Paste tracking code here, such as for Google Analytics.'
+                tag: TrackingCode
+            copyright_name:
+                type: text
+                label: 'Copyright Name'
+                hint: 'Enter the name of the copyright holder of the site. Specify an HTML link, if desired.'
+                tag: CopyrightName
+            sidebar_ad_html:
+                type: textarea
+                label: 'Sidebar Ad HTML'
+                hint: 'Enter HTML to include an ad in the sidebar, up to 204 pixels wide.'
+                tag: SidebarAdHTML
+            header_image:
+                type: text
+                label: 'Header Image URL'
+                hint: 'Enter the URL to an image to display in the header. The image should measure 700 x 144 pixels.'
+                tag: HeaderImageURL
+            header_accent_image:
+                type: text
+                label: 'Header Accent Image URL'
+                hint: 'Enter the URL to an image to display in the upper-right area of the header, as an accent image. the image should measure 310 x 70 pixels. If no image is supplied, the four most recent In Action images will be displayed here.'
+                tag: HeaderAccentImageURL
+            add_this:
+                type: textarea
+                label: '&ldquo;Add This&rdquo; Code'
+                hint: 'Insert your Add This code.'
+                tag: AddThis
+            short_author_name:
+                type: text
+                label: 'Short Author Name'
+                hint: "Enter a short name for the author, to be displayed with the In Action recent thumbnails widget. Typically, this will be the author's first name."
+                tag: ShortAuthorName
+            display_entry_meta:
+                type: checkbox
+                label: 'Display Entry Meta'
+                hint: "By default, the Entry's date will be published. Uncheck to hide the date. This setting does not effect the In Action section."
+                default: 1
+                tag: DisplayEntryMeta
+        fields:
+            entry_url:
+                label: 'URL'
+                description: 'URL to a Daily Link item'
+                type: url
+                obj_type: entry
+                tag: entryurl
+            page_left_column:
+                label: 'Left Column'
+                description: 'Select the widget set to display in the left-hand column of this page.'
+                type: widget_set
+                obj_type: page
+                tag: pagedataleft_column
+            html_head_title:
+                label: 'HTML Head Title'
+                description: 'This is the title to be displayed in the HTML title tag. This field completely overwrites the default title.'
+                type: text
+                obj_type: entry
+                tag: entrydatahtml_head_title
+            add_continue_link:
+                label: 'Add "Continue..." link?'
+                type: checkbox
+                obj_type: entry
+                tag: add_continue_link
+            entry_headline_style_variation:
+                label: 'Headline Style Variation'
+                type: select
+                options: 'Regular,Italic,Bold,Bold Italic'
+                obj_type: entry
+                tag: entry_headline_style_variation
+            entry_headline_style_size:
+                label: 'Headline Style Size'
+                type: select
+                options: '10,12,14,17,20,24,28,32,36,40'
+                obj_type: entry
+                tag: entry_headline_style_size
+            entry_headline_style_font:
+                label: 'Headline Style Font'
+                type: select
+                options: 'Arial,Arial-Black,Courier,Georgia,Times,Verdana'
+                obj_type: entry
+                tag: entry_headline_style_font
+            page_headline_style_variation:
+                label: 'Headline Style Variation'
+                type: select
+                options: 'Regular,Italic,Bold,Bold Italic'
+                obj_type: page
+                tag: page_headline_style_variation
+            page_headline_style_size:
+                label: 'Headline Style Size'
+                type: select
+                options: '10,12,14,17,20,24,28,32,36,40'
+                obj_type: page
+                tag: page_headline_style_size
+            page_headline_style_font:
+                label: 'Headline Style Font'
+                type: select
+                options: 'Arial,Arial-Black,Courier,Georgia,Times,Verdana'
+                obj_type: page
+                tag: page_headline_style_font
+        templates:
+            archive:
+                entry_listing:
+                    label: 'Blog Entry Listing'
+                    mappings:
+                        category:
+                            archive_type: Category
+                            file_template: %-c/%i
+                            preferred: 1
+                        category-yearly:
+                            archive_type: Category-Yearly
+                            file_template: %-c/%y/%i
+                            preferred: 1
+            index:
+                ajax_comments_javascript:
+                    label: 'Ajax Comments Javascript'
+                    outfile: comment.js
+                    rebuild_me: 1
+                atom:
+                    label: Atom
+                    outfile: atom.xml
+                    rebuild_me: 1
+                featured_articles:
+                    label: 'Featured Articles'
+                    outfile: include/featured_articles.inc
+                    rebuild_me: 1
+                featured_video:
+                    label: 'Featured Video'
+                    outfile: include/featured_video.inc
+                    rebuild_me: 1
+                google_sitemap:
+                    label: 'Google Sitemap'
+                    outfile: sitemap.xml
+                    rebuild_me: 1
+                htaccess:
+                    label: .htaccess
+                    outfile: .htaccess
+                    rebuild_me: 1
+                javascript:
+                    label: JavaScript
+                    outfile: mt.js
+                    rebuild_me: 1
+                main_index:
+                    label: 'Main Index'
+                    outfile: index.php
+                    rebuild_me: 1
+                styles:
+                    label: 'Stylesheet'
+                    outfile: styles.css
+                    rebuild_me: 1
+                styles_headlines:
+                    label: 'Stylesheet: Headlines'
+                    outfile: styles-headlines.css
+                    rebuild_me: 1
+            individual:
+                entry:
+                    label: Entry
+                    mappings:
+                        individual:
+                            archive_type: Individual
+                            file_template: %-c/%-b/%i
+                            preferred: 1
+                page:
+                    label: Page
+                    mappings:
+                        page:
+                            archive_type: Page
+                            file_template: %-c/%-f
+                            preferred: 1
+            module:
+                comments_on_home_page:
+                    label: 'Comments (on home page)'
+                contact_form:
+                    label: 'Contact Form'
+                entry_detail:
+                    label: 'Entry Detail'
+                entry_metadata:
+                    label: 'Entry Metadata'
+                entry_metadata_front:
+                    label: 'Entry Metadata (Front)'
+                entry_summary:
+                    label: 'Entry Summary'
+                entry_summary_for_listings:
+                    label: 'Entry Summary (for Listings)'
+                links_category_listing:
+                    label: 'Links Category Listing'
+                page_detail:
+                    label: 'Page Detail'
+                quotes_category_listing:
+                    label: 'Quotes Category Listing'
+                tags:
+                    label: Tags
+            system:
+                comment_preview:
+                    label: 'Comment Preview'
+                comment_response:
+                    label: 'Comment Response'
+                dynamic_error:
+                    label: 'Dynamic Error'
+                popup_image:
+                    label: 'Popup Image'
+                search_results:
+                    label: 'Search Results'
+                login_form:
+                    label: 'Login Form'
+                password_reset_form:
+                    label: 'Password Reset Form'
+                profile_edit_form:
+                    label: 'Profile Edit Form'
+                profile_view:
+                    label: 'Profile View Form'
+                register_confirmation:
+                    label: 'Registration Confirmation'
+                register_form:
+                    label: 'Registration Form'
+    in_action:
+        base_path: 'templates/in_action'
+        label: 'The Roster Blog Theme (In Action)'
+        fields:
+            html_head_title:
+                label: 'HTML Head Title'
+                description: 'This is the title to be displayed in the HTML title tag. This field completely overwrites the default title.'
+                type: text
+                obj_type: entry
+                tag: entrydatahtml_head_title
+            add_continue_link:
+                label: 'Add "Continue..." link?'
+                type: checkbox
+                obj_type: entry
+                tag: add_continue_link
+            entry_headline_style_variation:
+                label: 'Headline Style Variation'
+                type: select
+                options: 'Regular,Italic,Bold,Bold Italic'
+                obj_type: entry
+                tag: entry_headline_style_variation
+            entry_headline_style_size:
+                label: 'Headline Style Size'
+                type: select
+                options: '10,12,14,17,20,24,28,32,36,40'
+                obj_type: entry
+                tag: entry_headline_style_size
+            entry_headline_style_size:
+                label: 'Headline Style Font'
+                type: select
+                options: 'Arial,Arial-Black,Courier,Georgia,Times,Verdana'
+                obj_type: entry
+                tag: entry_headline_style_font
+            page_headline_style_variation:
+                label: 'Headline Style Variation'
+                type: select
+                options: 'Regular,Italic,Bold,Bold Italic'
+                obj_type: page
+                tag: page_headline_style_variation
+            page_headline_style_size:
+                label: 'Headline Style Size'
+                type: select
+                options: '10,12,14,17,20,24,28,32,36,40'
+                obj_type: page
+                tag: page_headline_style_size
+            page_headline_style_size:
+                label: 'Headline Style Font'
+                type: select
+                options: 'Arial,Arial-Black,Courier,Georgia,Times,Verdana'
+                obj_type: page
+                tag: page_headline_style_font
+        templates:
+            archive:
+                entry_listing:
+                    label: 'Blog Entry Listing'
+                    mappings:
+                        category:
+                            archive_type: Category
+                            file_template: %-c/%i
+                            preferred: 1
+                yearly_archives:
+                    label: 'Yearly Archives'
+                    mappings:
+                        yearly:
+                            archive_type: Yearly
+                            file_template: %y/%i
+                            preferred: 1
+            index:
+                ajax_comments_javascript:
+                    label: 'Ajax Comments Javascript'
+                    outfile: comment.js
+                    rebuild_me: 1
+                atom:
+                    label: Atom
+                    outfile: atom.xml
+                    rebuild_me: 1
+                include_header_images:
+                    label: 'Include: Header Images'
+                    outfile: header-images.inc
+                    rebuild_me: 1
+                include_in_action_recent:
+                    label: 'Include: In Action: Recent'
+                    outfile: recent.inc
+                    rebuild_me: 1
+                include_in_action_recent_thumbs:
+                    label: 'Include: In Action: Recent Thumbs'
+                    outfile: recent-thumbs.inc
+                    rebuild_me: 1
+                javascript:
+                    label: JavaScript
+                    outfile: mt.js
+                    rebuild_me: 1
+                main_index:
+                    label: 'Main Index'
+                    outfile: index.php
+                    rebuild_me: 1
+            individual:
+                entry:
+                    label: Entry
+                    mappings:
+                        individual:
+                            archive_type: Individual
+                            file_template: %-c/%-b/%i
+                            preferred: 1
+                page:
+                    label: Page
+                    mappings:
+                        page:
+                            archive_type: Page
+                            file_template: %-c/%-f
+                            preferred: 1
+            module:
+                gallery_items:
+                    label: 'Gallery Items'
+                gallery_listing:
+                    label: 'Gallery Listing'
+                in_action_detail:
+                    label: 'In Action Detail'
+            system:
+                comment_preview:
+                    label: 'Comment Preview'
+                comment_response:
+                    label: 'Comment Response'
+                dynamic_error:
+                    label: 'Dynamic Error'
+                popup_image:
+                    label: 'Popup Image'
+                search_results:
+                    label: 'Search Results'

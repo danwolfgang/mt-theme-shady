@@ -1,0 +1,29 @@
+<?php
+/* Relative Dates  */
+
+function plural($num) {
+    if ($num != 1)
+        return "s";
+}
+
+function getRelativeTime($date) {
+    $diff = time() - strtotime($date);
+    if ($diff<60)
+        return $diff . " second" . plural($diff) . " ago";
+    $diff = round($diff/60);
+    if ($diff<60)
+        return $diff . " minute" . plural($diff) . " ago";
+    $diff = round($diff/60);
+    if ($diff<24)
+        return $diff . " hour" . plural($diff) . " ago";
+    $diff = round($diff/24);
+    if ($diff<2) /* '7' by default */
+        return $diff . " day" . plural($diff) . " ago";
+    $diff = round($diff/7);
+/* Only count up to days, then return the real date for older stuff.
+    if ($diff<4)
+        return $diff . " week" . plural($diff) . " ago";
+*/
+    return "on " . date("D, M j", strtotime($date));
+}
+?>

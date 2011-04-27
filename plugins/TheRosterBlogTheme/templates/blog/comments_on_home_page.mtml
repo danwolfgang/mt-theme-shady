@@ -1,0 +1,17 @@
+<MTIfCommentsActive>
+<div id="comments" class="comments">
+    <MTComments lastn="3">
+        <MTCommentsHeader>
+    <h3 class="comments-header"><$MTEntryCommentCount$> Comments</h3>
+    <div class="comments-content">
+        </MTCommentsHeader>
+        <$MTInclude module="Global: Comment Detail"$>
+        <MTCommentsFooter>
+    </div>
+        </MTCommentsFooter>
+    </MTComments>
+<mt:If tag="EntryCommentCount" gt="3">
+    <p><a href="<mt:EntryPermalink>#comments">Read more comments</a>.</p>
+</mt:If>
+</div>
+</MTIfCommentsActive>

@@ -1,0 +1,5 @@
+<mt:If name="system_template">
+    <mt:Include blog_id="$main_blog_id" file="include/featured_video.inc">
+<mt:Else>
+    <?php @include('<mt:Blogs blog_ids="$main_blog_id"><mt:BlogSitePath></mt:Blogs>include/featured_video.inc'); ?>
+</mt:If>

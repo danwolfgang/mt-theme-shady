@@ -1,0 +1,28 @@
+<mt:Var name="page_layout" value="layout-twt">
+<mt:SetVarBlock name="body_class"><mt:BlogName dirify="-"></mt:SetVarBlock>
+<mt:SetVarBlock name="title"><mt:BlogName encode_html="1"></mt:SetVarBlock>
+
+<mt:Include module="Global: Header">
+
+    <h1 id="page-title"><mt:Var name="title"></h1>
+
+    <mt:PeakCategories days="90">
+        <div class="row">
+            <div class="gallery-title">
+                <div class="right">
+                    <a href="<mt:CategoryArchiveLink>">All Shots (<mt:CategoryCount>)</a>
+                </div>
+                <h2><mt:CategoryLabel></h2>
+            </div>
+            <mt:SetVarBlock name="curcat"><mt:CategoryLabel></mt:SetVarBlock>
+            <mt:Entries category="$curcat" lastn="3">
+                <div class="in-action-item"<mt:If name="__last__"> style="margin-right: 0;"</mt:If>>
+                <mt:EntryAssets>
+                    <div><a href="<mt:EntryCategories><mt:CategoryArchiveLink></mt:EntryCategories>"><img src="<mt:AssetThumbnailURL width="150">" alt="<mt:EntryTitle>" /></a></div>
+                </mt:EntryAssets>
+                </div>
+            </mt:Entries>
+        </div>
+    </mt:PeakCategories>
+
+<mt:Include module="Global: Footer">

@@ -1,0 +1,16 @@
+<mt:If tag="DisplayEntryMeta">
+<div class="asset-meta">
+    <span class="byline vcard">
+<MTIfNonEmpty tag="EntryAuthorDisplayName">
+        By <$MTEntryAuthorLink show_hcard="1"$>, <abbr class="published" title="<$MTEntryDate format_name="iso8601"$>"><mt:EntryDate format="%b %e, %Y"></abbr>
+<MTElse>
+        <abbr class="published" title="<$MTEntryDate format_name="iso8601"$>"><mt:EntryDate format="%b %e, %Y"></abbr>
+</MTIfNonEmpty>
+    </span>
+    <span class="permalink-comments"><a href="<mt:EntryPermalink>">Permalink</a>
+    <mt:If tag="EntryCommentCount">
+        | <a href="<$MTEntryPermalink$>#comments">Comments (<$MTEntryCommentCount$>)</a>
+    </mt:If>
+</span>
+</div>
+</mt:If>

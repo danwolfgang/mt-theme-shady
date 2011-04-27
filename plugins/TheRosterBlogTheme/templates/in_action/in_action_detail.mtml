@@ -1,0 +1,48 @@
+<p class="aia-nav">
+<mt:EntryPreviousInCategory>
+    <a href="<mt:EntryPermalink>">
+</mt:EntryPreviousInCategory>
+        Previous
+<mt:EntryPreviousInCategory>
+    </a>
+</mt:EntryPreviousInCategory>
+    <span>|</span>
+<mt:EntryNextInCategory>
+    <a href="<mt:EntryPermalink>">
+</mt:EntryNextInCategory>
+        Next
+<mt:EntryNextInCategory>
+    </a>
+</mt:EntryNextInCategory>
+</p>
+
+<h1 id="page-title" class="archive-title" style="display: none;">
+    <mt:Authors name="$primary_author_name"><mt:AuthorDisplayName></mt:Authors> In Action
+</h1>
+
+<mt:EntryCategories>
+<div class="gallery-title">
+    <h2>From the <a href="<mt:CategoryArchiveLink>"><mt:CategoryLabel></a> Gallery</h2>
+</div>
+</mt:EntryCategories>
+
+<div id="entry-<$MTEntryID$>" class="entry-asset asset hentry">
+    <div class="asset-content entry-content">
+        <div class="asset-body">
+            <p><mt:EntryTitle> <span class="service-date"><?php 
+                echo getRelativeTime('<mt:EntryDate format="%b %e, %Y %l:%M %p">');
+                ?></span>
+            </p>
+
+<mt:EntryAssets>
+    <MTSetVarBlock name="width" trim="1"><MTAssetProperty property="image_width"></MTSetVarBlock>
+    <mt:If name="width" gt="482">
+            <div><img src="<mt:AssetThumbnailURL width="482">" /></div>
+    <mt:Else>
+            <div><img src="<mt:AssetThumbnailURL>" /></div>
+    </mt:If>
+</mt:EntryAssets>
+
+        </div>
+    </div>
+</div>

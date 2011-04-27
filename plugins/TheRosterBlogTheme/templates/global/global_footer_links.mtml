@@ -1,0 +1,33 @@
+<p>
+    <mt:Blogs blog_ids="$main_blog_id">
+        <a href="<mt:BlogURL>" class="home">What&rsquo;s New</a>
+    </mt:Blogs>
+
+    <mt:SetVarBlock name="curblog"><mt:BlogName></mt:SetVarBlock>
+    <mt:If name="in_action_blog_id">
+        <mt:Blogs blog_ids="$in_action_blog_id">
+            <span class="divider">|</span>
+            <a href="<mt:BlogURL>" class="in-action"><mt:BlogName></a>
+        </mt:Blogs>
+    </mt:if>
+
+    <mt:Pages blog_ids="$main_blog_id" tags="@about" limit="1">
+        <span class="divider">|</span>
+        <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">">About Me</a>
+    </mt:Pages>
+
+    <mt:Pages blog_ids="$main_blog_id" tags="@contact" limit="1">
+        <span class="divider">|</span>
+        <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">">Contact</a>
+    </mt:Pages>
+
+    <mt:Pages blog_ids="$main_blog_id" tag="@footernav">
+        <span class="divider">|</span>
+        <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">"><mt:PageTitle></a>
+    </mt:Pages>
+</p>
+<p>
+    <mt:Blogs blog_ids="$main_blog_id"><mt:If tag="CopyrightName">&copy; <mt:CopyrightName></mt:If></mt:Blogs>
+    <span class="divider">|</span>
+    <a href="http://therosterwebteam.com">Produced by The Roster</a>
+</p>

@@ -1,0 +1,32 @@
+<mt:SetVar name="ind_entry" value="1">
+<mt:SetVarBlock name="body_class">mt-archive-listing mt-entry-archive <mt:TopLevelParent><mt:CategoryLabel dirify="-"></mt:TopLevelParent></mt:SetVarBlock>
+<MTSetVarBlock name="nav_on"><mt:EntryCategories><mt:CategoryID></mt:EntryCategories></MTSetVarBlock>
+<MTSetVar name="page_layout" value="layout-twt">
+<MTSetVar name="sidebar" value="1">
+<MTSetVar name="module_about_context" value="1">
+<MTIfCommentsAccepted><MTSetVar name="body_onload" value="individualArchivesOnLoad(commenter_name)"></MTIfCommentsAccepted>
+<MTSetVarBlock name="page_title"><MTEntryTitle></MTSetVarBlock>
+<MTSetVarBlock name="title">
+    <mt:IfNonEmpty tag="entrydatahtml_head_title">
+        <mt:EntryDataHTML_head_title>
+    <mt:Else>
+        <MTGetVar name="page_title"> - <MTBlogName encode_html="1">
+    </mt:IfNonEmpty>
+</MTSetVarBlock>
+<MTSetVarBlock name="html_head">
+    <MTEntryPrevious><link rel="prev" href="<MTEntryPermalink>" title="<MTEntryTitle encode_html="1">" /></MTEntryPrevious>
+    <MTEntryNext><link rel="next" href="<MTEntryPermalink>" title="<MTEntryTitle encode_html="1">" /></MTEntryNext>
+    <MTIfPingsAccepted><MTEntryTrackbackData></MTIfPingsAccepted>
+    <mt:GreetFacebookCommenters>
+</MTSetVarBlock>
+
+<mt:SetVarBlock name="parentcategorylabel"><mt:TopLevelParent><mt:CategoryLabel></mt:TopLevelParent></mt:SetVarBlock>
+
+<MTInclude module="Global: Header">
+
+<MTInclude module="Entry Detail">
+
+<MTInclude module="Global: Comments">
+
+<MTInclude module="Global: Footer">
+

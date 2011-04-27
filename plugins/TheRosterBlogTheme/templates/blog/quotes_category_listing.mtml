@@ -1,0 +1,15 @@
+<div id="entry-<$MTEntryID$>" class="entry-asset asset hentry">
+    <div class="asset-content entry-content">
+        <div class="asset-body">
+            <h3 class="quote-title"><a href="<mt:EntryPermalink>">
+                <mt:SetVarBlock name="excerpt"><mt:EntryExcerpt no_generate="1"></mt:SetVarBlock>
+                <mt:If name="excerpt">
+                    <mt:EntryExcerpt>
+                <mt:Else>
+                    <mt:EntryBody>
+                </mt:If>
+            </a></h3>
+        </div>
+    </div>
+    <mt:Include module="Entry Metadata (Front)">
+</div>

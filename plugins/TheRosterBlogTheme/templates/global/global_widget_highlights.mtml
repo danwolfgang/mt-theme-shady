@@ -1,0 +1,18 @@
+<div class="widget-interests widget">
+    <h3 class="widget-header">Highlights</h3>
+    <div class="widget-content">
+        <ul id="toc">
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+jQuery(document).ready(function() { 
+    jQuery("h2").each(function(i) {
+        var current = jQuery(this);
+        current.attr("id", "title" + i);
+        jQuery("#toc").append("<li><a id='link" + i + "' href='#title" +
+            i + "'" + ">" + current.html() + "</a></li>");
+    })
+});
+</script>

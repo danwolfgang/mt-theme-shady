@@ -1,0 +1,53 @@
+jQuery(document).ready(function() { 
+    if (jQuery('#comments-form') ) {
+        if ( jQuery('#armor') ) {
+            jQuery('#armor').val('<mt:BlogSitePath encode_sha1="1">');
+        }
+        jQuery('#comments-form').ajaxForm({
+            beforeSubmit: function(data, obj, opt) {
+                // Start by disabling the post button
+                jQuery('#comment-preview').attr("disabled", "disabled");
+                jQuery('#comment-submit').attr("disabled", "disabled");
+                jQuery('#comment-text').attr("disabled", "disabled");
+                jQuery('#comment-status').css('display', 'block');
+                jQuery('#comment-status').html('<div style="text-align: center; margin: 10px;"><img src="<mt:StaticWebPath>images/indicator.white.gif" /></div>');
+                if (document.comments_form.bakecookie && document.comments_form.bakecookie.checked)
+                    mtSaveUser(document.comments_form);
+                var responseText;
+                if ( jQuery('#contact #comment-email').val() == '' ) {
+                    responseText = '<p>Please supply a valid email address before submitting.</p>';
+                }
+                if ( !jQuery('#comment-text').val() ) {
+                    //responseText = '<p>Please supply a message before submitting.</p>';
+                }
+                if (responseText) {
+                    jQuery('#comment-status').css('display', 'block');
+                    jQuery('#comment-status').html(responseText);
+                    // Enable the form so the visitor can resubmit
+                    jQuery('#comment-preview').removeAttr("disabled");
+                    jQuery('#comment-submit').removeAttr("disabled");
+                    jQuery('#comment-text').removeAttr("disabled");
+                    return false;
+                }
+            },
+            success: function(responseText, statusText) {
+                jQuery('#comment-status').css('display', 'block');
+                jQuery('#comment-status').html(responseText);
+                if ( !jQuery('#contact') ) {
+                    apply_commenter_data();
+                }
+                if ( responseText.match(/class="mt-comment-confirmation"/) ) {
+                    // This will let a Facebook-authenticated user post the story to their Wall.
+                    mtFireEvent('commentposted');
+                    // Clear the existing comment.
+                    jQuery('#comment-text').val('');
+                }
+                // Enable the button on the form again.
+                jQuery('#comment-submit').removeAttr("disabled");
+                jQuery('#comment-preview').removeAttr("disabled");
+                jQuery('#comment-text').removeAttr("disabled");
+                mtEntryOnUnload();
+            }
+        });
+    }
+}); 

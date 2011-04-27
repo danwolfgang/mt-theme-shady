@@ -1,0 +1,15 @@
+<mt:If tag="HeaderAccentImageURL">
+    <img src="<mt:HeaderAccentImageURL>" width="310" height="70" alt="" />
+<mt:Else>
+    <mt:If name="system_template">
+        <mt:Entries blog_ids="$in_action_blog_id" lastn="4">
+            <mt:EntryAssets lastn="1">
+            <div class="header-image">
+                <img src="<mt:AssetThumbnailURL width="70" square="1">" width="70" height="70" alt="" />
+            </div>
+            </mt:EntryAssets>
+        </mt:Entries>
+    <mt:Else>
+        <?php @include('<mt:Blogs blog_ids="$in_action_blog_id"><mt:BlogSitePath></mt:Blogs>header-images.inc'); ?>
+    </mt:If>
+</mt:If>

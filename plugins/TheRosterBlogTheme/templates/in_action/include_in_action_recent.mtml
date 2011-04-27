@@ -1,0 +1,17 @@
+<mt:If tag="BlogEntryCount">
+<div class="widget-gallery-archive widget">
+    <h3 class="widget-header">Recent Galleries</h3>
+    <div class="widget-content">
+        <ul>
+</mt:If>
+<mt:SetVar name="counter" value="1">
+<mt:PeakCategories days="90">
+    <mt:If name="counter" le="5">
+        <li><a href="<mt:CategoryArchiveLink>"><mt:CategoryLabel></a></li>
+    </mt:If>
+</mt:PeakCategories>
+<mt:If tag="BlogEntryCount">
+        </ul>
+    </div>
+</div>
+</mt:If>

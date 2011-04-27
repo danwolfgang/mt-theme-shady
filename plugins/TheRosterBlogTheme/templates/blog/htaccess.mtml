@@ -1,0 +1,9 @@
+AddHandler cgi-script .cgi
+Options +ExecCGI
+
+AddHandler php-script .html
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^austinhendrick\.com$ [NC]
+RewriteRule ^(.*)$ <mt:BlogURL>$1 [R=301,L]
+

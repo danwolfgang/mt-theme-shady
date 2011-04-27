@@ -1,0 +1,24 @@
+<div class="widget-twitter widget">
+    <h3 class="widget-header">Up to the Minute</h3>
+    <div class="widget-content">
+        <ul>
+<mt:ActionStreams author="$author_name" service="twitter" lastn="8">
+    <mt:If tag="StreamActionTitle" like="^@">
+       <mt:Ignore> This is a Twitter reply. Don't publish it. </mt:Ignore>
+    <mt:Else>
+            <li>
+                <mt:StreamActionTitle regex_replace="/(^|\s|>)(https?://[^\s]+)/",' <a href="$2">$2</a>'>
+                <span class="time"><mt:StreamActionDate format="%X"></span>
+                <span class="date"><mt:StreamActionDate format="%a, %b %e"></span>
+            </li>
+    </mt:If>
+</mt:ActionStreams>
+        </ul>
+<mt:OtherProfiles author="$author_name" type="status">
+    <mt:SetVarBlock name="service_type"><mt:OtherProfileVar name="type"></mt:SetVarBlock>
+    <mt:If name="service_type" eq="twitter">
+        <p><a href="<mt:OtherProfileVar name="uri" escape="html">" rel="me">Follow me on <span class="service"><mt:OtherProfileVar name="label" escape="html" regex_replace="/(.*) Profile/",'$1'></span></a></p>
+    </mt:If>
+</mt:OtherProfiles>
+    </div>
+</div>

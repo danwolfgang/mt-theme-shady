@@ -1,0 +1,33 @@
+<mt:Blogs blog_ids="$main_blog_id">
+    <a href="<mt:BlogURL>" class="home<mt:If name="home"> on</mt:If>">What&rsquo;s New</a>
+</mt:Blogs>
+
+<mt:SetVarBlock name="curblog"><mt:BlogName></mt:SetVarBlock>
+<mt:If name="in_action_blog_id">
+    <mt:Blogs blog_ids="$in_action_blog_id">
+        <span class="divider">|</span>
+
+        <a href="<mt:BlogURL>" class="in-action<mt:If tag="BlogName" eq="$curblog"> on</mt:If>"><mt:BlogName></a>
+    </mt:Blogs>
+</mt:if>
+
+<mt:Pages blog_ids="$main_blog_id" tag="@topnav">
+    <span class="divider">|</span>
+
+    <mt:SetVarBlock name="this_page_id"><mt:PageID></mt:SetVarBlock>
+    <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-"><mt:If name="nav_on" eq="$this_page_id"> on</mt:If>"><mt:PageTitle></a>
+</mt:Pages>
+
+<mt:Pages blog_ids="$main_blog_id" tags="@about" limit="1">
+    <span class="divider">|</span>
+
+    <mt:SetVarBlock name="this_page_id"><mt:PageID></mt:SetVarBlock>
+    <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-"><mt:If name="nav_on" eq="$this_page_id"> on</mt:If>">About Me</a>
+</mt:Pages>
+
+<mt:Pages blog_ids="$main_blog_id" tags="@contact" limit="1">
+    <span class="divider">|</span>
+
+    <mt:SetVarBlock name="this_page_id"><mt:PageID></mt:SetVarBlock>
+    <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-"><mt:If name="nav_on" eq="$this_page_id"> on</mt:If>">Contact</a>
+</mt:Pages>

@@ -1,0 +1,28 @@
+<div id="entry-<$MTEntryID$>" class="entry-asset asset hentry">
+    <div class="asset-header">
+        <h2 class="entry-title <mt:Entry_headline_style_font lower_case="1"> size-<mt:Entry_headline_style_size lower_case="1"> <mt:Entry_headline_style_variation lower_case="1">"><a href="<$MTEntryPermalink$>"><$MTEntryTitle$></a></h2>
+    </div>
+    <div class="asset-content entry-content">
+<MTIfNonEmpty tag="EntryBody">
+        <div class="asset-body">
+            <mt:SetVarBlock name="excerpt"><mt:EntryExcerpt no_generate="1"></mt:SetVarBlock>
+            <mt:If name="excerpt">
+                <mt:EntryExcerpt>
+            <mt:Else>
+                <mt:EntryBody>
+            </mt:If>
+        </div>
+</MTIfNonEmpty>
+<MTIfNonEmpty tag="EntryMore" convert_breaks="0">
+        <div class="asset-more-link">
+            <a rel="bookmark" href="<$MTEntryPermalink$>">Continue&hellip;</a>
+        </div>
+</MTIfNonEmpty>
+<MTIfTagSearch>
+        <$MTInclude module="Tags"$>
+</MTIfTagSearch>
+    </div>
+    <div class="asset-footer">
+        <$MTInclude module="Entry Metadata (Front)"$>
+    </div>
+</div>

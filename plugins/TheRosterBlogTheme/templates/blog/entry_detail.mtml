@@ -1,0 +1,50 @@
+<div id="entry-<MTEntryID>" class="entry-asset asset hentry">
+    <div class="asset-header">
+        <h1 class="
+            <mt:If tag="EntryCategory" eq="Current Quote">
+                quote-title
+            <mt:Else>
+                entry-title <mt:Entry_headline_style_font lower_case="1"> size-<mt:Entry_headline_style_size lower_case="1"> <mt:Entry_headline_style_variation lower_case="1">
+            </mt:If>">
+            <mt:If tag="EntryCategory" eq="Current Quote">
+                <mt:EntryBody convert_breaks="0">
+            <mt:Else>
+                <mt:EntryTitle>
+            </mt:If>
+        </h1>
+        <$mt:Include module="Entry Metadata"$>
+    </div>
+    <div class="asset-content entry-content">
+<mt:Ignore>
+<MTIfNonEmpty tag="EntryBody">
+        <div class="asset-body">
+            <mt:IfNonEmpty tag="EntryURL">
+                <p>URL: <a href="<mt:EntryURL>"><mt:EntryURL></a></p>
+            </mt:IfNonEmpty>
+<mt:IfCategory name="Current Quote">
+<mt:Else>
+            <MTEntryBody>
+</mt:IfCategory>
+        </div>
+</MTIfNonEmpty>
+</mt:Ignore>
+    <mt:If tag="EntryCategory" eq="Follow Austin">
+        <div class="asset-body">
+            <MTEntryTitle>
+        </div>
+    </mt:If>
+    <MTIfNonEmpty tag="EntryMore" convert_breaks="0">
+        <div id="more" class="asset-more">
+            <MTEntryMore>
+        </div>
+    <mt:Else>
+        <div class="asset-body">
+            <mt:EntryBody>
+        </div>
+    </MTIfNonEmpty>
+    </div>
+    <div class="asset-footer">
+        <MTInclude module="Tags">
+        <mt:Include module="Global: Include: Add This">
+    </div>
+</div>
