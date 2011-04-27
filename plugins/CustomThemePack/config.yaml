@@ -3,7 +3,7 @@ id:          customthemepack
 key:         customthemepack
 description: 'Includes template sets for a blog and galleries.'
 author:      'Dan Wolfgang, uiNNOVATIONS, developed for The Roster'
-version: 1.3.2
+version: 1.3.3
 schema_version: 5
 
 object_types:
@@ -508,6 +508,13 @@ template_sets:
                 label: 'Header Image URL'
                 hint: 'Enter the URL to an image to display in the header. The image should measure 970 pixels wide; the height is variable, but must be entered in the Header Image Height field. Be sure to republish the main blog stylesheet after setting/changing this field.'
                 tag: HeaderImageURL
+                fieldset: design
+            gallery_type:
+                type: select
+                values: 'Grouped Galleries,Daily Photo'
+                label: 'Home Page Display Type'
+                hint: "Display photos on this blog's home page as part of a grouped gallery (previewing with three images) or display a single image."
+                tag: GalleryType
                 fieldset: design
         base_path: 'templates/photo_gallery'
         label: 'Custom Theme Pack (Photo Gallery)'

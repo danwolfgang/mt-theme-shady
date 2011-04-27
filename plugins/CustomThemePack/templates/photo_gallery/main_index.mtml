@@ -7,6 +7,7 @@
 
     <h1><mt:BlogName encode_html="1"></h1>
 
+<mt:If tag="GalleryType" eq="Grouped Galleries">
     <mt:SetVar name="counter" value="test">
     <mt:EntriesWithSubCategories lastn="999">
         <mt:If tag="EntryCategory" eq="$prevcat">
@@ -37,5 +38,22 @@
 
         <mt:EntryCategory setvar="prevcat">
     </mt:EntriesWithSubCategories>
+<mt:Else>
+    <mt:Ignore> This must be a daily type gallery </mt:Ignore>
+    <mt:Entries lastn="10">
+        <div class="row">
+            <div class="gallery-title">
+                <h2><a href="<mt:EntryPermalink>"><mt:EntryTitle></a> in the <a href="<mt:EntryCategories><mt:CategoryArchiveLink></mt:EntryCategories>"><mt:EntryCategory></a> Gallery</h2>
+            </div>
+
+            <div class="in-action-item" style="margin-right: 0;">
+            <mt:EntryAssets>
+                <div><a href="<mt:EntryCategories><mt:CategoryArchiveLink></mt:EntryCategories>"><img src="<mt:AssetThumbnailURL width="482">" alt="<mt:EntryTitle>" /></a></div>
+            </mt:EntryAssets>
+            </div>
+        </div>
+    </mt:Entries>
+</mt:If>
+
 
 <mt:Include module="Global: Footer">
