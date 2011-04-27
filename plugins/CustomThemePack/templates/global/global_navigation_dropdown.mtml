@@ -1,0 +1,57 @@
+<ul class="menu">
+
+<mt:Blogs blog_ids="$main_blog_id">
+    <li><a href="<mt:BlogURL>" class="home<mt:If name="home"> on</mt:If>"><mt:HomePageName></a></li>
+</mt:Blogs>
+
+<mt:SetVarBlock name="curblog"><mt:BlogName></mt:SetVarBlock>
+<mt:If name="photo_gallery_blog_id">
+    <mt:Blogs blog_ids="$photo_gallery_blog_id">
+        <mt:If tag="ShowInNav">
+            <li><a href="<mt:BlogURL>" class="in-action<mt:If tag="BlogName" eq="$curblog"> on</mt:If>"><mt:BlogName></a></li>
+        </mt:If>
+    </mt:Blogs>
+</mt:if>
+
+<mt:Folders blog_ids="$main_blog_id">
+    <mt:Ignore>
+        First count how many pages are here. If only one, don't show a drop-down.
+    </mt:Ignore>
+    <mt:Pages blog_ids="$main_blog_id" tag="@topnav">
+        <mt:If name="__last__">
+            <mt:SetVarBlock name="page_count"><mt:Var name="__counter__"></mt:SetVarBlock>
+        </mt:If>
+    </mt:Pages>
+    <mt:Pages blog_ids="$main_blog_id" tag="@topnav">
+        <mt:PagesHeader>
+            <mt:SetVarBlock name="this_page_id"><mt:PageID></mt:SetVarBlock>
+            <li><a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-"><mt:If name="nav_on" eq="$this_page_id"> on</mt:If>"><mt:PageFolder><mt:FolderLabel></mt:PageFolder></a>
+            <mt:If name="page_count" gt="1">
+                <ul class="submenu">
+            </mt:If>
+        </mt:PagesHeader>
+            <mt:If name="page_count" gt="1">
+                <li>
+                    <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">"><mt:PageTitle></a>
+                </li>
+             </mt:If>
+        <mt:PagesFooter>
+            <mt:If name="page_count" gt="1">
+                </ul>
+            </mt:If>
+            </li>
+        </mt:PagesFooter>
+    </mt:Pages>
+</mt:Folders>
+
+<mt:Pages blog_ids="$main_blog_id" tags="@about" limit="1">
+    <mt:SetVarBlock name="this_page_id"><mt:PageID></mt:SetVarBlock>
+    <li><a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-"><mt:If name="nav_on" eq="$this_page_id"> on</mt:If>">About</a></li>
+</mt:Pages>
+
+<mt:Pages blog_ids="$main_blog_id" tags="@contact" limit="1">
+    <mt:SetVarBlock name="this_page_id"><mt:PageID></mt:SetVarBlock>
+    <li><a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-"><mt:If name="nav_on" eq="$this_page_id"> on</mt:If>">Contact</a></li>
+</mt:Pages>
+
+</ul>

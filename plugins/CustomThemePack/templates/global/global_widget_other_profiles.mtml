@@ -1,0 +1,16 @@
+<mt:If name="author_name">
+    <div class="widget-contact widget">
+        <h3 class="widget-header"><mt:Blogs blog_ids="$main_blog_id"><mt:WidgetProfileLinksName></mt:Blogs></h3>
+        <div class="widget-content">
+            <ul>
+            <mt:OtherProfiles author="$author_name">
+                <li><a href="<mt:OtherProfileVar name="uri" escape="html">" rel="me">Follow me on <span class="service"><mt:OtherProfileVar name="label" escape="html" regex_replace="/(.*) Profile/",'$1'></span></a></li>
+            </mt:OtherProfiles>
+            <mt:Pages blog_ids="$main_blog_id" tags="@contact" limit="1">
+                <li><a href="<mt:PagePermalink>"><mt:PageTitle></a></li>
+            </mt:Pages>
+                <li><a href="<mt:Blogs blog_ids="$main_blog_id"><mt:BlogURL>atom.xml</mt:Blogs>">Get RSS Updates</a></li>
+            </ul>
+        </div>
+    </div>
+</mt:If>

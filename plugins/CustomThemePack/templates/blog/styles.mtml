@@ -5,25 +5,17 @@ body {
     background-color: <mt:BackgroundColor>;
 <mt:If tag="BackgroundImageURL">
     background-image: url(<mt:BackgroundImageURL>);
-    background-position: left top;
+    background-position: center top;
     background-repeat: repeat-x;
 </mt:If>
     color: #000;
     font: normal 13px/19px Arial, Helvetica, sans-serif;
 }
 
-a:link {
-    color: #0a50a1;
-    text-decoration: none;
-}
-a:visited {
-    color: #264385;
-    text-decoration: none;
-}
-a:hover,
-a:active {
-    color: #ff0000;
-}
+a:link    { color: <mt:AnchorLinkColor>; }
+a:visited { color: <mt:AnchorVisitedColor>; }
+a:hover   { color: <mt:AnchorHoverColor>; }
+a:active  { color: <mt:AnchorActiveColor>; }
 
 u {
     background: yellow;
@@ -41,46 +33,25 @@ u {
 <mt:If tag="BackgroundImageURL">
     width: 970px;
 </mt:If>
-    margin: 0 auto;
-    background: #fff;
-}
-
-#container-inner {
-    width: 100%;
-    min-height: 100%;
-    text-align: left;
-}
-
-#content {
-    width: 970px;
-    margin: 0 auto;
-}
-
-.layout-twt #alpha {
-    left: 224px;
-    width: 522px;
-}
-
-.layout-twt #beta {
-    left: -522px;
-    width: 224px;
-}
-
-.layout-twt #gamma {
-    width: 224px;
 }
 
 #alpha-inner {
     padding-top: 10px;
 }
+
+<mt:If tag="SidebarBackgroundColor" eq="#fff">
 #beta-inner {
     padding-right: 0;
 }
 #gamma-inner {
     padding-left: 0;
 }
+</mt:If>
 
-
+#beta,
+#gamma {
+    background: <mt:SidebarBackgroundColor>;
+}
 
 /* Header */
 
@@ -89,23 +60,6 @@ u {
     background: <mt:HeaderBackgroundColor>;
 </mt:If>
     height: <mt:HeaderImageHeight>px;
-}
-
-#header-inner {
-    width: 970px;
-    margin: 0 auto;
-    padding: 0;
-}
-
-#header-content {
-    position: relative;
-    width: 100%;
-}
-
-#header-name {
-    position: relative;
-    left: 0;
-    bottom: 0;
 }
 
 #header-name a {
@@ -119,13 +73,15 @@ u {
     text-indent: -9999px;
 }
 
-<mt:Blogs blog_ids="$photo_gallery_blog_id">
-    <mt:If tag="HeaderImageURL">
+<mt:If name="photo_gallery_blog_id">
+    <mt:Blogs blog_ids="$photo_gallery_blog_id">
+        <mt:If tag="HeaderImageURL">
     body.<mt:BlogName dirify="-"> #header-name a {
         background-image: url(<mt:HeaderImageURL>);
     }
-    </mt:If>
-</mt:Blogs>
+        </mt:If>
+    </mt:Blogs>
+</mt:If>
 
 /* Add the per-category/folder header image CSS. */
 <mt:Categories>
@@ -187,10 +143,56 @@ u {
 #main-navigation a:hover,
 #main-navigation a.on { color: #ff0000; }
 
+/* These styles are for the drop-down menus only */
+
+#main-navigation ul {
+    margin: 0;
+    list-style-type: none;
+}
+
+#main-navigation li {
+    display: inline;
+    padding: 0 10px;
+    position: relative;
+}
+
+#main-navigation ul.menu {
+    position: relative;
+    z-index: 30;
+}
+
+#main-navigation ul.submenu {
+    position: absolute;
+    width: 200px;
+    background: #fff;
+    display: none;
+    z-index: 50;
+    text-align: left;
+    text-transform: none;
+    top: 16px;
+    left: 0;
+}
+
+#main-navigation ul.menu li:hover ul.submenu {
+    display: block;
+}
+
+#main-navigation ul.submenu li {
+    display: block;
+    padding: 0 0;
+}
+
+#main-navigation ul.submenu li a {
+    display: block;
+    padding: 5px 10px;
+}
+
+
 /* Footer */
 
 #footer {
     border-top: 2px solid #000;
+    clear: both;
 }
 
 #footer-inner {
@@ -264,36 +266,10 @@ u {
 
 /* Widgets */
 
-.widget {
-    color: #666;
-    line-height: 15px;
-}
-
-.widget-header {
-    border-bottom: 2px solid #f97976;
-    text-transform: uppercase;
-    color: #000;
-    font-weight: bold;
-    font-size: 15px;
-    line-height: 17px;
-    padding-bottom: 2px;
-    font-family: "Helvetica Neue Condensed Bold","Arial Narrow", sans-serif;
-}
-
 .widget .time,
 .widget .date {
     font-weight: bold;
     font-size: 11px;
-}
-
-.widget li {
-    padding-bottom: 5px;
-    border-bottom: 1px solid #bebebe;
-}
-.widget li:last-child { padding-bottom: 0; }
-
-.widget li li {
-    border-bottom: 0;
 }
 
 .widget-gallery-recent-thumbs ul {
@@ -356,7 +332,7 @@ h1.entry-title,
 #content h1,
 #page-title,
 #play-by-play {
-    border-bottom: 2px solid #f97976;
+    border-bottom: <mt:AccentRule>;
     text-transform: uppercase;
     color: #000;
     font-weight: bold;
@@ -367,7 +343,7 @@ h1.entry-title,
 }
 
 .gallery-title h2 { border-bottom: 0; }
-.mt-entry-archive .gallery-title h2 { border-bottom: 2px solid #f97976; }
+.mt-entry-archive .gallery-title h2 { border-bottom: <mt:AccentRule>; }
 
 h2 {
     font-size: 18px;
@@ -376,17 +352,12 @@ h2 {
 }
 h2 a:link,
 h2 a:visited { color: #000; }
-h2 a:hover { color: #ff0000; }
+h2 a:hover { color: <mt:AnchorHoverColor>; }
 .gallery-title h2 { margin-top: 0;}
 
 h3 {
     font-weight: bold;
     margin: 10px 0 5px 0;
-}
-
-.asset-meta {
-    color: #666;
-    font-weight: bold;
 }
 
 .in-action-item {
@@ -407,4 +378,128 @@ h3 {
     float: right;
 }
 
+.float-right {
+    width: 200px;
+    float: right;
+    margin: 0 0 15px 30px;
+}
+
+
+/* Image carousel */
+
+.layout-wm #image-carousel-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 590px;
+}
+
+.layout-wm ul#carousel-nav { width: 570px; }
+
+.layout-twt #image-carousel-container {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    width: 482px;
+}
+
+.layout-twt ul#carousel-nav { width: 462px; }
+
+
+/* The full-site-width layout requires some additional definition. */
+
+.full-site-width #image-carousel-container { width: 970px; }
+.full-site-width ul#carousel-nav { width: 950px; }
+
+<mt:CarouselContainerHeight setvar="carousel_height">
+<mt:Var name="carousel_height" op="+" value="10" setvar="height">
+.layout-wm.full-site-width #beta,
+.layout-twt.full-site-width #beta,
+.layout-twt.full-site-width #gamma { padding-top: <mt:Var name="height">px; }
+.layout-twt.full-site-width #image-carousel-container { left: -224px; }
+
+
+
+<mt:If tag="EnableImageCarousel">
+.layout-twt.mt-main-index #alpha-inner,
+.layout-wm.mt-main-index #alpha-inner { padding-top: <mt:CarouselContainerHeight>px; }
+</mt:If>
+
+#image-carousel-container {
+    height: <mt:CarouselContainerHeight>px;
+    margin-bottom: 20px;
+}
+
+p#selected-text {
+    color: #fff;
+    position: absolute;
+    bottom: 75px;
+    left: 20px;
+    max-width: 210px;
+    padding: 10px 15px;
+    background: transparent url(<mt:StaticWebPath>plugins/CustomThemePack/images/ic-text-bg.png) left top;
+    z-index: 30;
+}
+
+p#selected-text a:link,
+p#selected-text a:visited,
+p#selected-text a:hover,
+p#selected-text a:active { color: #fff; }
+
+#selected-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    height: 100%;
+    z-index: 20;
+}
+
+ul#carousel-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 10px 10px 6px 10px;
+    background: transparent url(<mt:StaticWebPath>plugins/CustomThemePack/images/ic-text-bg.png) left top;
+    z-index: 30;
+}
+
+ul#carousel-nav li {
+    display: inline;
+    padding-right: 10px;
+}
+
+ul#carousel-nav li a.activeSlide img {
+    border: 1px solid #ccc;
+}
+
+ul#slideshow {
+    margin: 0;
+    overflow: hidden;
+    height: <mt:CarouselContainerHeight>px;
+}
+
+ul#slideshow li {
+    display: block;
+    height: <mt:CarouselContainerHeight>px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-position: left top;
+    background-repeat: no-repeat;
+}
+
+#lead-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.mt-page-archive #lead-image + .asset-header {
+    margin-top: <mt:CarouselContainerHeight>px;
+}
+
+/* Custom CSS below */
 <mt:CustomCSS>

@@ -1,13 +1,38 @@
 <mt:Var name="home" value="1">
-<mt:Var name="page_layout" value="layout-twt">
 <mt:SetVarBlock name="title"><mt:BlogName encode_html="1"></mt:SetVarBlock>
 <mt:SetVarBlock name="html_head">
     <script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>
     <link type="text/css" rel="stylesheet" href="http://static.ak.connect.facebook.com/css/fb_connect.css" />
     <script type="text/javascript" src="<mt:StaticWebPath>/plugins/FacebookCommenters/signface.js"></script>
+
+    <mt:If tag="EnableImageCarousel">
+    <script type="text/javascript" src="<mt:StaticWebPath>/plugins/CustomThemePack/js/jquery.innerfade.js"></script>
+    <script type="text/javascript" src="http://cloud.github.com/downloads/malsup/cycle/jquery.cycle.all.2.72.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#slideshow').cycle({
+            fx: 'fade',
+            timeout: 4000, // Milliseconds to display each slide
+            pause: 1,
+            pager: '#carousel-nav',
+            autostop: <mt:ImageCarouselPlayCount _default="0">,
+            // callback fn that creates a thumbnail to use as pager anchor 
+            pagerAnchorBuilder: function(idx, slide) {
+                return '<li><a href="#"><img src="' + $(slide).find('img').attr('src') + '" height="32" /></a></li>'; 
+            }
+        });
+    });
+    </script>
+    </mt:If>
 </mt:SetVarBlock>
 
-<mt:Include module="Global: Header" body_class="mt-main-index">
+<mt:SetVarBlock name="body_class" append="1">mt-main-index<mt:If tag="EnableImageCarousel"> <mt:ImageCarouselPlacement dirify="-"></mt:If></mt:SetVarBlock>
+
+<mt:Include module="Global: Header">
+
+<mt:If tag="EnableImageCarousel">
+    <mt:Include module="Image Carousel">
+</mt:If>
 
 <div id="play-by-play"><mt:HomePageCenterColumnName></div>
 

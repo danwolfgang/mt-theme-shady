@@ -1,7 +1,13 @@
 <div id="page-<$MTPageID$>" class="page-asset asset hentry">
+<mt:If tag="PageLeadImage">
+    <div id="lead-image">
+    <mt:PageLeadImageAsset>
+        <img src="<mt:AssetURL>" />
+    </mt:PageLeadImageAsset>
+    </div>
+</mt:if>
     <div class="asset-header">
-        <h1 class="entry-title archive-title<mt:Ignore>
-<mt:page_headline_style_font lower_case="1"> size-<mt:page_headline_style_size lower_case="1"> <mt:page_headline_style_variation lower_case="1"></mt:Ignore>"><$MTEntryTitle$></h1>
+        <h1 class="entry-title archive-title"><mt:EntryTitle></h1>
     </div>
     <div class="asset-content">
 <MTIfNonEmpty tag="PageBody">
@@ -14,7 +20,7 @@
             </div>
             </mt:EntryIfExtended>
 
-            <$MTPageBody$>
+            <mt:PageBody>
         </div>
 </MTIfNonEmpty>
     </div>

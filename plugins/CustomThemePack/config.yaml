@@ -3,8 +3,8 @@ id:          customthemepack
 key:         customthemepack
 description: 'Includes template sets for a blog and galleries.'
 author_name: 'Dan Wolfgang, uiNNOVATIONS, developed for The Roster'
-version: 1.3.4
-schema_version: 5
+version: 1.4.1
+schema_version: 7
 
 object_types:
     comment:
@@ -41,6 +41,8 @@ default_templates:
             label: 'Global: Include: Add This'
         global_navigation:
             label: 'Global: Navigation'
+        global_navigation_dropdown:
+            label: 'Global: Navigation (Drop-down)'
         global_php:
             label: 'Global: PHP'
         global_photo_detail:
@@ -66,10 +68,12 @@ default_templates:
             label: 'Featured Articles'
         global_widget_featured_video:
             label: 'Featured Video'
-        global_widget_game_on:
-            label: 'Game On! (Contact)'
+        global_widget_other_profiles:
+            label: 'Other Profiles'
         global_widget_highlights:
             label: 'Highlights'
+        global_widget_pages_in_folder:
+            label: 'Pages in Current Folder'
         global_widget_photo_gallery_archives:
             label: 'Photo Gallery: Archives'
         global_widget_photo_gallery_recent:
@@ -81,36 +85,36 @@ default_templates:
         global_widget_quote:
             label: "Winner's Circle"
     global:widgetset:
-        left_column_about:
-            label: 'Left Column (About)'
+        beta_column_about:
+            label: 'Beta Column (About)'
             order: 1000
             widgets:
                 - Highlights
                 - Ad
-        left_column_contact:
-            label: 'Left Column (Contact)'
+        beta_column_contact:
+            label: 'Beta Column (Contact)'
             order: 1000
             widgets:
                 - 'Built By The Roster'
                 - Ad
-        left_column_default:
-            label: 'Left Column (Default)'
+        beta_column_default:
+            label: 'Beta Column (Default)'
             order: 1000
             widgets:
                 - 'Twitter feed'
                 - Ad
-        right_column_default:
-            label: 'Right Column (Default)'
+        gamma_column_default:
+            label: 'Gamma Column (Default)'
             order: 1000
             widgets:
                 - "Winner's Circle"
-                - 'Game On! (Contact)'
+                - 'Other Profiles'
                 - 'Photo Gallery: Recent Thumbnails'
                 - 'Featured Video'
                 - 'Featured Articles'
                 - 'Category Archives'
-        left_column_photo_gallery:
-            label: 'Left Column (Photo Gallery)'
+        beta_column_photo_gallery:
+            label: 'Beta Column (Photo Gallery)'
             order: 1000
             widgets:
                 - 'Photo Gallery: Recent Links'
@@ -133,6 +137,8 @@ template_sets:
                     label: 'Design Options'
                 css:
                     label: 'Custom CSS'
+                image_carousel:
+                    label: 'Image Carousel'
             # Home page options
             home_page_name:
                 type: text
@@ -141,6 +147,7 @@ template_sets:
                 default: "What's New"
                 tag: HomePageName
                 fieldset: home
+                order: 1
             home_page_center_name:
                 type: text
                 label: 'Home Page Center Column Name'
@@ -148,6 +155,7 @@ template_sets:
                 default: 'Play by Play'
                 tag: HomePageCenterColumnName
                 fieldset: home
+                order: 2
             # Widget names
             widget_contact_form:
                 type: text
@@ -155,24 +163,28 @@ template_sets:
                 default: 'Contact Form'
                 tag: WidgetContactFormName
                 fieldset: widget_names
+                order: 1
             profile_links:
                 type: text
-                label: 'Profile Links Name'
+                label: 'Other Profile Links Name'
                 default: 'Game On!'
                 tag: WidgetProfileLinksName
                 fieldset: widget_names
+                order: 2
             category_archives:
                 type: text
                 label: 'Categories List Name'
                 default: 'Categories'
                 tag: WidgetCategoriesName
                 fieldset: widget_names
+                order: 3
             twitter_feed:
                 type: text
                 label: 'Twitter Feed Name'
                 default: 'Up to the Minute'
                 tag: WidgetTwitterFeedName
                 fieldset: widget_names
+                order: 4
             # Contact Form options
             contact_enable_phone:
                 type: checkbox
@@ -180,40 +192,8 @@ template_sets:
                 hint: 'Display a field for a visitor to enter their phone number in the contact form.'
                 tag: ContactEnablePhone
                 fieldset: contact_form_options
+                order: 1
             # Design Options
-            header_image:
-                type: text
-                label: 'Header Image URL'
-                hint: 'Enter the URL to an image to display in the header. The image should measure 970 pixels wide; the height is variable, but must be entered in the Header Image Height field.'
-                tag: HeaderImageURL
-                fieldset: design
-            header_image_height:
-                type: text
-                label: 'Header Image Height'
-                hint: 'Enter the height (in pixels) of the header image. Enter a number only.'
-                tag: HeaderImageHeight
-                default: '140'
-                fieldset: design
-            header_background_color:
-                type: text
-                label: 'Header Background Color'
-                hint: 'Enter a web-valid named color or hex value (with "#") to be used for the header background. This should match the the color of the Header Image. If blank, the background image/color will show through.'
-                tag: HeaderBackgroundColor
-                default: '#000'
-                fieldset: design
-            display_header_recent_images:
-                type: checkbox
-                label: 'Display Recent Images in Header'
-                hint: 'The four most recent photos from the Photo Galery section can be displayed in the site header. When using this option, the Header Image Height should be set to <em>at least</em> <code>110</code> pixels tall to accommodate the space requirement.'
-                tag: DisplayHeaderImages
-                fieldset: design
-            display_entry_meta:
-                type: checkbox
-                label: 'Display Entry Meta'
-                hint: "By default, the Entry's date will be published. Uncheck to hide the date. This setting does not effect the Photo Gallery section."
-                default: 1
-                tag: DisplayEntryMeta
-                fieldset: design
             background_color:
                 type: text
                 label: 'Background Color'
@@ -221,12 +201,44 @@ template_sets:
                 default: '#fff'
                 tag: BackgroundColor
                 fieldset: design
+                order: 1
             background_image_url:
                 type: text
                 label: 'Background Image URL'
                 hint: 'Enter the URL to an image to be used as the site background. This image is tiled left-to-right only, not top-to-bottom.'
                 tag: BackgroundImageURL
                 fieldset: design
+                order: 2
+            header_image:
+                type: text
+                label: 'Header Image URL'
+                hint: 'Enter the URL to an image to display in the header. The image should measure 970 pixels wide; the height is variable, but must be entered in the Header Image Height field.'
+                tag: HeaderImageURL
+                fieldset: design
+                order: 3
+            header_image_height:
+                type: text
+                label: 'Header Image Height'
+                hint: 'Enter the height (in pixels) of the header image. Enter a number only.'
+                tag: HeaderImageHeight
+                default: '140'
+                fieldset: design
+                order: 4
+            header_background_color:
+                type: text
+                label: 'Header Background Color'
+                hint: 'Enter a web-valid named color or hex value (with "#") to be used for the header background. This should match the the color of the Header Image. If blank, the background image/color will show through.'
+                tag: HeaderBackgroundColor
+                default: '#000'
+                fieldset: design
+                order: 5
+            display_header_recent_images:
+                type: checkbox
+                label: 'Display Recent Images in Header'
+                hint: 'The four most recent photos from the Photo Galery section can be displayed in the site header. When using this option, the Header Image Height should be set to <em>at least</em> <code>110</code> pixels tall to accommodate the space requirement.'
+                tag: DisplayHeaderImages
+                fieldset: design
+                order: 6
             align_navigation:
                 type: select
                 values: 'Left,Center,Right'
@@ -234,7 +246,80 @@ template_sets:
                 label: 'Top Navigation Menu Alignment'
                 tag: AlignNavigation
                 fieldset: design
+                order: 7
+            navigation_type:
+                type: checkbox
+                label: 'Drop-down Navigation Menu'
+                hint: 'Enable drop-down menu navigation. Using drop-down menus <em>requires</em> that Pages be placed in Folders to build site navigation.'
+                tag: NavigationType
+                fieldset: design
+                order: 8
+            display_entry_meta:
+                type: checkbox
+                label: 'Display Entry Meta'
+                hint: "By default, the Entry's date will be published. Uncheck to hide the date. This setting does not effect the Photo Gallery section."
+                default: 1
+                tag: DisplayEntryMeta
+                fieldset: design
+                order: 9
+            column_layout:
+                type: select
+                values: '3-column,2-column'
+                default: '3-column'
+                label: 'Column Layout'
+                hint: 'Note that for the 2-column layout, the "left" sidebar Widget Set is displayed, and the "right" Widget Set is unused. (Think of "left" as the primary, and "right" as the secondary sidebars.)'
+                tag: ColumnLayout
+                fieldset: design
+                order: 10
             # Custom CSS
+            a_link_color:
+                type: text
+                label: 'Anchor Link Color'
+                hint: 'Enter a web-valid named color or hex value (with "#") to be used for links.'
+                default: '#0a50a1'
+                tag: AnchorLinkColor
+                fieldset: css
+                order: 1
+            a_visited_color:
+                type: text
+                label: 'Anchor Visited Color'
+                hint: 'Enter a web-valid named color or hex value (with "#") to be used for links.'
+                default: '#264385'
+                tag: AnchorVisitedColor
+                fieldset: css
+                order: 2
+            a_hover_color:
+                type: text
+                label: 'Anchor Hover Color'
+                hint: 'Enter a web-valid named color or hex value (with "#") to be used for links.'
+                default: '#ff000'
+                tag: AnchorHoverColor
+                fieldset: css
+                order: 3
+            a_active_color:
+                type: text
+                label: 'Anchor Active Color'
+                hint: 'Enter a web-valid named color or hex value (with "#") to be used for links.'
+                default: '#0a50a1'
+                tag: AnchorActiveColor
+                fieldset: css
+                order: 4
+            sidebar_bg_color:
+                type: text
+                label: 'Sidebar Background Color'
+                hint: 'Enter a web-valid named color or hex value (with "#") to be used for the sidebar background color.  Enter "#fff" as the default.'
+                default: '#fff'
+                tag: SidebarBackgroundColor
+                fieldset: css
+                order: 5
+            accent_rule:
+                type: text
+                label: 'Accent Rule'
+                hint: 'Enter CSS rules for the accent rule, used below widget headers, entry titles, etc. Enter "0" for no rule.'
+                default: '2px solid #f97976'
+                tag: AccentRule
+                fieldset: css
+                order: 6
             custom_css:
                 type: textarea
                 label: 'Custom CSS'
@@ -242,44 +327,196 @@ template_sets:
                 tag: CustomCSS
                 rows: 20
                 fieldset: css
-            # Global options
-            tracking_code:
-                type: textarea
-                label: 'Tracking Code'
-                hint: 'Paste tracking code here, such as for Google Analytics.'
-                tag: TrackingCode
-            copyright_name:
+                order: 10
+            # Image Carousel
+            enable_image_carousel:
+                type: checkbox
+                label: 'Enable Image Carousel'
+                tag: EnableImageCarousel
+                fieldset: image_carousel
+                order: 1
+            ic_placement:
+                type: select
+                values: 'Main column width,Full site width'
+                label: 'Image Carousel Placement'
+                hint: 'Select the preferred width of the image carousel. <br />2-column "main column width" images should measure 590 pixels wide; 3-column "main column width" images should measure 482 pixels wide. "Full site width" images should measure 970 pixels wide, regardless of column selection.'
+                tag: ImageCarouselPlacement
+                fieldset: image_carousel
+                order: 2
+            ic_height:
                 type: text
-                label: 'Copyright Name'
-                hint: 'Enter the name of the copyright holder of the site. Specify an HTML link, if desired.'
-                tag: CopyrightName
-            sidebar_ad_html:
-                type: textarea
-                label: 'Sidebar Ad HTML'
-                hint: 'Enter HTML to include an ad in the sidebar, up to 204 pixels wide.'
-                tag: SidebarAdHTML
-            add_this:
-                type: textarea
-                label: '&ldquo;Add This&rdquo; Code'
-                hint: 'Insert your Add This code.'
-                tag: AddThis
+                label: 'Carousel Container Height'
+                hint: 'Enter the height (in pixels) of the image carousel container. This number should match the height of the full-size images. Enter a number only. Also note that the carousel navigation is displayed over the bottom of the image.'
+                default: '260'
+                tag: CarouselContainerHeight
+                fieldset: image_carousel
+                order: 3
+            ic_play_count:
+                type: text
+                label: 'Slideshow Play Count'
+                hint: 'Enter a number defining how many times each image should be cycled. Useful values are "0" (repeat continuously) and "1" (play only once), but any number is valid.'
+                default: '0'
+                tag: ImageCarouselPlayCount
+                fieldset: image_carousel
+                order: 4
+            ic_1_text:
+                type: text
+                label: 'Image 1: Text'
+                hint: 'Enter some text describing Image 1.'
+                tag: ImageCarousel1Text
+                fieldset: image_carousel
+                order: 11
+            ic_1_full:
+                type: text
+                label: 'Image 1: Full-size Image URL'
+                hint: 'Enter the URL to a full-size image.'
+                tag: ImageCarousel1FullsizeURL
+                fieldset: image_carousel
+                order: 12
+            ic_1_link:
+                type: text
+                label: 'Image 1: Link URL'
+                hint: 'Where should the full-size image link to? This field may be left blank to create an image-only display.'
+                tag: ImageCarousel1LinkURL
+                fieldset: image_carousel
+                order: 14
+            ic_2_text:
+                type: text
+                label: 'Image 2: Text'
+                hint: 'Enter some text describing Image 2.'
+                tag: ImageCarousel2Text
+                fieldset: image_carousel
+                order: 21
+            ic_2_full:
+                type: text
+                label: 'Image 2: Full-size Image URL'
+                hint: 'Enter the URL to a full-size image.'
+                tag: ImageCarousel2FullsizeURL
+                fieldset: image_carousel
+                order: 22
+            ic_2_link:
+                type: text
+                label: 'Image2: Link URL'
+                hint: 'Where should the full-size image link to? This field may be left blank to create an image-only display.'
+                tag: ImageCarousel2LinkURL
+                fieldset: image_carousel
+                order: 24
+            ic_3_text:
+                type: text
+                label: 'Image 3: Text'
+                hint: 'Enter some text describing Image 3.'
+                tag: ImageCarousel3Text
+                fieldset: image_carousel
+                order: 31
+            ic_3_full:
+                type: text
+                label: 'Image 3: Full-size Image URL'
+                hint: 'Enter the URL to a full-size image.'
+                tag: ImageCarousel3FullsizeURL
+                fieldset: image_carousel
+                order: 32
+            ic_3_link:
+                type: text
+                label: 'Image 3: Link URL'
+                hint: 'Where should the full-size image link to? This field may be left blank to create an image-only display.'
+                tag: ImageCarousel3LinkURL
+                fieldset: image_carousel
+                order: 34
+            ic_4_text:
+                type: text
+                label: 'Image 4: Text'
+                hint: 'Enter some text describing Image 4.'
+                tag: ImageCarousel4Text
+                fieldset: image_carousel
+                order: 41
+            ic_4_full:
+                type: text
+                label: 'Image 4: Full-size Image URL'
+                hint: 'Enter the URL to a full-size image.'
+                tag: ImageCarousel4FullsizeURL
+                fieldset: image_carousel
+                order: 42
+            ic_4_link:
+                type: text
+                label: 'Image 4: Link URL'
+                hint: 'Where should the full-size image link to? This field may be left blank to create an image-only display.'
+                tag: ImageCarousel4LinkURL
+                fieldset: image_carousel
+                order: 44
+            ic_5_text:
+                type: text
+                label: 'Image 5: Text'
+                hint: 'Enter some text describing Image 5.'
+                tag: ImageCarousel5Text
+                fieldset: image_carousel
+                order: 51
+            ic_5_full:
+                type: text
+                label: 'Image 5: Full-size Image URL'
+                hint: 'Enter the URL to a full-size image.'
+                tag: ImageCarousel5FullsizeURL
+                fieldset: image_carousel
+                order: 52
+            ic_5_link:
+                type: text
+                label: 'Image 5: Link URL'
+                hint: 'Where should the full-size image link to? This field may be left blank to create an image-only display.'
+                tag: ImageCarousel5LinkURL
+                fieldset: image_carousel
+                order: 54
+            ic_6_text:
+                type: text
+                label: 'Image 6: Text'
+                hint: 'Enter some text describing Image 6.'
+                tag: ImageCarousel6Text
+                fieldset: image_carousel
+                order: 61
+            ic_6_full:
+                type: text
+                label: 'Image 6: Full-size Image URL'
+                hint: 'Enter the URL to a full-size image.'
+                tag: ImageCarousel6FullsizeURL
+                fieldset: image_carousel
+                order: 62
+            ic_6_link:
+                type: text
+                label: 'Image 6: Link URL'
+                hint: 'Where should the full-size image link to? This field may be left blank to create an image-only display.'
+                tag: ImageCarousel6LinkURL
+                fieldset: image_carousel
+                order: 64
+            # Global options
             primary_author_name:
                 type: text
                 label: 'Primary Author Username'
                 hint: 'Enter the username of the primary author. This field is required.'
                 tag: PrimaryAuthorName
-#            short_author_name:
-#                type: text
-#                label: 'Short Author Name'
-#                hint: "Enter a short name for the author, to be displayed with the In Action recent thumbnails widget. Typically, this will be the author's first name."
-#                tag: ShortAuthorName
+                order: 1
+            copyright_name:
+                type: text
+                label: 'Copyright Name'
+                hint: 'Enter the name of the copyright holder of the site. Specify an HTML link, if desired.'
+                tag: CopyrightName
+                order: 2
+            sidebar_ad_html:
+                type: textarea
+                label: 'Sidebar Ad HTML'
+                hint: 'Enter HTML to include an ad in the sidebar, up to 204 pixels wide.'
+                tag: SidebarAdHTML
+                order: 3
+            tracking_code:
+                type: textarea
+                label: 'Tracking Code'
+                hint: 'Paste tracking code here, such as for Google Analytics.'
+                tag: TrackingCode
+                order: 4
+            add_this:
+                type: textarea
+                label: '&ldquo;Add This&rdquo; Code'
+                hint: 'Insert your Add This code.'
+                tag: AddThis
+                order: 5
         fields:
-            page_left_column:
-                label: 'Left Column'
-                description: 'Select the widget set to display in the left-hand column of this page.'
-                type: widget_set
-                obj_type: page
-                tag: pagedataleft_column
             html_head_title:
                 label: 'HTML Head Title'
                 description: 'This is the title to be displayed in the HTML title tag. This field completely overwrites the default title.'
@@ -315,34 +552,29 @@ template_sets:
                 options: 'Arial,Arial-Black,Courier,Georgia,Times,Verdana'
                 obj_type: entry
                 tag: entry_headline_style_font
-            page_headline_style_variation:
-                label: 'Headline Style Variation'
-                type: select
-                options: 'Regular,Italic,Bold,Bold Italic'
+            page_left_column:
+                label: 'Beta Column'
+                description: 'Select the widget set to display in the beta column of this page. By default, the "Beta Column (Default)" Widget Set will be displayed.'
+                type: widget_set
                 obj_type: page
-                tag: page_headline_style_variation
-            page_headline_style_size:
-                label: 'Headline Style Size'
-                type: select
-                options: '10,12,14,17,20,24,28,32,36,40'
+                tag: pagedataleft_column
+            page_lead_image:
+                label: 'Lead Image'
+                type: asset.image
+                label: 'Lead Image'
+                description: 'Select an image to display as the lead to this page. The image will appear below the site navigation, but above the page title. The image width should be 590 pixels (for the 2-column design) or 482 pixels (for the 3-column design). Note that the Carousel Container Height <em>must</em> be set.'
                 obj_type: page
-                tag: page_headline_style_size
-            page_headline_style_font:
-                label: 'Headline Style Font'
-                type: select
-                options: 'Arial,Arial-Black,Courier,Georgia,Times,Verdana'
-                obj_type: page
-                tag: page_headline_style_font
+                tag: PageLeadImage
             category_header_image:
                 type: asset.image
                 label: 'Category Header Image'
-                description: 'Enter the URL to an image to display in the header for items in this category only. The image should measure 970 pixels wide; the height is variable, but must be entered in the Header Image Height field.'
+                description: 'Select an image to display in the header for items in this category only. The image should measure 970 pixels wide; the height is variable, but must be entered in the Header Image Height field in Theme Options.'
                 obj_type: category
                 tag: CategoryHeaderImageURL
             folder_header_image:
                 type: asset.image
                 label: 'Folder Header Image'
-                description: 'Enter the URL to an image to display in the header for items in this folder only. The image should measure 970 pixels wide; the height is variable, but must be entered in the Header Image Height field.'
+                description: 'Select an image to display in the header for items in this folder only. The image should measure 970 pixels wide; the height is variable, but must be entered in the Header Image Height field in Theme Options.'
                 obj_type: folder
                 tag: FolderHeaderImageURL
         templates:
@@ -403,21 +635,21 @@ template_sets:
                     label: 'Stylesheet: Headlines'
                     outfile: styles-headlines.css
                     rebuild_me: 1
-                sidebar_left_default:
-                    label: 'Sidebar Left: Default Widgetset'
-                    outfile: include/sidebar_left_default.inc
+                sidebar_beta_default:
+                    label: 'Sidebar Beta: Default Widgetset'
+                    outfile: include/sidebar_beta_default.inc
                     rebuild_me: 1
-                sidebar_left_contact:
-                    label: 'Sidebar Left: Contact Widgetset'
-                    outfile: include/sidebar_left_contact.inc
+                sidebar_beta_contact:
+                    label: 'Sidebar Beta: Contact Widgetset'
+                    outfile: include/sidebar_beta_contact.inc
                     rebuild_me: 1
-                sidebar_left_about:
-                    label: 'Sidebar Left: About Widgetset'
-                    outfile: include/sidebar_left_about.inc
+                sidebar_beta_about:
+                    label: 'Sidebar Beta: About Widgetset'
+                    outfile: include/sidebar_beta_about.inc
                     rebuild_me: 1
-                sidebar_right_default:
-                    label: 'Sidebar Right: Default Widgetset'
-                    outfile: include/sidebar_right_default.inc
+                sidebar_gamma_default:
+                    label: 'Sidebar Gamma: Default Widgetset'
+                    outfile: include/sidebar_gamma_default.inc
                     rebuild_me: 1
                 
             individual:
@@ -436,6 +668,8 @@ template_sets:
                             file_template: %-c/%-f
                             preferred: 1
             module:
+                carousel:
+                    label: 'Image Carousel'
                 comments_on_home_page:
                     label: 'Comments (on home page)'
                 contact_form:
@@ -569,8 +803,8 @@ template_sets:
                     outfile: index.php
                     rebuild_me: 1
                 sidebar_left_default:
-                    label: 'Sidebar Left: Photo Gallery Widgetset'
-                    outfile: include/sidebar_left_photo_gallery.inc
+                    label: 'Sidebar Beta: Photo Gallery Widgetset'
+                    outfile: include/sidebar_beta_photo_gallery.inc
                     rebuild_me: 1
             individual:
                 entry:

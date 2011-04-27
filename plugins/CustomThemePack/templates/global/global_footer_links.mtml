@@ -11,10 +11,22 @@
         </mt:Blogs>
     </mt:if>
 
-    <mt:Pages blog_ids="$main_blog_id" tag="@footernav">
-        <span class="divider">|</span>
-        <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">"><mt:PageTitle></a>
-    </mt:Pages>
+    <mt:If tag="NavigationType">
+        <mt:Folders blog_ids="$main_blog_id">
+            <mt:FolderLabel setvar="cur_folder">
+            <mt:Pages blog_ids="$main_blog_id" tag="@topnav">
+                <mt:If name="__first__">
+                    <span class="divider">|</span>
+                    <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">"><mt:PageFolder><mt:FolderLabel></mt:PageFolder></a>
+                </mt:If>
+            </mt:Pages>
+        </mt:Folders>
+    <mt:Else>
+        <mt:Pages blog_ids="$main_blog_id" tag="@footernav">
+            <span class="divider">|</span>
+            <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">"><mt:PageTitle></a>
+        </mt:Pages>
+    </mt:If>
 
     <mt:Pages blog_ids="$main_blog_id" tags="@about" limit="1">
         <span class="divider">|</span>

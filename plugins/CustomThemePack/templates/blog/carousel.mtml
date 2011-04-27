@@ -1,0 +1,60 @@
+<div id="image-carousel-container">
+    <ul id="slideshow">
+        <li id="slide-1">
+            <a id="selected-link" href="<mt:ImageCarousel1LinkURL>">
+                <img src="<mt:ImageCarousel1FullSizeURL>" />
+            </a>
+            <p id="selected-text"><a href="<mt:ImageCarousel1LinkURL>"><mt:ImageCarousel1Text></a></p>
+        </li>
+    <mt:If tag="ImageCarousel2FullsizeURL">
+        <li id="slide-2">
+            <a id="selected-link" href="<mt:ImageCarousel2LinkURL>">
+                <img src="<mt:ImageCarousel2FullSizeURL>" />
+            </a>
+            <p id="selected-text"><a href="<mt:ImageCarousel2LinkURL>"><mt:ImageCarousel2Text></a></p>
+        </li>
+    </mt:If>
+    <mt:If tag="ImageCarousel3FullsizeURL">
+        <li id="slide-3">
+            <a id="selected-link" href="<mt:ImageCarousel3LinkURL>">
+                <img src="<mt:ImageCarousel3FullSizeURL>" />
+            </a>
+            <p id="selected-text"><a href="<mt:ImageCarousel3LinkURL>"><mt:ImageCarousel3Text></a></p>
+        </li>
+    </mt:If>
+    <mt:If tag="ImageCarousel4FullsizeURL">
+        <li id="slide-4">
+            <a id="selected-link" href="<mt:ImageCarousel4LinkURL>">
+                <img src="<mt:ImageCarousel4FullSizeURL>" />
+            </a>
+            <p id="selected-text"><a href="<mt:ImageCarousel4LinkURL>"><mt:ImageCarousel4Text></a></p>
+        </li>
+    </mt:If>
+    <mt:If tag="ImageCarousel5FullsizeURL">
+        <li id="slide-5">
+            <a id="selected-link" href="<mt:ImageCarousel5LinkURL>">
+                <img src="<mt:ImageCarousel5FullSizeURL>" />
+            </a>
+            <p id="selected-text"><a href="<mt:ImageCarousel5LinkURL>"><mt:ImageCarousel5Text></a></p>
+        </li>
+    </mt:If>
+    <mt:If tag="ImageCarousel6FullsizeURL">
+        <li id="slide-6">
+            <a id="selected-link" href="<mt:ImageCarousel6LinkURL>">
+                <img src="<mt:ImageCarousel6FullSizeURL>" />
+            </a>
+            <p id="selected-text"><a href="<mt:ImageCarousel6LinkURL>"><mt:ImageCarousel6Text></a></p>
+        </li>
+    </mt:If>
+    </ul>
+    <div id="carousel-container">
+        <ul id="carousel-nav"></ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function updateSlide(slide) {
+        $('ul#slideshow li').css('display', 'none');
+        $('ul#slideshow #'+slide).css('display', 'block');
+    }
+</script>

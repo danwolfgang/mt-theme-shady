@@ -1,12 +1,12 @@
 <div id="beta">
     <div id="beta-inner">
         <mt:If name="system_template">
-            <mt:Include blog_id="$main_blog_id" file="include/sidebar_left_default.inc">
+            <mt:Include blog_id="$main_blog_id" file="include/sidebar_beta_default.inc">
         <mt:Else tag="BlogID" eq="$photo_gallery_blog_id">
-            <mt:WidgetSet name="Left Column (Photo Gallery)">
+            <mt:WidgetSet name="Beta Column (Photo Gallery)">
         <mt:Else>
             <mt:If name="main_index">
-                <mt:WidgetSet blog_id="$main_blog_id" name="Left Column (Default)">
+                <mt:WidgetSet blog_id="$main_blog_id" name="Beta Column (Default)">
             <mt:Else>
                 <mt:Ignore> Pages are handled a little special because they can
                             have unique Widget Sets.
@@ -20,28 +20,31 @@
                             <mt:Else>
                                 <mt:SetVar name="widgetset" value="contact">
                             </mt:If>
-                            <?php @include('<mt:Blogs blog_ids="$main_blog_id"><mt:BlogSitePath></mt:Blogs>include/sidebar_left_<mt:Var name="widgetset">.inc'); ?>
+                            <?php @include('<mt:Blogs blog_ids="$main_blog_id"><mt:BlogSitePath></mt:Blogs>include/sidebar_beta_<mt:Var name="widgetset">.inc'); ?>
                         <mt:Else>
                             <mt:WidgetSet blog_id="$main_blog_id" name="$widgetset">
                         </mt:If>
                     <mt:Else>
                         <mt:Ignore> No Widget Set was specified, so just use the default. </mt:Ignore>
-                        <?php @include('<mt:Blogs blog_ids="$main_blog_id"><mt:BlogSitePath></mt:Blogs>include/sidebar_left_default.inc'); ?>
+                        <?php @include('<mt:Blogs blog_ids="$main_blog_id"><mt:BlogSitePath></mt:Blogs>include/sidebar_beta_default.inc'); ?>
                     </mt:If>
                 <mt:Else>
                     <mt:Ignore> This is an Entry, so just use the default. </mt:Ignore>
-                    <?php @include('<mt:Blogs blog_ids="$main_blog_id"><mt:BlogSitePath></mt:Blogs>include/sidebar_left_default.inc'); ?>
+                    <?php @include('<mt:Blogs blog_ids="$main_blog_id"><mt:BlogSitePath></mt:Blogs>include/sidebar_beta_default.inc'); ?>
                 </mt:If>
             </mt:If>
         </mt:If>
     </div>
 </div>
+
+<mt:If name="page_layout" eq="layout-twt">
 <div id="gamma">
     <div id="gamma-inner">
         <mt:If name="system_template">
-            <mt:Include blog_id="$main_blog_id" file="include/sidebar_right_default.inc">
+            <mt:Include blog_id="$main_blog_id" file="include/sidebar_gamma_default.inc">
         <mt:Else>
-            <?php @include('<mt:Blogs blog_ids="$main_blog_id"><mt:BlogSitePath></mt:Blogs>include/sidebar_right_default.inc'); ?>
+            <?php @include('<mt:Blogs blog_ids="$main_blog_id"><mt:BlogSitePath></mt:Blogs>include/sidebar_gamma_default.inc'); ?>
         </mt:If>
     </div>
 </div>
+</mt:If>

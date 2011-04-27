@@ -1,0 +1,32 @@
+<mt:Ignore>
+    If drop-down menus are used, we may want to show links to the other pages
+    in this folder.
+    * First, we need to get the current page's folder.
+    * Then load all pages in the specified folder.
+    * If there is more than one page in this folder, then publish a list of 
+      all pages in the folder. That is, no reason to publish if this is the
+      only page.
+</mt:Ignore>
+
+<mt:SetVarBlock name="curfolder"><mt:PageFolder><mt:FolderLabel></mt:PageFolder></mt:SetVarBlock>
+<mt:Pages folder="$curfolder">
+    <mt:If name="__last__">
+        <mt:SetVarBlock name="pagecount"><mt:Var name="__count__"></mt:SetVarBlock>
+    </mt:If>
+</mt:Pages>
+<mt:If name="pagecount" gt="1">
+    <mt:Pages folder="$curfolder">
+        <mt:If name="__first__">
+<div class="widget-pages-in-folder widget">
+    <h3 class="widget-header">Also in <mt:PageFolder><mt:FolderLabel></mt:PageFolder></h3>
+    <div class="widget-content">
+        <ul>
+        </mt:If>
+            <li><a href=""><mt:PageTitle></a></li>
+        <mt:If name="__last__">
+        </ul>
+    </div>
+</div>
+        </mt:If>
+    </mt:Pages>
+</mt:If>

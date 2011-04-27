@@ -1,6 +1,31 @@
+<mt:Ignore>
+    Set the Main Blog ID
+</mt:Ignore>
 <mt:SetVarBlock name="main_blog_id"><mt:Var name="config.MainBlogID"></mt:SetVarBlock>
+
+<mt:Ignore>
+    Set the Photo Blog ID
+</mt:Ignore>
 <mt:SetVarBlock name="photo_gallery_blog_id"><mt:If name="config.PhotoGalleryBlogID"><mt:Var name="config.PhotoGalleryBlogID"><mt:Else><mt:If name="config.InActionBlogID"><mt:Var name="config.InActionBlogID"></mt:If></mt:If></mt:SetVarBlock>
 
+<mt:Ignore>
+    Set the Primary Author
+</mt:Ignore>
 <mt:Blogs blog_ids="$main_blog_id">
 <mt:SetVarBlock name="author_name"><mt:If tag="PrimaryAuthorName"><mt:PrimaryAuthorName><mt:Else><mt:Var name="config.PrimaryAuthorName"></mt:If></mt:SetVarBlock>
 </mt:Blogs>
+
+<mt:Ignore>
+    Set the page layout
+</mt:Ignore>
+<mt:If tag="BlogID" eq="$main_blog_id">
+    <mt:If tag="ColumnLayout" eq="3-column">
+        <mt:SetVar name="page_layout" value="layout-twt">
+    <mt:Else tag="ColumnLayout" eq="2-column">
+        <mt:SetVar name="page_layout" value="layout-wm">
+    </mt:If>
+<mt:Else tag="BlogID" eq="$photo_gallery_blog_id">
+    <mt:SetVar name="page_layout" value="layout-twt">
+<mt:Else>
+    <mt:SetVar name="page_layout" value="layout-twt">
+</mt:If>
