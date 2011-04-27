@@ -33,15 +33,9 @@
             <MTEntryTitle>
         </div>
     </mt:If>
-    <MTIfNonEmpty tag="EntryMore" convert_breaks="0">
-        <div id="more" class="asset-more">
-            <MTEntryMore>
-        </div>
-    <mt:Else>
-        <div class="asset-body">
-            <mt:EntryBody>
-        </div>
-    </MTIfNonEmpty>
+    <div class="asset-body">
+        <mt:EntryBody>
+        <MTEntryMore>
     </div>
     <div class="asset-footer">
         <MTInclude module="Tags">

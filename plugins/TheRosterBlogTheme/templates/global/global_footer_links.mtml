@@ -1,6 +1,6 @@
 <p>
     <mt:Blogs blog_ids="$main_blog_id">
-        <a href="<mt:BlogURL>" class="home">What&rsquo;s New</a>
+        <a href="<mt:BlogURL>" class="home"><mt:HomePageName></a>
     </mt:Blogs>
 
     <mt:SetVarBlock name="curblog"><mt:BlogName></mt:SetVarBlock>
@@ -13,7 +13,7 @@
 
     <mt:Pages blog_ids="$main_blog_id" tags="@about" limit="1">
         <span class="divider">|</span>
-        <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">">About Me</a>
+        <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-">">About</a>
     </mt:Pages>
 
     <mt:Pages blog_ids="$main_blog_id" tags="@contact" limit="1">

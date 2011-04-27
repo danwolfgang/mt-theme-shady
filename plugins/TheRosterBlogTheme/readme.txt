@@ -2,6 +2,10 @@ The Roster Blog Theme Setup and Use Instructions
 
 Setup
 =====
+Probably several preliminary setup steps to do: add the domain to Media Temple, 
+update DNS, create Google Apps domain setup, etc. If installing on (mt), an 
+.htaccess is needed to allow MT to run from domain.com/mt/.
+
  1. Install MT and upload this plugin, as well as other required plugins:
     - Config Assistant
     - Facebook Commenters (1.1.1 or later)
@@ -22,6 +26,9 @@ Setup
     These config directives are used throughout the two blogs to ensure that 
     links point to the correct location. They are turned into variables at the 
     start of the Global: Header template.
+    
+    If InActionBlogID is excluded/commented-out, then this blog does not need 
+    to be created for the site to function properly.
 
  5. In Global Templates, update the System Templates to use their "Global: " 
     counterparts. Each named template gets replaced with an include. (Template 
@@ -38,6 +45,9 @@ Setup
     - Header Image URL is required.
     - Header Accent Image URL is optional. Use it to place an arbitrary image in the 
       site header; otherwise In Action photos will be displayed there.
+    - Home Page Name will display in the site navigation as "What's New" by default.
+    - Home Page Center Column Name will display "Play by Play" by default, and is
+      displayed *only* on the home page.
 
     All other fields are intelligently ignored if empty.
 
@@ -50,6 +60,10 @@ Setup
 
 Use
 ===
+
+The cardinal rule: do not edit existing templates. Any edits will be blown away 
+when/if the template set is refreshed.
+
 Action Streams
 --------------
   Action Streams are used to list the Twitter feed, and to create the Game On 
@@ -57,6 +71,12 @@ Action Streams
   
   Click the author's name in the upper-right, then choose Other Profiles to 
   add additional profiles.
+
+
+Widgets
+-------
+  Widgets are the sidebar items. Order and include/exclude widgets with
+  drag/drop in the Widget Sets found in System Overview > Widgets.
 
 Main Blog
 ---------

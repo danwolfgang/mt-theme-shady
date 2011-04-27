@@ -4,6 +4,8 @@ key:         therosterblogtheme
 description: 'Includes template sets for a "Times" and "In Action" blog.'
 author:      'Dan Wolfgang, uiNNOVATIONS'
 author_link: 'http://uinnovations.com'
+version: 1.1
+schema_version: 1
 
 default_templates:
     base_path: 'templates/global'
@@ -22,8 +24,6 @@ default_templates:
             label: 'Global: Footer Links'
         global_header:
             label: 'Global: Header'
-        global_header_images:
-            label: 'Global: Header Images'
         global_include_add_this:
             label: 'Global: Include: Add This'
         global_navigation:
@@ -103,6 +103,23 @@ template_sets:
         base_path: 'templates/blog'
         label: 'The Roster Blog Theme (Blog)'
         options:
+            fieldsets:
+                home:
+                    label: 'Home Page Options'
+            home_page_name:
+                type: text
+                label: 'Home Page Name'
+                hint: 'The name of the home page, as it appears in the site navigation. This text is capitalized as necessary; enter a proper-case name.'
+                default: "What's New"
+                tag: HomePageName
+                fieldset: home
+            home_page_center_name:
+                type: text
+                label: 'Home Page Center Column Name'
+                hint: 'The name of the center column of the home page. Displayed <em>only</em> at the top of the center column of the home page. This text is capitalized as necessary; enter a proper-case name.'
+                default: 'Play by Play'
+                tag: HomePageCenterColumnName
+                fieldset: home
             tracking_code:
                 type: textarea
                 label: 'Tracking Code'
@@ -121,13 +138,8 @@ template_sets:
             header_image:
                 type: text
                 label: 'Header Image URL'
-                hint: 'Enter the URL to an image to display in the header. The image should measure 700 x 144 pixels.'
+                hint: 'Enter the URL to an image to display in the header. The image should measure 970 x 144 pixels.'
                 tag: HeaderImageURL
-            header_accent_image:
-                type: text
-                label: 'Header Accent Image URL'
-                hint: 'Enter the URL to an image to display in the upper-right area of the header, as an accent image. the image should measure 310 x 70 pixels. If no image is supplied, the four most recent In Action images will be displayed here.'
-                tag: HeaderAccentImageURL
             add_this:
                 type: textarea
                 label: '&ldquo;Add This&rdquo; Code'
@@ -145,12 +157,12 @@ template_sets:
                 default: 1
                 tag: DisplayEntryMeta
         fields:
-            entry_url:
-                label: 'URL'
-                description: 'URL to a Daily Link item'
-                type: url
-                obj_type: entry
-                tag: entryurl
+#            entry_url:
+#                label: 'URL'
+#                description: 'URL to a Daily Link item'
+#                type: url
+#                obj_type: entry
+#                tag: entryurl
             page_left_column:
                 label: 'Left Column'
                 description: 'Select the widget set to display in the left-hand column of this page.'
@@ -168,6 +180,12 @@ template_sets:
                 type: checkbox
                 obj_type: entry
                 tag: add_continue_link
+            keep_off_home_page:
+                label: 'Keep this entry off of the home page.'
+                description: 'Checking this box removes this entry from the home page flow. If this entry is old enough to <em>not</em> show on the home page, this option does nothing.'
+                type: checkbox
+                obj_type: entry
+                tag: KeepOffHomePage
             entry_headline_style_variation:
                 label: 'Headline Style Variation'
                 type: select
@@ -329,11 +347,6 @@ template_sets:
                 type: text
                 obj_type: entry
                 tag: entrydatahtml_head_title
-            add_continue_link:
-                label: 'Add "Continue..." link?'
-                type: checkbox
-                obj_type: entry
-                tag: add_continue_link
             entry_headline_style_variation:
                 label: 'Headline Style Variation'
                 type: select
@@ -394,10 +407,6 @@ template_sets:
                 atom:
                     label: Atom
                     outfile: atom.xml
-                    rebuild_me: 1
-                include_header_images:
-                    label: 'Include: Header Images'
-                    outfile: header-images.inc
                     rebuild_me: 1
                 include_in_action_recent:
                     label: 'Include: In Action: Recent'

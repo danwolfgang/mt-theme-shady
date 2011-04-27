@@ -1,5 +1,5 @@
 <mt:Blogs blog_ids="$main_blog_id">
-    <a href="<mt:BlogURL>" class="home<mt:If name="home"> on</mt:If>">What&rsquo;s New</a>
+    <a href="<mt:BlogURL>" class="home<mt:If name="home"> on</mt:If>"><mt:HomePageName></a>
 </mt:Blogs>
 
 <mt:SetVarBlock name="curblog"><mt:BlogName></mt:SetVarBlock>
@@ -22,7 +22,7 @@
     <span class="divider">|</span>
 
     <mt:SetVarBlock name="this_page_id"><mt:PageID></mt:SetVarBlock>
-    <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-"><mt:If name="nav_on" eq="$this_page_id"> on</mt:If>">About Me</a>
+    <a href="<mt:PagePermalink>" class="<mt:PageTitle dirify="-"><mt:If name="nav_on" eq="$this_page_id"> on</mt:If>">About</a>
 </mt:Pages>
 
 <mt:Pages blog_ids="$main_blog_id" tags="@contact" limit="1">
