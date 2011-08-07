@@ -1,5 +1,12 @@
 # Shady Theme for Movable Type
 
+Shady contains two themes for Movable Type: a blog and a photo gallery.
+
+This is an old theme -- my first, in fact -- originally developed for a client
+in 2007(?), I believe. It surely contains lots of old and outdated methods,
+though I have begun updating some of that (example: making better use of
+Config Assistant and Theme Manager's capabilities).
+
 # Prerequisites
 
 * Movable Type Pro
