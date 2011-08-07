@@ -1,4 +1,4 @@
-package CustomThemePack::ContactForm;
+package ShadyThemePack::ContactForm;
 
 use strict;
 

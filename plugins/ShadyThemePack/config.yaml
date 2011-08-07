@@ -1,9 +1,9 @@
-name:           'Custom Theme Pack'
-id:             customthemepack
-key:            customthemepack
+name:           'Shady Theme Pack'
+id:             shadythemepack
+key:            shadythemepack
 description:    'Includes template sets for a blog and galleries.'
 author_name:    'Dan Wolfgang, uiNNOVATIONS'
-version:        1.4.5
+version:        2.0
 schema_version: 7
 static_version: 1
 
@@ -12,12 +12,12 @@ object_types:
         phone: string(255)
 
 callbacks:
-    MT::Comment::pre_save: $CustomThemePack::CustomThemePack::ContactForm::pre_save
-    MT::App::CMS::template_param.edit_comment: $CustomThemePack::CustomThemePack::ContactForm::add_fields
+    MT::Comment::pre_save: $ShadyThemePack::ShadyThemePack::ContactForm::pre_save
+    MT::App::CMS::template_param.edit_comment: $ShadyThemePack::ShadyThemePack::ContactForm::add_fields
 
 tags:
     function:
-        CommentPhone: $CustomThemePack::CustomThemePack::ContactForm::comment_phone
+        CommentPhone: $ShadyThemePack::ShadyThemePack::ContactForm::comment_phone
 
 default_templates:
     base_path: 'templates/global'
@@ -125,9 +125,9 @@ default_templates:
                 - 'Ad'
 
 template_sets:
-    blog:
+    shady_theme_blog:
         base_path: 'templates/blog'
-        label: 'Custom Theme Pack (Blog)'
+        label: 'Shady Theme Pack (Blog)'
         options:
             fieldsets:
                 home:
@@ -751,8 +751,8 @@ template_sets:
                 new_password:
                     label: 'New Password Form'
 
-    photo_gallery:
-        label: 'Custom Theme Pack (Photo Gallery)'
+    shady_theme_photo_gallery:
+        label: 'Shady Theme Pack (Photo Gallery)'
         options:
             fieldsets:
                 widget_names:

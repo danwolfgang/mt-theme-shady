@@ -1,4 +1,4 @@
-# Unnamed Theme
+# Shady Theme for Movable Type
 
 # Prerequisites
 
@@ -6,13 +6,14 @@
 
 Required plugins:
 
-* [Theme Manager](https://github.com/openmelody/mt-plugin-theme-manager/downloads)
-* [Config Assistant](https://github.com/openmelody/mt-plugin-configassistant/downloads)
 * [Categories By Date](https://github.com/danwolfgang/mt-plugin-categories-by-date)
+* [Config
+ Assistant](https://github.com/openmelody/mt-plugin-configassistant/downloads)
 * [More Custom Fields](https://github.com/danwolfgang/mt-plugin-more-custom-fields/downloads)
 * [Peak Categories](https://github.com/jayseae/MT-PeakCategories/downloads)
 * [PreviousNextinCategory]()
 * [SubCatCount](http://www.everitz.com/mt/subcatcount/)
+* [Theme Manager](https://github.com/openmelody/mt-plugin-theme-manager/downloads)
 * [Widget Set CF](https://github.com/endevver/mt-plugin-cf-widgetset)
 
 Optional, but useful plugins:
@@ -30,8 +31,8 @@ Documentation).
 
 ## Create Blogs
 
-Create a new blog with the "Custom Theme Pack (Blog)" template set.
-Optionally, also create a new blog with the "Custom Theme Pack (Photo
+Create a new blog with the "Shady Theme Pack (Blog)" template set.
+Optionally, also create a new blog with the "Shady Theme Pack (Photo
 Gallery)" template set.
 
 ## Config Directives
